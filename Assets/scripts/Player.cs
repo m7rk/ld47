@@ -78,7 +78,11 @@ public class Player : AbstractCharacter
         lastVelocity = rb.velocity;
     }
 
-
+    public void heal()
+    {
+        hp++;
+        hm.setHearts(hp);
+    }
 
     public override void hurt()
     {
