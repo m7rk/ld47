@@ -22,7 +22,7 @@ public class Phantom : AbstractCharacter
 
         if (move.didFire)
         {
-            tryFire(projectileLaunchDirection, "PhantomProjectile");
+            startFire();
         }
 
         this.transform.position = rtl.addOffsetToRoom(move.location);
@@ -48,7 +48,8 @@ public class Phantom : AbstractCharacter
     // Update is called once per frame
     void Update()
     {
-        
+
+        checkForShoot("PhantomProjectile");
     }
 
     public override void hurt()

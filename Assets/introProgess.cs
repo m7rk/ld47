@@ -16,7 +16,7 @@ public class introProgess : MonoBehaviour
     void Update()
     {
         //checking for mouse imput
-		if (input.GetMouseButtonDown(0))
+		if (Input.GetMouseButtonDown(0))
 		{
 			//somehow change the sprite
 			this.GetComponent<SpriteRenderer>().sprite = intro2;

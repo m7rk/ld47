@@ -82,7 +82,7 @@ public class Player : AbstractCharacter
 
         if (Input.GetKeyDown(KeyCode.J))
         {
-            tryFire(projectileLaunchDirection,"PlayerProjectile");
+            startFire();
             CurrentMove.didFire = true;
             cf.fadeToBlack();
         }
@@ -141,5 +141,6 @@ public class Player : AbstractCharacter
         playerInput(Time.deltaTime);
         animateLizard(rb.velocity.magnitude < ANIM_VEL_STOP_THRESH);
         invulnTime -= Time.deltaTime;
+        checkForShoot("PlayerProjectile");
     }
 }

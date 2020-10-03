@@ -5,11 +5,17 @@ using UnityEngine;
 //base class for player, enemy, phantom.
 public abstract class AbstractCharacter : MonoBehaviour
 {
+    // Default sounds for shooting weapon and getting hurt
     public AudioSource fireSound;
     public AudioSource hurtSound;
 
     // which way should projectiles be shot?
     protected Vector2 projectileLaunchDirection = Vector2.right;
+
+    // Shooting timers for animations.
+    public const float shootTimerMax = 2f;
+    public float shootTimer = 0f;
+    public float shootTimerFrame = 1.7f;
 
 
     public static float ANIM_VEL_STOP_THRESH = 0.1f;
@@ -57,16 +63,29 @@ public abstract class AbstractCharacter : MonoBehaviour
         }
     }
 
-    public void tryFire(Vector2 dir, string layer)
+    public void startFire()
     {
         sprite.SetTrigger("shoot");
-        // lol
-        var v = Instantiate(Resources.Load<GameObject>("Prefab/"+layer));
-        v.GetComponent<Projectile>().setup(dir, "PlayerProjectile");
+        shootTimer = shootTimerMax;
+        fireSound.Play();
+    }
+
+    public void makeProjectile(Vector2 dir, string layer)
+    {
+        var v = Instantiate(Resources.Load<GameObject>("Prefab/" + layer));
+        v.GetComponent<Projectile>().setup(dir, layer);
         v.transform.eulerAngles = new Vector3(0, 0, Mathf.Rad2Deg * Mathf.Atan2(dir.y, dir.x));
         v.layer = LayerMask.NameToLayer(layer);
         v.transform.position = this.transform.position;
-        fireSound.Play();
+    }
+
+    public void checkForShoot(string projType)
+    {
+        shootTimer -= Time.deltaTime;
+        if (shootTimer < shootTimerFrame && shootTimer + Time.deltaTime >= shootTimerFrame)
+        {
+            makeProjectile(projectileLaunchDirection, projType);
+        }
     }
 
 
