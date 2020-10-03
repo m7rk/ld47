@@ -6,17 +6,22 @@ public class Projectile : MonoBehaviour
 {
 
     const float velocity = 5;
+    RoomTransitionListener rtl;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rtl = FindObjectOfType<RoomTransitionListener>();
     }
 
     // Update is called once per frametw
     void Update()
     {
-        
+        // dont enter adjacent rooms!
+        if(!rtl.inRoom(transform.position))
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     public void setup(Vector2 dir, string layerName)

@@ -69,4 +69,12 @@ public class RoomTransitionListener : MonoBehaviour
         v.y += currRoomY * ROOM_SIZE_Y;
         return v;
     }
+
+    public bool inRoom(Vector3 v)
+    {
+        var centerX = currRoomX * ROOM_SIZE_X;
+        var centerY = currRoomY * ROOM_SIZE_Y;
+
+        return (Mathf.Abs(v.x - centerX) < (ROOM_SIZE_X / 2)) && (Mathf.Abs(v.y - centerY) < (ROOM_SIZE_Y / 2));
+    }
 }
