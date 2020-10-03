@@ -10,6 +10,9 @@ public abstract class AbstractCharacter : MonoBehaviour
     const float ACCEL_MULT = 100f;
     const float MAX_VEL = 3f;
 
+    public AudioSource fireSound;
+    public AudioSource hurtSound;
+
     // which way should projectiles be shot?
     protected Vector2 projectileLaunchDirection = Vector2.right;
 
@@ -70,6 +73,7 @@ public abstract class AbstractCharacter : MonoBehaviour
         v.transform.eulerAngles = new Vector3(0, 0, Mathf.Rad2Deg * Mathf.Atan2(dir.y, dir.x));
         v.layer = LayerMask.NameToLayer(layer);
         v.transform.position = this.transform.position;
+        fireSound.Play();
     }
 
     protected void applyForcesToRigidBody(Vector2 moveVector, float delta)

@@ -82,7 +82,7 @@ public class Player : AbstractCharacter
 
     public override void hurt()
     {
-
+        hurtSound.Play();
         hp--;
         if (hp <= 0)
         {

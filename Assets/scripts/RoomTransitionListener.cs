@@ -17,6 +17,8 @@ public class RoomTransitionListener : MonoBehaviour
 
     const float ROOM_OFFSET_X = 7.5f;
     const float ROOM_OFFSET_Y = 5f;
+
+
     
     void Start()
     {
@@ -26,6 +28,11 @@ public class RoomTransitionListener : MonoBehaviour
     void resetTimer()
     {
         timer.remainingTime = timer.timeLimit;
+    }
+
+    void nextArea()
+    {
+
     }
 
     // Update is called once per frame
