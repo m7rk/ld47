@@ -14,6 +14,7 @@ public class Player : AbstractCharacter
 
     public HeartManager hm;
     public RoomTransitionListener rtl;
+    public Crossfade cf;
 
     private List<CharacterMove> allPlayerMoves = new List<CharacterMove>();
 
@@ -82,6 +83,7 @@ public class Player : AbstractCharacter
             tryFire(projectileLaunchDirection,"PlayerProjectile");
             sprite.SetTrigger("shoot");
             CurrentMove.didFire = true;
+            cf.fadeToBlack();
         }
 
         allPlayerMoves.Add(CurrentMove);
