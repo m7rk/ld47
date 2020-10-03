@@ -14,4 +14,9 @@ public class Enemy : AbstractCharacter
     {
         Destroy(this.gameObject);
     }
+
+    public void Update()
+    {
+
+    }
 }

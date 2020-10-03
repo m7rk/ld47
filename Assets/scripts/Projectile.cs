@@ -31,7 +31,7 @@ public class Projectile : MonoBehaviour
         var character = c.gameObject.GetComponent<AbstractCharacter>();
         if (character != null)
         {
-
+            character.hurt();
         }
         Destroy(this.gameObject);
     }
