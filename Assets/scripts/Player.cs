@@ -14,6 +14,8 @@ public class Player : AbstractCharacter
     public Vector2 lastVelocity;
     float invulnTime = 0;
 
+    public Animator sprite;
+
     public HeartManager hm;
 
     List<CharacterMove> allPlayerMoves = new List<CharacterMove>();
@@ -42,10 +44,26 @@ public class Player : AbstractCharacter
         {
             vec += Vector2.left;
 
+            sprite.ResetTrigger("walk_right");
+            sprite.ResetTrigger("idle");
+            sprite.SetTrigger("walk_left");
+
         }
         else if (Input.GetKey(KeyCode.D))
         {
             vec += Vector2.right;
+
+            sprite.ResetTrigger("walk_left");
+            sprite.ResetTrigger("idle");
+            sprite.SetTrigger("walk_right");
+        } else
+        {
+            if (vec == Vector2.zero)
+            {
+                sprite.SetTrigger("idle");
+                sprite.ResetTrigger("walk_left");
+                sprite.ResetTrigger("walk_right");
+            }
         }
         return vec;
     }
@@ -66,6 +84,7 @@ public class Player : AbstractCharacter
         if (Input.GetKeyDown(KeyCode.J))
         {
             tryFire(facing);
+            sprite.SetTrigger("shoot");
         }
 
         rb.AddForce(moveVector * ACCEL_MULT * delta, ForceMode2D.Impulse);
