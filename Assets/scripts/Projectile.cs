@@ -5,7 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
 
-    const float velocity = 50;
+    const float velocity = 5;
 
     // Start is called before the first frame update
     void Start()

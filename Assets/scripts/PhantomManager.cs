@@ -23,6 +23,9 @@ public class PhantomManager : MonoBehaviour
             if (pmc.getMaxMovesForPhantom(i) > timeStep)
             {
                 phantoms[i].GetComponent<Phantom>().Input(pmc.getPhantomMove(i, timeStep));
+            } else
+            {
+                phantoms[i].gameObject.SetActive(false);
             }
         }
 

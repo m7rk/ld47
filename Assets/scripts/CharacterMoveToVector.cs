@@ -23,6 +23,8 @@ public class CharacterMoveToVector
         moveToVector.Add(AbstractCharacter.CharacterMove.UPLEFT, new Vector2(1, -1));
         moveToVector.Add(AbstractCharacter.CharacterMove.UPRIGHT, new Vector2(1, 1));
 
+        
+
     }
     // Convert a vector to a charactermove.
     public static AbstractCharacter.CharacterMove vecToDir(Vector2 d)

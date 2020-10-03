@@ -38,7 +38,7 @@ public class RoomTransitionListener : MonoBehaviour
             playerRoomStartLoc = p.transform.position;
             // For the start loc, subtract a room size.
             playerRoomStartLoc.x -= roomX * ROOM_SIZE_X;
-            playerRoomStartLoc.y += roomX * ROOM_SIZE_X;
+            playerRoomStartLoc.y -= roomY * ROOM_SIZE_Y;
         }
     }
 }

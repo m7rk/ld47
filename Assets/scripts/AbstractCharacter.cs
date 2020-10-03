@@ -10,10 +10,14 @@ public abstract class AbstractCharacter : MonoBehaviour
     const float ACCEL_MULT = 100f;
     const float MAX_VEL = 3f;
 
+    // which way should projectiles be shot?
+    protected Vector2 projectileLaunchDirection = Vector2.right;
+
     // Enum for action that could be taken in any given frame.
     public enum CharacterMove
     {
         NONE,
+        FIRE,
         LEFT,
         RIGHT,
         UP,
@@ -57,6 +61,15 @@ public abstract class AbstractCharacter : MonoBehaviour
             sprite.ResetTrigger("idle");
             sprite.SetTrigger("walk_left");
         }
+    }
+
+    public void tryFire(Vector2 dir, string layer)
+    {
+        var v = Instantiate(Resources.Load<GameObject>("Prefab/fireball"));
+        v.GetComponent<Projectile>().setup(dir, "PlayerProjectile");
+        v.transform.eulerAngles = new Vector3(0, 0, Mathf.Rad2Deg * Mathf.Atan2(dir.y, dir.x));
+        v.layer = LayerMask.NameToLayer(layer);
+        v.transform.position = this.transform.position;
     }
 
     protected void applyForcesToRigidBody(Vector2 moveVector, float delta)

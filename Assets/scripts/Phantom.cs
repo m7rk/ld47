@@ -12,8 +12,33 @@ public class Phantom : AbstractCharacter
 
     public void Input(AbstractCharacter.CharacterMove move)
     {
-        Vector2 direction = CharacterMoveToVector.DirToVec(move);
-        applyForcesToRigidBody(direction, Time.deltaTime);
+        if (move == CharacterMove.FIRE)
+        {
+            tryFire(projectileLaunchDirection, "PhantomProjectile");
+        }
+        else
+        {
+            Vector2 direction = CharacterMoveToVector.DirToVec(move);
+            applyForcesToRigidBody(direction, Time.deltaTime);
+
+            if (direction.x > 0)
+            {
+                lookingLeft = false;
+            }
+
+            if (direction.x < 0)
+            {
+                lookingLeft = true;
+            }
+
+            if (direction != Vector2.zero)
+            {
+                projectileLaunchDirection = direction;
+            }
+        }
+
+        animateLizard(rb.velocity);
+
     }
     // Update is called once per frame
     void Update()

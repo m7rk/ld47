@@ -6,9 +6,6 @@ public class Player : AbstractCharacter
 {
     const float INVULN_TIME_MAX = 2f;
 
-    // which way should projectiles be shot?
-    private Vector2 projectileLaunchDirection = Vector2.right;
-
     public Vector2 lastVelocity;
     float invulnTime = 0;
 
@@ -26,6 +23,11 @@ public class Player : AbstractCharacter
     Vector2 getMoveVector()
     {
         Vector2 vec = Vector2.zero;
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            return vec;
+        }
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -55,17 +57,20 @@ public class Player : AbstractCharacter
         var moveVector = getMoveVector();
 
         CharacterMove CurrentMove = CharacterMoveToVector.vecToDir(moveVector);
-        allPlayerMoves.Add(CurrentMove);
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            tryFire(projectileLaunchDirection,"PlayerProjectile");
+            sprite.SetTrigger("shoot");
+            allPlayerMoves.Add(CharacterMove.FIRE);
+        } else
+        {
+            allPlayerMoves.Add(CurrentMove);
+        }
 
         if (moveVector != Vector2.zero)
         {
             projectileLaunchDirection = moveVector;
-        }
-
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            tryFire(projectileLaunchDirection);
-            sprite.SetTrigger("shoot");
         }
 
         applyForcesToRigidBody(moveVector, delta);
@@ -73,12 +78,7 @@ public class Player : AbstractCharacter
         lastVelocity = rb.velocity;
     }
 
-    public void tryFire(Vector2 dir)
-    {
-        var v = Instantiate(Resources.Load<GameObject>("fireball"));
-        v.GetComponent<Projectile>().setup(dir,"PlayerProjectile");
-        v.transform.position = this.transform.position;
-    }
+
 
     public override void hurt()
     {
