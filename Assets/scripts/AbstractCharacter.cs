@@ -6,6 +6,9 @@ using UnityEngine;
 public abstract class AbstractCharacter : MonoBehaviour
 {
     public static float VEL_STOP_THRESH = 0.1f;
+    public Rigidbody2D rb;
+    const float ACCEL_MULT = 100f;
+    const float MAX_VEL = 3f;
 
     // Enum for action that could be taken in any given frame.
     public enum CharacterMove
@@ -54,6 +57,17 @@ public abstract class AbstractCharacter : MonoBehaviour
             sprite.ResetTrigger("idle");
             sprite.SetTrigger("walk_left");
         }
+    }
+
+    protected void applyForcesToRigidBody(Vector2 moveVector, float delta)
+    {
+        rb.AddForce(moveVector * ACCEL_MULT * delta, ForceMode2D.Impulse);
+
+        if (rb.velocity.magnitude > MAX_VEL)
+        {
+            rb.velocity = rb.velocity.normalized * MAX_VEL;
+        }
+
     }
 
 }

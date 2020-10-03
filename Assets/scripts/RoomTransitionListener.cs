@@ -14,8 +14,13 @@ public class RoomTransitionListener : MonoBehaviour
     float ROOM_SIZE_X = 15f;
     float ROOM_SIZE_Y = 10f;
 
-    const float ROOM_OFFSET_X = 4f;
-    const float ROOM_OFFSET_Y = 4f;
+    const float ROOM_OFFSET_X = 7.5f;
+    const float ROOM_OFFSET_Y = 5f;
+    
+    void Start()
+    {
+        playerRoomStartLoc = p.transform.position;
+    }
 
     // Update is called once per frame
     void Update()
@@ -25,10 +30,15 @@ public class RoomTransitionListener : MonoBehaviour
         
         if(roomX != currRoomX || roomY != currRoomY)
         {
-            Camera.main.transform.position = new Vector3(4 + (roomX * ROOM_SIZE_X), 0.5f + (roomY * ROOM_SIZE_Y), -8.5f);
+            Camera.main.transform.position = new Vector3((roomX * ROOM_SIZE_X), (roomY * ROOM_SIZE_Y), -8.5f);
             currRoomX = roomX;
             currRoomY = roomY;
-            pm.Reset(p.flushMoves(), p.transform.position);
+            pm.Reset(p.flushMoves(), playerRoomStartLoc, new Vector2(roomX * ROOM_SIZE_X, roomY * ROOM_SIZE_Y));
+
+            playerRoomStartLoc = p.transform.position;
+            // For the start loc, subtract a room size.
+            playerRoomStartLoc.x -= roomX * ROOM_SIZE_X;
+            playerRoomStartLoc.y += roomX * ROOM_SIZE_X;
         }
     }
 }

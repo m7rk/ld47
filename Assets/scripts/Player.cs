@@ -4,18 +4,13 @@ using UnityEngine;
 
 public class Player : AbstractCharacter
 {
-
-    const float ACCEL_MULT = 100f;
-    const float MAX_VEL = 3f;
     const float INVULN_TIME_MAX = 2f;
 
     // which way should projectiles be shot?
-    private Vector2 facing = Vector2.right;
+    private Vector2 projectileLaunchDirection = Vector2.right;
 
-    public Rigidbody2D rb;
     public Vector2 lastVelocity;
     float invulnTime = 0;
-
 
     public HeartManager hm;
 
@@ -64,21 +59,16 @@ public class Player : AbstractCharacter
 
         if (moveVector != Vector2.zero)
         {
-            facing = moveVector;
+            projectileLaunchDirection = moveVector;
         }
 
         if (Input.GetKeyDown(KeyCode.J))
         {
-            tryFire(facing);
+            tryFire(projectileLaunchDirection);
             sprite.SetTrigger("shoot");
         }
 
-        rb.AddForce(moveVector * ACCEL_MULT * delta, ForceMode2D.Impulse);
-
-        if(rb.velocity.magnitude > MAX_VEL)
-        {
-            rb.velocity = rb.velocity.normalized * MAX_VEL;
-        }
+        applyForcesToRigidBody(moveVector, delta);
 
         lastVelocity = rb.velocity;
     }
@@ -111,7 +101,7 @@ public class Player : AbstractCharacter
     {
         var ret = allPlayerMoves;
         allPlayerMoves = new List<CharacterMove>();
-        return allPlayerMoves;
+        return ret;
     }
 
     // Update is called once per frame

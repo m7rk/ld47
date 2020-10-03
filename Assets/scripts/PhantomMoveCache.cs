@@ -8,8 +8,8 @@ public class PhantomMoveCache
     private class PhantomMoveData
     {
         public List<AbstractCharacter.CharacterMove> moves;
-        public Vector3 startLoc;
-        public PhantomMoveData(Vector3 startLoc, List<AbstractCharacter.CharacterMove> moves)
+        public Vector2 startLoc;
+        public PhantomMoveData(Vector2 startLoc, List<AbstractCharacter.CharacterMove> moves)
         {
             this.startLoc = startLoc;
             this.moves = moves;
@@ -26,7 +26,7 @@ public class PhantomMoveCache
     }
 
     // When the player dies or changes room, playerActions calls this (sending the allPlayerMoves list)
-    public void addNewPhantom(List<AbstractCharacter.CharacterMove> moves, Vector3 startLoc)
+    public void addNewPhantom(List<AbstractCharacter.CharacterMove> moves, Vector2 startLoc)
     {
         phantomMoves.Insert(0,new PhantomMoveData(startLoc,moves));
     }
@@ -55,7 +55,7 @@ public class PhantomMoveCache
         return phantomMoves[phantomIndex].moves[moveIndex];
     }
 
-    public Vector3 getStartPosition(int i)
+    public Vector2 getStartPosition(int i)
     {
         return phantomMoves[i].startLoc;
     }

@@ -20,12 +20,16 @@ public class PhantomManager : MonoBehaviour
     {
         for (int i = 0; i != pmc.phantomCount(); ++i)
         {
-            phantoms[i].GetComponent<Phantom>().Input(pmc.getPhantomMove(i, timeStep));
+            if (pmc.getMaxMovesForPhantom(i) > timeStep)
+            {
+                phantoms[i].GetComponent<Phantom>().Input(pmc.getPhantomMove(i, timeStep));
+            }
         }
+
         timeStep++;
     }
 
-    public void Reset(List<AbstractCharacter.CharacterMove> moves, Vector3 startLoc)
+    public void Reset(List<AbstractCharacter.CharacterMove> moves, Vector2 startLoc, Vector2 spawnOffset)
     {
         timeStep = 0;
         pmc.addNewPhantom(moves, startLoc);
@@ -39,7 +43,8 @@ public class PhantomManager : MonoBehaviour
         {
             var p = Instantiate(Resources.Load<GameObject>("Prefab/Phantom"));
             p.transform.parent = this.transform.parent;
-            p.transform.position = pmc.getStartPosition(i);
+            p.transform.position = pmc.getStartPosition(i) + spawnOffset;
+            phantoms.Add(p.GetComponent<Phantom>());
         }
     }
 }
