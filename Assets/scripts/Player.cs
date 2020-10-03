@@ -5,9 +5,15 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-    float ACCEL_MULT = 100f;
-    float MAX_VEL = 3f;
-    Vector2 facing = Vector2.right;
+    const float ACCEL_MULT = 100f;
+    const float MAX_VEL = 3f;
+    const float INVULN_TIME_MAX = 2f;
+
+    private Vector2 facing = Vector2.right;
+    public Rigidbody2D rb;
+    public Vector2 lastVelocity;
+    int hp = 3;
+    float invulnTime = 0;
 
     public enum PlayerMove
     {
@@ -28,12 +34,13 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Application.targetFrameRate = 60;
     }
 
+    // this is ugly but whatever
     PlayerMove vecToDir(Vector2 d)
     {
-        if(d == Vector2.zero)
+        if (d == Vector2.zero)
         {
             return PlayerMove.NONE;
         }
@@ -55,7 +62,7 @@ public class Player : MonoBehaviour
             return PlayerMove.UP;
         }
 
-        if (d == new Vector2(1,1))
+        if (d == new Vector2(1, 1))
         {
             return PlayerMove.UPRIGHT;
         }
@@ -74,14 +81,11 @@ public class Player : MonoBehaviour
 
         Debug.Log("should have found vec");
         return PlayerMove.NONE;
-
     }
-    void playerInput(float delta)
+
+    Vector2 getMoveVector()
     {
-        var rb = GetComponent<Rigidbody2D>();
         Vector2 vec = Vector2.zero;
-
-
 
         if (Input.GetKey(KeyCode.W))
         {
@@ -96,17 +100,25 @@ public class Player : MonoBehaviour
         {
             vec += Vector2.left;
 
-        } else if (Input.GetKey(KeyCode.D))
+        }
+        else if (Input.GetKey(KeyCode.D))
         {
             vec += Vector2.right;
         }
+        return vec;
+    }
 
-        PlayerMove CurrentMove = vecToDir(vec);
+    void playerInput(float delta)
+    {
+        var moveVector = getMoveVector();
+
+        PlayerMove CurrentMove = vecToDir(moveVector);
+
         allPlayerMoves.Add(CurrentMove);
 
-        if (vec != Vector2.zero)
+        if (moveVector != Vector2.zero)
         {
-            facing = vec;
+            facing = moveVector;
         }
 
         if (Input.GetKeyDown(KeyCode.J))
@@ -114,12 +126,14 @@ public class Player : MonoBehaviour
             tryFire(facing);
         }
 
-        rb.AddForce(vec * ACCEL_MULT * delta, ForceMode2D.Impulse);
+        rb.AddForce(moveVector * ACCEL_MULT * delta, ForceMode2D.Impulse);
 
         if(rb.velocity.magnitude > MAX_VEL)
         {
             rb.velocity = rb.velocity.normalized * MAX_VEL;
         }
+
+        lastVelocity = rb.velocity;
     }
 
     public void tryFire(Vector2 dir)
@@ -129,10 +143,17 @@ public class Player : MonoBehaviour
         v.transform.position = this.transform.position;
     }
 
+    public void hurt()
+    {
+        hp--;
+        this.invulnTime = INVULN_TIME_MAX;
+    }
+
 
     // Update is called once per frame
     void Update()
     {
         playerInput(Time.deltaTime);
+        invulnTime -= Time.deltaTime;
     }
 }

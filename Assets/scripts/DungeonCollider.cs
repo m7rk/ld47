@@ -19,13 +19,38 @@ public class DungeonCollider : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D c)
     {
-        var tilemap = GetComponent<Tilemap>();
+        // Something hit this tile, deal accordingly.
 
-        var v = tilemap.layoutGrid.WorldToCell(c.GetContact(0).point);
+        
+        if (c.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            var tilemap = GetComponent<Tilemap>();
+            var player = c.transform.GetComponent<Player>();
 
-        var r = tilemap.GetTile(v);
 
-        Debug.Log(r.name);
+
+            string tileType = "";
+            for (int i = 0; i != c.contactCount; ++i)
+            {
+                var tile = tilemap.GetTile(tilemap.layoutGrid.WorldToCell(c.GetContact(i).point + player.lastVelocity.normalized * 0.1f));
+
+                if (tile != null)
+                {
+                    tileType = tile.name;
+                    break;
+                }
+            }
+            
+            if(tileType == "")
+            {
+                Debug.LogError("No luck finding tile type");
+            }
+
+            if (tileType == "fire")
+            {
+                player.hurt();
+            }
+        }
     
     }
 }

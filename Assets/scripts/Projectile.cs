@@ -20,7 +20,6 @@ public class Projectile : MonoBehaviour
 
     public void setup(Vector2 dir, string layerName)
     {
-        GetComponent<Rigidbody2D>().velocity = 50 * dir.normalized;
         gameObject.layer = LayerMask.NameToLayer(layerName);
     }
 
