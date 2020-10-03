@@ -45,15 +45,28 @@ public class RoomTransitionListener : MonoBehaviour
         {
             resetTimer();
 
-            Camera.main.transform.position = new Vector3((roomX * ROOM_SIZE_X), (roomY * ROOM_SIZE_Y), -8.5f);
+            Camera.main.GetComponent<CameraFollow>().target = new Vector3((roomX * ROOM_SIZE_X), (roomY * ROOM_SIZE_Y), -8.5f);
             currRoomX = roomX;
             currRoomY = roomY;
+
             pm.Reset(p.flushMoves(), playerRoomStartLoc, new Vector2(roomX * ROOM_SIZE_X, roomY * ROOM_SIZE_Y));
 
-            playerRoomStartLoc = p.transform.position;
+            playerRoomStartLoc = removeOffsetFromRoom(p.transform.position);
             // For the start loc, subtract a room size.
-            playerRoomStartLoc.x -= roomX * ROOM_SIZE_X;
-            playerRoomStartLoc.y -= roomY * ROOM_SIZE_Y;
         }
+    }
+
+    public Vector2 removeOffsetFromRoom(Vector2 v)
+    {
+        v.x -= currRoomX * ROOM_SIZE_X;
+        v.y -= currRoomY * ROOM_SIZE_Y;
+        return v;
+    }
+
+    public Vector2 addOffsetToRoom(Vector2 v)
+    {
+        v.x += currRoomX * ROOM_SIZE_X;
+        v.y += currRoomY * ROOM_SIZE_Y;
+        return v;
     }
 }

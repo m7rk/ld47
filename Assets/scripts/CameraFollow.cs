@@ -1,18 +1,15 @@
 ﻿using UnityEngine;
 
-public class camerafollow : MonoBehaviour
+public class CameraFollow : MonoBehaviour
 {
-    public Transform target;
-	
+    public Vector3 target;
+
 	public float smoothSpeed = 0.125f;
-	public Vector3 offset;
 	
 	void FixedUpdate()
 	{
-		Vector3 desiredPosition = target.position + offset;
+        Vector3 desiredPosition = target;
 		Vector3 smoothedPostition = Vector3.Lerp (transform.position, desiredPosition,smoothSpeed);
 		transform.position = smoothedPostition;
-		
-		//transform.LookAt(target);
 	}
 }

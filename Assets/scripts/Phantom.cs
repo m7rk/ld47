@@ -4,40 +4,45 @@ using UnityEngine;
 
 public class Phantom : AbstractCharacter
 {
+    RoomTransitionListener rtl;
+
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     public void Input(AbstractCharacter.CharacterMove move)
     {
-        if (move == CharacterMove.FIRE)
+        if(rtl == null)
+        {
+            rtl = FindObjectOfType<RoomTransitionListener>();
+        }
+
+        Vector2 delta = new Vector2(transform.position.x, transform.position.y) - rtl.addOffsetToRoom(move.location);
+
+        if (move.didFire)
         {
             tryFire(projectileLaunchDirection, "PhantomProjectile");
         }
-        else
+
+        this.transform.position = rtl.addOffsetToRoom(move.location);
+            
+        if (delta.x < 0)
         {
-            Vector2 direction = CharacterMoveToVector.DirToVec(move);
-            applyForcesToRigidBody(direction, Time.deltaTime);
-
-            if (direction.x > 0)
-            {
-                lookingLeft = false;
-            }
-
-            if (direction.x < 0)
-            {
-                lookingLeft = true;
-            }
-
-            if (direction != Vector2.zero)
-            {
-                projectileLaunchDirection = direction;
-            }
+            lookingLeft = false;
         }
 
-        animateLizard(rb.velocity);
+        if (delta.x > 0)
+        {
+            lookingLeft = true;
+        }
+
+        if (delta != Vector2.zero)
+        {
+            projectileLaunchDirection = -delta;
+        }
+        
+        animateLizard(false);
 
     }
     // Update is called once per frame

@@ -35,7 +35,7 @@ public class PhantomManager : MonoBehaviour
     public void Reset(List<AbstractCharacter.CharacterMove> moves, Vector2 startLoc, Vector2 spawnOffset)
     {
         timeStep = 0;
-        pmc.addNewPhantom(moves, startLoc);
+        pmc.addNewPhantom(moves);
         foreach(var v in phantoms)
         {
             Destroy(v.gameObject);
@@ -46,7 +46,7 @@ public class PhantomManager : MonoBehaviour
         {
             var p = Instantiate(Resources.Load<GameObject>("Prefab/Phantom"));
             p.transform.parent = this.transform.parent;
-            p.transform.position = pmc.getStartPosition(i) + spawnOffset;
+            p.transform.position = pmc.getPhantomMove(i,0).location + spawnOffset;
             phantoms.Add(p.GetComponent<Phantom>());
         }
     }

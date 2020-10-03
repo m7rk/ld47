@@ -5,11 +5,15 @@ using UnityEngine;
 public class Player : AbstractCharacter
 {
     const float INVULN_TIME_MAX = 2f;
+    public Rigidbody2D rb;
+    const float ACCEL_MULT = 100f;
+    const float MAX_VEL = 3f;
 
     public Vector2 lastVelocity;
     float invulnTime = 0;
 
     public HeartManager hm;
+    public RoomTransitionListener rtl;
 
     private List<CharacterMove> allPlayerMoves = new List<CharacterMove>();
 
@@ -19,7 +23,20 @@ public class Player : AbstractCharacter
         Application.targetFrameRate = 60;
         hm.setHearts(hp);
     }
-    
+
+
+
+    protected void applyForcesToRigidBody(Vector2 moveVector, float delta)
+    {
+        rb.AddForce(moveVector * ACCEL_MULT * delta, ForceMode2D.Impulse);
+
+        if (rb.velocity.magnitude > MAX_VEL)
+        {
+            rb.velocity = rb.velocity.normalized * MAX_VEL;
+        }
+
+    }
+
     Vector2 getMoveVector()
     {
         Vector2 vec = Vector2.zero;
@@ -56,17 +73,19 @@ public class Player : AbstractCharacter
     {
         var moveVector = getMoveVector();
 
-        CharacterMove CurrentMove = CharacterMoveToVector.vecToDir(moveVector);
+        CharacterMove CurrentMove;
+        CurrentMove.location = rtl.removeOffsetFromRoom(this.transform.position);
+        CurrentMove.didFire = false;
 
         if (Input.GetKeyDown(KeyCode.J))
         {
             tryFire(projectileLaunchDirection,"PlayerProjectile");
             sprite.SetTrigger("shoot");
-            allPlayerMoves.Add(CharacterMove.FIRE);
-        } else
-        {
-            allPlayerMoves.Add(CurrentMove);
+            CurrentMove.didFire = true;
         }
+
+        allPlayerMoves.Add(CurrentMove);
+
 
         if (moveVector != Vector2.zero)
         {
@@ -112,7 +131,7 @@ public class Player : AbstractCharacter
     void Update()
     {
         playerInput(Time.deltaTime);
-        animateLizard(rb.velocity);
+        animateLizard(rb.velocity.magnitude < ANIM_VEL_STOP_THRESH);
         invulnTime -= Time.deltaTime;
     }
 }
