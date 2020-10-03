@@ -83,7 +83,6 @@ public class Player : AbstractCharacter
         if (Input.GetKeyDown(KeyCode.J))
         {
             tryFire(projectileLaunchDirection,"PlayerProjectile");
-            sprite.SetTrigger("shoot");
             CurrentMove.didFire = true;
             cf.fadeToBlack();
         }

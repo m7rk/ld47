@@ -41,8 +41,8 @@ public class Phantom : AbstractCharacter
         {
             projectileLaunchDirection = -delta;
         }
-        
-        animateLizard(false);
+
+        animateLizard(delta.magnitude < 0.01);
 
     }
     // Update is called once per frame

@@ -59,7 +59,9 @@ public abstract class AbstractCharacter : MonoBehaviour
 
     public void tryFire(Vector2 dir, string layer)
     {
-        var v = Instantiate(Resources.Load<GameObject>("Prefab/fireball"));
+        sprite.SetTrigger("shoot");
+        // lol
+        var v = Instantiate(Resources.Load<GameObject>("Prefab/"+layer));
         v.GetComponent<Projectile>().setup(dir, "PlayerProjectile");
         v.transform.eulerAngles = new Vector3(0, 0, Mathf.Rad2Deg * Mathf.Atan2(dir.y, dir.x));
         v.layer = LayerMask.NameToLayer(layer);
