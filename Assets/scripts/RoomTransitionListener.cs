@@ -7,6 +7,7 @@ public class RoomTransitionListener : MonoBehaviour
     public Player p;
     public PhantomManager pm;
     public Vector2 playerRoomStartLoc;
+    public Timer timer;
 
     int currRoomX = 0;
     int currRoomY = 0;
@@ -24,7 +25,7 @@ public class RoomTransitionListener : MonoBehaviour
 
     void resetTimer()
     {
-
+        timer.remainingTime = timer.timeLimit;
     }
 
     // Update is called once per frame
