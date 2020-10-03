@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : AbstractPlayerCharacter
 {
-    const float INVULN_TIME_MAX = 2f;
+    const float INVULN_TIME_MAX = 1f;
     public Rigidbody2D rb;
     const float ACCEL_MULT = 100f;
     const float MAX_VEL = 3f;
@@ -133,6 +133,10 @@ public class Player : AbstractPlayerCharacter
 
     public override void hurt()
     {
+        if(invulnTime >= 0)
+        {
+            return;
+        }
         hurtSound.Play();
         currentHP--;
         if (currentHP <= 0)
@@ -163,6 +167,9 @@ public class Player : AbstractPlayerCharacter
         invulnTime -= Time.deltaTime;
         footStepTime -= Time.deltaTime;
         checkForShoot("PlayerProjectile");
+
+        sprite.GetComponentsInChildren<SpriteRenderer>()[0].color = (invulnTime > 0) ? Color.red : Color.white;
+        sprite.GetComponentsInChildren<SpriteRenderer>()[1].color = (invulnTime > 0) ? Color.red : Color.white;
     }
 
     public override int maxHealth()
