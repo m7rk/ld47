@@ -18,6 +18,7 @@ public class RoomManager : MonoBehaviour
     const float ROOM_OFFSET_X = 7.5f;
     const float ROOM_OFFSET_Y = 5f;
 
+    public GameObject barrier;
 
     
     void Start()
@@ -30,10 +31,11 @@ public class RoomManager : MonoBehaviour
         timer.remainingTime = timer.timeLimit;
     }
 
-    void nextArea()
+    void setDoor(Vector2 entry)
     {
-
+        barrier.transform.position = roomCenter() + (entry * -new Vector2(ROOM_OFFSET_X+1, ROOM_OFFSET_Y+1));
     }
+
 
     // Update is called once per frame
     void Update()
@@ -44,10 +46,14 @@ public class RoomManager : MonoBehaviour
         if(roomX != currRoomX || roomY != currRoomY)
         {
             resetTimer();
+            Vector2 entry = new Vector2(roomX - currRoomX, roomY - currRoomY);
+
 
             Camera.main.GetComponent<CameraFollow>().target = new Vector3((roomX * ROOM_SIZE_X), (roomY * ROOM_SIZE_Y), -8.5f);
             currRoomX = roomX;
             currRoomY = roomY;
+
+            setDoor(entry);
 
             pm.Reset(p.flushMoves(), playerRoomStartLoc, new Vector2(roomX * ROOM_SIZE_X, roomY * ROOM_SIZE_Y));
 
@@ -78,11 +84,11 @@ public class RoomManager : MonoBehaviour
         return (Mathf.Abs(v.x - centerX) < (ROOM_SIZE_X / 2)) && (Mathf.Abs(v.y - centerY) < (ROOM_SIZE_Y / 2));
     }
 
-    public Vector3 roomCenter()
+    public Vector2 roomCenter()
     {
         var centerX = currRoomX * ROOM_SIZE_X;
         var centerY = currRoomY * ROOM_SIZE_Y;
 
-        return new Vector3(centerX, centerY, 0);
+        return new Vector2(centerX, centerY);
     }
 }

@@ -7,7 +7,7 @@ public class Player : AbstractPlayerCharacter
     const float INVULN_TIME_MAX = 1f;
     public Rigidbody2D rb;
     const float ACCEL_MULT = 100f;
-    const float MAX_VEL = 3f;
+    const float MAX_VEL = 4f;
 
     public Vector2 lastVelocity;
     float invulnTime = 0;
