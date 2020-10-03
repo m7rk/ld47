@@ -7120,16 +7120,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1407062956}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c8ad1ba21fd0654eb0f03097f05d54e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9fded5af42d51f140994c26c88c44e51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHP: 0
+  hurtSource: {fileID: 0}
   fireSound: {fileID: 0}
-  hurtSound: {fileID: 0}
-  shootTimer: 0
-  shootTimerFrame: 1.7
-  sprite: {fileID: 0}
-  lookingLeft: 0
-  hp: 3
+  hurtSounds: []
+  isScooting: 0
+  scootTimeMax: 2
+  shootTimeMax: 1
+  stateTime: 0
+  rtl: {fileID: 0}
 --- !u!50 &1407062958
 Rigidbody2D:
   serializedVersion: 4
@@ -7150,7 +7152,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1407062959
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7513,18 +7515,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d619437684f8be84a841c8600a4a66b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHP: 0
   fireSound: {fileID: 890316988}
-  hurtSound: {fileID: 1902423395}
   shootTimer: 0
   shootTimerFrame: 1.7
   sprite: {fileID: 2642684570896573408}
   lookingLeft: 0
-  hp: 3
   rb: {fileID: 1494318075}
   lastVelocity: {x: 0, y: 0}
   hm: {fileID: 1242709}
   rtl: {fileID: 1268613798}
   cf: {fileID: 1457742994}
+  hurtSound: {fileID: 1902423395}
 --- !u!1 &1892128312
 GameObject:
   m_ObjectHideFlags: 0

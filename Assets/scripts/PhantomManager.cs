@@ -32,7 +32,7 @@ public class PhantomManager : MonoBehaviour
         timeStep++;
     }
 
-    public void Reset(List<AbstractCharacter.CharacterMove> moves, Vector2 startLoc, Vector2 spawnOffset)
+    public void Reset(List<AbstractPlayerCharacter.CharacterMove> moves, Vector2 startLoc, Vector2 spawnOffset)
     {
         timeStep = 0;
         pmc.addNewPhantom(moves);

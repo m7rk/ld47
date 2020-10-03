@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : AbstractCharacter
+public class Player : AbstractPlayerCharacter
 {
     const float INVULN_TIME_MAX = 2f;
     public Rigidbody2D rb;
     const float ACCEL_MULT = 100f;
     const float MAX_VEL = 3f;
-    const int MAX_HP = 3;
 
     public Vector2 lastVelocity;
     float invulnTime = 0;
 
     public HeartManager hm;
-    public RoomTransitionListener rtl;
+    public RoomManager rtl;
     public Crossfade cf;
-   
+
+    public AudioSource hurtSound;
 
     private List<CharacterMove> allPlayerMoves = new List<CharacterMove>();
 
@@ -24,7 +24,8 @@ public class Player : AbstractCharacter
     void Start()
     {
         Application.targetFrameRate = 60;
-        hm.setHearts(hp);
+        
+        hm.setHearts(currentHP);
     }
 
 
@@ -102,10 +103,10 @@ public class Player : AbstractCharacter
 
     public bool heal()
     {
-        if (hp < MAX_HP)
+        if (currentHP < maxHealth())
         {
-            hp++;
-            hm.setHearts(hp);
+            currentHP++;
+            hm.setHearts(currentHP);
             return true;
         }
         return false;
@@ -114,16 +115,16 @@ public class Player : AbstractCharacter
     public override void hurt()
     {
         hurtSound.Play();
-        hp--;
-        if (hp <= 0)
+        currentHP--;
+        if (currentHP <= 0)
         {
             this.transform.localPosition = new Vector3(0, 0, 0);
-            hp = 3;
-            hm.setHearts(hp);
+            currentHP = maxHealth();
+            hm.setHearts(currentHP);
         }
         else
         {
-            hm.setHearts(hp);
+            hm.setHearts(currentHP);
             this.invulnTime = INVULN_TIME_MAX;
         }
     }
@@ -142,5 +143,10 @@ public class Player : AbstractCharacter
         animateLizard(rb.velocity.magnitude < ANIM_VEL_STOP_THRESH);
         invulnTime -= Time.deltaTime;
         checkForShoot("PlayerProjectile");
+    }
+
+    public override int maxHealth()
+    {
+        return 3;
     }
 }

@@ -6,12 +6,12 @@ public class Projectile : MonoBehaviour
 {
 
     const float velocity = 5;
-    RoomTransitionListener rtl;
+    RoomManager rtl;
 
     // Start is called before the first frame update
     void Start()
     {
-        rtl = FindObjectOfType<RoomTransitionListener>();
+        rtl = FindObjectOfType<RoomManager>();
     }
 
     // Update is called once per frametw
@@ -33,7 +33,7 @@ public class Projectile : MonoBehaviour
     void OnCollisionEnter2D(Collision2D c)
     {
         // see if a char was hit
-        var character = c.gameObject.GetComponent<AbstractCharacter>();
+        var character = c.gameObject.GetComponent<AbstractUnit>();
         if (character != null)
         {
             character.hurt();

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomTransitionListener : MonoBehaviour
+public class RoomManager : MonoBehaviour
 {
     public Player p;
     public PhantomManager pm;
@@ -76,5 +76,13 @@ public class RoomTransitionListener : MonoBehaviour
         var centerY = currRoomY * ROOM_SIZE_Y;
 
         return (Mathf.Abs(v.x - centerX) < (ROOM_SIZE_X / 2)) && (Mathf.Abs(v.y - centerY) < (ROOM_SIZE_Y / 2));
+    }
+
+    public Vector3 roomCenter()
+    {
+        var centerX = currRoomX * ROOM_SIZE_X;
+        var centerY = currRoomY * ROOM_SIZE_Y;
+
+        return new Vector3(centerX, centerY, 0);
     }
 }

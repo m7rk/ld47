@@ -2,24 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//base class for player, enemy, phantom.
-public abstract class AbstractCharacter : MonoBehaviour
+//base class for player or phantom.
+public abstract class AbstractPlayerCharacter : AbstractUnit
 {
     // Default sounds for shooting weapon and getting hurt
     public AudioSource fireSound;
-    public AudioSource hurtSound;
 
     // which way should projectiles be shot?
     protected Vector2 projectileLaunchDirection = Vector2.right;
 
-    // Shooting timers for animations.
+    // Shooting timers for animations. could be called from animator.
     public const float shootTimerMax = 2f;
     public float shootTimer = 0f;
     public float shootTimerFrame = 1.75f;
 
 
+    // when to transition from walk to idle.
     public static float ANIM_VEL_STOP_THRESH = 0.1f;
-
 
     // Enum for action that could be taken in any given frame.
     public struct CharacterMove
@@ -28,14 +27,11 @@ public abstract class AbstractCharacter : MonoBehaviour
         public bool didFire;
     };
 
-    
+    // a lizard sprite.
     public Animator sprite;
 
+    // facing for animation.
     public bool lookingLeft;
-
-    public int hp = 3;
-
-    public abstract void hurt();
 
     protected void animateLizard(bool stopped)
     {

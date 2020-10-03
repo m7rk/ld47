@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Phantom : AbstractCharacter
+public class Phantom : AbstractPlayerCharacter
 {
-    RoomTransitionListener rtl;
+    RoomManager rtl;
 
     // Start is called before the first frame update
     void Start()
     {
     }
 
-    public void Input(AbstractCharacter.CharacterMove move)
+    public void Input(AbstractPlayerCharacter.CharacterMove move)
     {
         if(rtl == null)
         {
-            rtl = FindObjectOfType<RoomTransitionListener>();
+            rtl = FindObjectOfType<RoomManager>();
         }
 
         Vector2 delta = new Vector2(transform.position.x, transform.position.y) - rtl.addOffsetToRoom(move.location);
@@ -55,5 +55,10 @@ public class Phantom : AbstractCharacter
     public override void hurt()
     {
         // lol
+    }
+
+    public override int maxHealth()
+    {
+        return 1;
     }
 }
