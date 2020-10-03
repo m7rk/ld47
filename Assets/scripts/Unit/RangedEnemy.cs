@@ -40,10 +40,15 @@ public class RangedEnemy : Enemy
         }
     }
 
+    public void createProjectile()
+    {
+
+    }
+
     public void Update()
     {
         stateTime -= Time.deltaTime;
-
+        
         // I call it "scoot n shoot"
         if(isScooting)
         {
@@ -51,6 +56,7 @@ public class RangedEnemy : Enemy
             {
                 isScooting = false;
                 // trigger shoot anin
+                makeProjectile(Vector2.left, "EnemyProjectile");
                 stateTime = shootTimeMax; 
             }
         } else
