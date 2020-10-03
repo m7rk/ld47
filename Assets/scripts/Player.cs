@@ -9,16 +9,17 @@ public class Player : AbstractCharacter
     const float MAX_VEL = 3f;
     const float INVULN_TIME_MAX = 2f;
 
+    // which way should projectiles be shot?
     private Vector2 facing = Vector2.right;
+
     public Rigidbody2D rb;
     public Vector2 lastVelocity;
     float invulnTime = 0;
 
-    public Animator sprite;
 
     public HeartManager hm;
 
-    List<CharacterMove> allPlayerMoves = new List<CharacterMove>();
+    private List<CharacterMove> allPlayerMoves = new List<CharacterMove>();
 
     // Start is called before the first frame update
     void Start()
@@ -43,27 +44,13 @@ public class Player : AbstractCharacter
         if (Input.GetKey(KeyCode.A))
         {
             vec += Vector2.left;
-
-            sprite.ResetTrigger("walk_right");
-            sprite.ResetTrigger("idle");
-            sprite.SetTrigger("walk_left");
-
+            lookingLeft = true;
         }
         else if (Input.GetKey(KeyCode.D))
         {
             vec += Vector2.right;
+            lookingLeft = false;
 
-            sprite.ResetTrigger("walk_left");
-            sprite.ResetTrigger("idle");
-            sprite.SetTrigger("walk_right");
-        } else
-        {
-            if (vec == Vector2.zero)
-            {
-                sprite.SetTrigger("idle");
-                sprite.ResetTrigger("walk_left");
-                sprite.ResetTrigger("walk_right");
-            }
         }
         return vec;
     }
@@ -72,8 +59,7 @@ public class Player : AbstractCharacter
     {
         var moveVector = getMoveVector();
 
-        CharacterMove CurrentMove = vecToDir(moveVector);
-
+        CharacterMove CurrentMove = CharacterMoveToVector.vecToDir(moveVector);
         allPlayerMoves.Add(CurrentMove);
 
         if (moveVector != Vector2.zero)
@@ -121,11 +107,18 @@ public class Player : AbstractCharacter
         }
     }
 
+    public List<CharacterMove> flushMoves()
+    {
+        var ret = allPlayerMoves;
+        allPlayerMoves = new List<CharacterMove>();
+        return allPlayerMoves;
+    }
 
     // Update is called once per frame
     void Update()
     {
         playerInput(Time.deltaTime);
+        animateLizard(rb.velocity);
         invulnTime -= Time.deltaTime;
     }
 }

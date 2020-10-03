@@ -5,6 +5,9 @@ using UnityEngine;
 public class RoomTransitionListener : MonoBehaviour
 {
     public Player p;
+    public PhantomManager pm;
+    public Vector2 playerRoomStartLoc;
+
     int currRoomX = 0;
     int currRoomY = 0;
 
@@ -25,6 +28,7 @@ public class RoomTransitionListener : MonoBehaviour
             Camera.main.transform.position = new Vector3(4 + (roomX * ROOM_SIZE_X), 0.5f + (roomY * ROOM_SIZE_Y), -8.5f);
             currRoomX = roomX;
             currRoomY = roomY;
+            pm.Reset(p.flushMoves(), p.transform.position);
         }
     }
 }

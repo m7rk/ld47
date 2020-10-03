@@ -5,6 +5,8 @@ using UnityEngine;
 //base class for player, enemy, phantom.
 public abstract class AbstractCharacter : MonoBehaviour
 {
+    public static float VEL_STOP_THRESH = 0.1f;
+
     // Enum for action that could be taken in any given frame.
     public enum CharacterMove
     {
@@ -19,54 +21,41 @@ public abstract class AbstractCharacter : MonoBehaviour
         DOWNRIGHT
     };
 
+    
+    public Animator sprite;
+
+    public bool lookingLeft;
+
     public int hp = 3;
 
     public abstract void hurt();
 
-    // Convert a vector to a charactermove.
-    protected CharacterMove vecToDir(Vector2 d)
+    protected void animateLizard(Vector2 velocity)
     {
-        if (d == Vector2.zero)
+        // idle
+        if (velocity.magnitude < VEL_STOP_THRESH)
         {
-            return CharacterMove.NONE;
+            sprite.ResetTrigger("walk_right");
+            sprite.ResetTrigger("walk_left");
+            sprite.SetTrigger("idle");
+            return;
         }
 
-        if (d == Vector2.left)
+        // not idle.
+        if (!lookingLeft)
         {
-            return CharacterMove.LEFT;
+            sprite.ResetTrigger("walk_left");
+            sprite.ResetTrigger("idle");
+            sprite.SetTrigger("walk_right");
         }
-        if (d == Vector2.right)
+        else
         {
-            return CharacterMove.RIGHT;
+            sprite.ResetTrigger("walk_right");
+            sprite.ResetTrigger("idle");
+            sprite.SetTrigger("walk_left");
         }
-        if (d == Vector2.down)
-        {
-            return CharacterMove.DOWN;
-        }
-        if (d == Vector2.up)
-        {
-            return CharacterMove.UP;
-        }
-
-        if (d == new Vector2(1, 1))
-        {
-            return CharacterMove.UPRIGHT;
-        }
-        if (d == new Vector2(1, -1))
-        {
-            return CharacterMove.UPLEFT;
-        }
-        if (d == new Vector2(-1, -1))
-        {
-            return CharacterMove.DOWNLEFT;
-        }
-        if (d == new Vector2(-1, 1))
-        {
-            return CharacterMove.DOWNRIGHT;
-        }
-
-        Debug.Log("should have found vec");
-        return CharacterMove.NONE;
     }
 
 }
+
+

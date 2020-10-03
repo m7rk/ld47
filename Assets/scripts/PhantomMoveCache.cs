@@ -2,41 +2,62 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PhantomMoveCache : MonoBehaviour
+public class PhantomMoveCache
 {
-
-    List<List<AbstractCharacter.CharacterMove>> phantomMoves = new List<List<AbstractCharacter.CharacterMove>>();
-
-    int phantomCount = 0;
-
-    void Start()
+    // contains move data for one phantom
+    private class PhantomMoveData
     {
+        public List<AbstractCharacter.CharacterMove> moves;
+        public Vector3 startLoc;
+        public PhantomMoveData(Vector3 startLoc, List<AbstractCharacter.CharacterMove> moves)
+        {
+            this.startLoc = startLoc;
+            this.moves = moves;
+        }
     }
 
-    // When the player dies, playerActions calls this (sending the allPlayerMoves list)
-    public void addNewPhantom(List<AbstractCharacter.CharacterMove> moves)
+    private List<PhantomMoveData> phantomMoves = new List<PhantomMoveData>();
+
+    private int maxPhantoms = 0;
+
+    public PhantomMoveCache()
     {
-        phantomMoves.Add(moves);
-        phantomCount += 1;
+        maxPhantoms = 8;
+    }
+
+    // When the player dies or changes room, playerActions calls this (sending the allPlayerMoves list)
+    public void addNewPhantom(List<AbstractCharacter.CharacterMove> moves, Vector3 startLoc)
+    {
+        phantomMoves.Insert(0,new PhantomMoveData(startLoc,moves));
     }
 
     // total count of phantoms allowed, delete old phantoms if this is exceeded
     public void setMaxPhantoms(int max)
     {
-        if (phantomCount > max)
-        {
-            // Remove the first list from phantomMoves
-            phantomCount -= 1; //would need to be more elegant if you could die more than once at a time
-        }
+        maxPhantoms = max;
+        // delete phantom moves from end?
+    }
+
+    public int getMaxMovesForPhantom(int phantomIndex)
+    {
+        return phantomMoves[phantomIndex].moves.Count;
+    }
+
+    public int phantomCount()
+    {
+        return phantomMoves.Count;
     }
 
     // get a move from an older player run
     // need to fix how this part is named/where it goes
-    public AbstractCharacter.CharacterMove getPhantomMove(int phantom, int moveIndex)
+    public AbstractCharacter.CharacterMove getPhantomMove(int phantomIndex, int moveIndex)
     {
-        return phantomMoves[phantom][moveIndex];
-        //TODO : might run into problems if moveindex exceeds amount of available data
-        //should write code to destroy phantom in that case
+        return phantomMoves[phantomIndex].moves[moveIndex];
+    }
+
+    public Vector3 getStartPosition(int i)
+    {
+        return phantomMoves[i].startLoc;
     }
 
 }
