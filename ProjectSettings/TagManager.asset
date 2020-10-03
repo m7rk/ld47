@@ -13,13 +13,13 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - World
+  - Player
+  - Phantom
+  - Enemy
+  - PlayerProjectile
+  - PhantomProjectile
+  - EnemyProjectile
   - 
   - 
   - 

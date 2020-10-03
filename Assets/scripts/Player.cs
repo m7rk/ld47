@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
         {
             return PlayerMove.DOWNLEFT;
         }
-        if (d == new Vector2(1, -1))
+        if (d == new Vector2(-1, 1))
         {
             return PlayerMove.DOWNRIGHT;
         }
