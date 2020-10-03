@@ -2,17 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spin : MonoBehaviour
+public class Enemy : AbstractCharacter
 {
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void hurt()
     {
-        this.transform.localEulerAngles = new Vector3(0, 100 * Time.time, 0);
+        Destroy(this.gameObject);
+    }
+
+    public void Update()
+    {
+
     }
 }
