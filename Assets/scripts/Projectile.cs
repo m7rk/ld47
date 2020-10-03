@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    // put into new class
+
+    const float velocity = 50;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,7 @@ public class Projectile : MonoBehaviour
 
     public void setup(Vector2 dir, string layerName)
     {
+        GetComponent<Rigidbody2D>().velocity = velocity * dir.normalized;
         gameObject.layer = LayerMask.NameToLayer(layerName);
     }
 

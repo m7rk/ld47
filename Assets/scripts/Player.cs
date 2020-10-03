@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     int hp = 3;
     float invulnTime = 0;
 
+    public HeartManager hm;
+
     public enum PlayerMove
     {
         NONE,
@@ -35,6 +37,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         Application.targetFrameRate = 60;
+        hm.setHearts(hp);
     }
 
     // this is ugly but whatever
@@ -145,8 +148,19 @@ public class Player : MonoBehaviour
 
     public void hurt()
     {
+
         hp--;
-        this.invulnTime = INVULN_TIME_MAX;
+        if (hp <= 0)
+        {
+            this.transform.localPosition = new Vector3(0, 0, 0);
+            hp = 3;
+            hm.setHearts(hp);
+        }
+        else
+        {
+            hm.setHearts(hp);
+            this.invulnTime = INVULN_TIME_MAX;
+        }
     }
 
 
