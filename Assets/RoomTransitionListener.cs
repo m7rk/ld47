@@ -8,11 +8,11 @@ public class RoomTransitionListener : MonoBehaviour
     int currRoomX = 0;
     int currRoomY = 0;
 
-    float ROOM_SIZE_X = 14f;
-    float ROOM_SIZE_Y = 9f;
+    float ROOM_SIZE_X = 15f;
+    float ROOM_SIZE_Y = 10f;
 
-    const float ROOM_OFFSET_X = 3f;
-    const float ROOM_OFFSET_Y = 3f;
+    const float ROOM_OFFSET_X = 4f;
+    const float ROOM_OFFSET_Y = 4f;
 
     // Update is called once per frame
     void Update()
