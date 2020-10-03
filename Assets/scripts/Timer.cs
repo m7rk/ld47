@@ -16,9 +16,6 @@ public class Timer : MonoBehaviour
     // Text countdown
     public Text timeRemainDisplay;
 
-    // Allows code to know when rooms change
-    public RoomTransitionListener RoomTransitionListener;
-
     
     // Start is called before the first frame update
     void Start()
