@@ -22,6 +22,11 @@ public class RoomTransitionListener : MonoBehaviour
         playerRoomStartLoc = p.transform.position;
     }
 
+    void resetTimer()
+    {
+
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -30,6 +35,8 @@ public class RoomTransitionListener : MonoBehaviour
         
         if(roomX != currRoomX || roomY != currRoomY)
         {
+            resetTimer();
+
             Camera.main.transform.position = new Vector3((roomX * ROOM_SIZE_X), (roomY * ROOM_SIZE_Y), -8.5f);
             currRoomX = roomX;
             currRoomY = roomY;
