@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : AbstractCharacter
 {
 
     const float ACCEL_MULT = 100f;
@@ -12,26 +12,11 @@ public class Player : MonoBehaviour
     private Vector2 facing = Vector2.right;
     public Rigidbody2D rb;
     public Vector2 lastVelocity;
-    int hp = 3;
     float invulnTime = 0;
 
     public HeartManager hm;
 
-    public enum PlayerMove
-    {
-        NONE,
-        LEFT,
-        RIGHT,
-        UP,
-        DOWN,
-        UPLEFT,
-        UPRIGHT,
-        DOWNLEFT,
-        DOWNRIGHT
-    };
-
-
-    List<PlayerMove> allPlayerMoves = new List<PlayerMove>();
+    List<CharacterMove> allPlayerMoves = new List<CharacterMove>();
 
     // Start is called before the first frame update
     void Start()
@@ -39,53 +24,7 @@ public class Player : MonoBehaviour
         Application.targetFrameRate = 60;
         hm.setHearts(hp);
     }
-
-    // this is ugly but whatever
-    PlayerMove vecToDir(Vector2 d)
-    {
-        if (d == Vector2.zero)
-        {
-            return PlayerMove.NONE;
-        }
-
-        if (d == Vector2.left)
-        {
-            return PlayerMove.LEFT;
-        }
-        if (d == Vector2.right)
-        {
-            return PlayerMove.RIGHT;
-        }
-        if (d == Vector2.down)
-        {
-            return PlayerMove.DOWN;
-        }
-        if (d == Vector2.up)
-        {
-            return PlayerMove.UP;
-        }
-
-        if (d == new Vector2(1, 1))
-        {
-            return PlayerMove.UPRIGHT;
-        }
-        if (d == new Vector2(1, -1))
-        {
-            return PlayerMove.UPLEFT;
-        }
-        if (d == new Vector2(-1, -1))
-        {
-            return PlayerMove.DOWNLEFT;
-        }
-        if (d == new Vector2(-1, 1))
-        {
-            return PlayerMove.DOWNRIGHT;
-        }
-
-        Debug.Log("should have found vec");
-        return PlayerMove.NONE;
-    }
-
+    
     Vector2 getMoveVector()
     {
         Vector2 vec = Vector2.zero;
@@ -115,7 +54,7 @@ public class Player : MonoBehaviour
     {
         var moveVector = getMoveVector();
 
-        PlayerMove CurrentMove = vecToDir(moveVector);
+        CharacterMove CurrentMove = vecToDir(moveVector);
 
         allPlayerMoves.Add(CurrentMove);
 
@@ -146,7 +85,7 @@ public class Player : MonoBehaviour
         v.transform.position = this.transform.position;
     }
 
-    public void hurt()
+    public override void hurt()
     {
 
         hp--;

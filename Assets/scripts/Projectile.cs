@@ -27,6 +27,12 @@ public class Projectile : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D c)
     {
+        // see if a char was hit
+        var character = c.gameObject.GetComponent<AbstractCharacter>();
+        if (character != null)
+        {
+
+        }
         Destroy(this.gameObject);
     }
 }
