@@ -15,7 +15,7 @@ public abstract class AbstractCharacter : MonoBehaviour
     // Shooting timers for animations.
     public const float shootTimerMax = 2f;
     public float shootTimer = 0f;
-    public float shootTimerFrame = 1.7f;
+    public float shootTimerFrame = 1.75f;
 
 
     public static float ANIM_VEL_STOP_THRESH = 0.1f;

@@ -80,7 +80,7 @@ public class Player : AbstractCharacter
         CurrentMove.location = rtl.removeOffsetFromRoom(this.transform.position);
         CurrentMove.didFire = false;
 
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKey(KeyCode.J) && shootTimer <= 0)
         {
             startFire();
             CurrentMove.didFire = true;
