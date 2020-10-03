@@ -8,6 +8,7 @@ public class Player : AbstractCharacter
     public Rigidbody2D rb;
     const float ACCEL_MULT = 100f;
     const float MAX_VEL = 3f;
+    const int MAX_HP = 3;
 
     public Vector2 lastVelocity;
     float invulnTime = 0;
@@ -15,6 +16,7 @@ public class Player : AbstractCharacter
     public HeartManager hm;
     public RoomTransitionListener rtl;
     public Crossfade cf;
+   
 
     private List<CharacterMove> allPlayerMoves = new List<CharacterMove>();
 
@@ -99,10 +101,15 @@ public class Player : AbstractCharacter
         lastVelocity = rb.velocity;
     }
 
-    public void heal()
+    public bool heal()
     {
-        hp++;
-        hm.setHearts(hp);
+        if (hp < MAX_HP)
+        {
+            hp++;
+            hm.setHearts(hp);
+            return true;
+        }
+        return false;
     }
 
     public override void hurt()
