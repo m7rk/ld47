@@ -16,4 +16,5 @@ public abstract class Enemy : AbstractUnit
     {
         fireSound.PlayOneShot(hurtSounds[currentHP]);
     }
+    
 }
