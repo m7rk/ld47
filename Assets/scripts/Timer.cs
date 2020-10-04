@@ -41,8 +41,7 @@ public class Timer : MonoBehaviour
 
     public void slowPenalty()
     {
-        Debug.Log("You are going slow!");
-        //This can be a drop in health, spawn an enemy, etc.
+        FindObjectOfType<Player>().hurtIgnoreInvuln();
     }
 
 }

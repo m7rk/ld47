@@ -51,7 +51,7 @@ public class RangedEnemy : Enemy
 
         foreach (var d in dirs)
         {
-            RaycastHit2D info = Physics2D.Raycast(transform.position, d, 100, LayerMask.GetMask("World"));
+            RaycastHit2D info = Physics2D.Raycast(transform.position, d, 100, LayerMask.GetMask("World","Enemy"));
             if (info.distance > bestDist)
             {
                 bestDist = info.distance;
@@ -60,6 +60,20 @@ public class RangedEnemy : Enemy
         }
 
         return bestDir;
+    }
+
+    public Vector2 aimForPlayer()
+    {
+        var p = FindObjectOfType<Player>();
+        var delta = p.transform.position - this.transform.position;
+
+        if(Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
+        {
+            return new Vector2(Mathf.Sign(delta.x), 0);
+        } else
+        {
+            return new Vector2(0, Mathf.Sign(delta.y));
+        }
     }
 
     public void createProjectile()
@@ -87,14 +101,24 @@ public class RangedEnemy : Enemy
         {
             sprite.SetBool("is_walking", false);
 
-            if(stateTime < shootTimeTrigger && stateTime + Time.deltaTime > shootTimeTrigger)
+            var v = aimForPlayer();
+            if (v.x < 0)
+            {
+                this.transform.localScale = new Vector3(1, 1, 1);
+            }
+            if (v.x > 0)
+            {
+                this.transform.localScale = new Vector3(-1, 1, 1);
+            }
+
+            if (stateTime < shootTimeTrigger && stateTime + Time.deltaTime > shootTimeTrigger)
             {
                 sprite.SetTrigger("shoot");
             }
 
             if (stateTime < projTile && stateTime + Time.deltaTime > projTile)
             {
-                makeProjectile(moveDir, "EnemyProjectile");
+                makeProjectile(v, "EnemyProjectile");
             }
 
             if (stateTime <= 0)

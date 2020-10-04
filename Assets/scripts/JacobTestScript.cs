@@ -38,7 +38,7 @@ public class JacobTestScript : MonoBehaviour
         // End 1 music and start 2
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            ac.changeTrack(sound1, sound2);
+            //ac.changeTrack(sound1, sound2);
       
             //sound1.Play();
             //sound2.Stop();
@@ -48,7 +48,7 @@ public class JacobTestScript : MonoBehaviour
         // End 2 music and start 1
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            ac.changeTrack(sound2, sound1);
+            //ac.changeTrack(sound2, sound1);
 
 
             //sound2.Play();

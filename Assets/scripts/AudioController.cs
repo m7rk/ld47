@@ -6,15 +6,36 @@ using UnityEngine.Audio;
 public class AudioController : MonoBehaviour
 {
     public float fadeTime = 5f;
+    public AudioSource playing;
+    public AudioSource next;
+    public AudioClip[] clips;
+
+    public void Start()
+    {
+        changeTrack("snd_floor1");
+    }
     
-    public void changeTrack(AudioSource audioOut, AudioSource audioIn)
+    public AudioClip getClip(string name)
+    {
+        foreach(var v in clips)
+        {
+            if(v.name == name)
+            {
+                return v;
+            }
+        }
+        return null;
+    }
+
+    public void changeTrack(string trackName)
     {
         //turn off current audio
-        StartCoroutine(FadeAudioSource.StartFade(audioOut, fadeTime, 0f));
+        StartCoroutine(FadeAudioSource.StartFade(playing, fadeTime, 0f));
 
         //turn on new audio
-        audioIn.volume = 0f;
-        audioIn.Play();
-        StartCoroutine(FadeAudioSource.StartFade(audioIn, fadeTime, 1f));
+        next.volume = 0f;
+        next.clip = getClip(trackName);
+        next.Play();
+        StartCoroutine(FadeAudioSource.StartFade(next, fadeTime, 1f));
     }
 }

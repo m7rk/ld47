@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : AbstractPlayerCharacter
 {
@@ -28,6 +29,7 @@ public class Player : AbstractPlayerCharacter
 
     public const float footStepMax = 0.1f;
     public float footStepTime = 0f;
+    
 
 
     // Start is called before the first frame update
@@ -132,26 +134,42 @@ public class Player : AbstractPlayerCharacter
         return false;
     }
 
+    private void ResetGame()
+    {
+        SceneManager.LoadScene("Main");
+    }
+
+    private void doHurt()
+    {
+        hurtSound.Play();
+        currentHP--;
+        if (currentHP == 0)
+        {
+            Invoke("ResetGame", 4.5f);
+            cf.fadeToBlack();
+            hm.setHearts(0);
+            FindObjectOfType<AudioController>().changeTrack("ld47 gameover");
+        }
+        else if (currentHP > 0)
+        {
+            hm.setHearts(currentHP);
+            this.invulnTime = INVULN_TIME_MAX;
+        }
+    }
+
+    public void hurtIgnoreInvuln()
+    {
+        doHurt();
+    }
+
     public override void hurt()
     {
         if(invulnTime >= 0)
         {
             return;
         }
-        hurtSound.Play();
-        currentHP--;
-        if (currentHP <= 0)
-        {
-            this.transform.localPosition = new Vector3(0, 0, 0);
-            currentHP = maxHealth();
-            hm.setHearts(currentHP);
-            cf.fadeToBlack();
-        }
-        else
-        {
-            hm.setHearts(currentHP);
-            this.invulnTime = INVULN_TIME_MAX;
-        }
+        doHurt();
+
     }
 
     public List<CharacterMove> flushMoves()
@@ -164,6 +182,10 @@ public class Player : AbstractPlayerCharacter
     // Update is called once per frame
     void Update()
     {
+        if(currentHP <= 0)
+        {
+            return;
+        }
         playerInput(Time.deltaTime);
         animateLizard(rb.velocity.magnitude < ANIM_VEL_STOP_THRESH);
         invulnTime -= Time.deltaTime;
