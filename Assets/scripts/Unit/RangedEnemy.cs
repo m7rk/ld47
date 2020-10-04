@@ -53,10 +53,14 @@ public class RangedEnemy : Enemy
         foreach (var d in dirs)
         {
             RaycastHit2D info = Physics2D.Raycast(transform.position, d, 100, LayerMask.GetMask("World", "Enemy", "Pits"));
-            if (info.distance > bestDist)
+            // dont leave the room
+            if (rtl.inRoom(info.point))
             {
-                bestDist = info.distance;
-                bestDir = d;
+                if (info.distance > bestDist)
+                {
+                    bestDist = info.distance;
+                    bestDir = d;
+                }
             }
         }
 
