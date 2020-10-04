@@ -220,7 +220,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 1078820775}
   sprite: {fileID: 1685285423}
 --- !u!50 &10782860
@@ -404,7 +403,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 817231537}
   sprite: {fileID: 12721319}
 --- !u!50 &32292577
@@ -31842,6 +31840,96 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8881a566409a9a4399d3437a2940188, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &82823534
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 289955573191278564, guid: 6c17360b2bdfbee49b65a508928b2ca3,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 289955573191278564, guid: 6c17360b2bdfbee49b65a508928b2ca3,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 289955573191278564, guid: 6c17360b2bdfbee49b65a508928b2ca3,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3035121752856203300, guid: 6c17360b2bdfbee49b65a508928b2ca3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3035121752856203300, guid: 6c17360b2bdfbee49b65a508928b2ca3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3035121752856203300, guid: 6c17360b2bdfbee49b65a508928b2ca3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3035121752856203300, guid: 6c17360b2bdfbee49b65a508928b2ca3,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3035121752856203300, guid: 6c17360b2bdfbee49b65a508928b2ca3,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3035121752856203300, guid: 6c17360b2bdfbee49b65a508928b2ca3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3035121752856203300, guid: 6c17360b2bdfbee49b65a508928b2ca3,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3035121752856203300, guid: 6c17360b2bdfbee49b65a508928b2ca3,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3035121752856203300, guid: 6c17360b2bdfbee49b65a508928b2ca3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3035121752856203300, guid: 6c17360b2bdfbee49b65a508928b2ca3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3035121752856203300, guid: 6c17360b2bdfbee49b65a508928b2ca3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6281832578964387640, guid: 6c17360b2bdfbee49b65a508928b2ca3,
+        type: 3}
+      propertyPath: m_Name
+      value: PhantomProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 7192319526899436812, guid: 6c17360b2bdfbee49b65a508928b2ca3,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 487652ee817302048a1da08be6c553c2,
+        type: 3}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6c17360b2bdfbee49b65a508928b2ca3, type: 3}
 --- !u!1001 &88582766
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31960,7 +32048,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 153708459}
   sprite: {fileID: 88582767}
 --- !u!50 &108806249
@@ -32058,7 +32145,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 150957124}
   sprite: {fileID: 688064256}
   facingLeft: 0
@@ -32813,7 +32899,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 1950053626}
   sprite: {fileID: 211062790}
 --- !u!50 &166297965
@@ -32946,7 +33031,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -50
   m_Sprite: {fileID: 21300000, guid: 4942ea57bd59a8b4b9c9cb75f2eefccf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -33611,7 +33696,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 750759448}
   sprite: {fileID: 129004253}
   facingLeft: 0
@@ -36223,7 +36307,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 275838528}
   sprite: {fileID: 1765912416}
   facingLeft: 0
@@ -37252,7 +37335,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -50
   m_Sprite: {fileID: 21300000, guid: 4942ea57bd59a8b4b9c9cb75f2eefccf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -37324,7 +37407,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 1871331776}
   sprite: {fileID: 753363269}
 --- !u!50 &684533674
@@ -37503,7 +37585,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 867360709}
   sprite: {fileID: 1899079120}
 --- !u!50 &692187633
@@ -37798,7 +37879,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 391411563}
   sprite: {fileID: 795528029}
   facingLeft: 0
@@ -38393,7 +38473,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 1641094383}
   sprite: {fileID: 1389096133}
 --- !u!50 &859814335
@@ -38667,7 +38746,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -50
   m_Sprite: {fileID: 21300000, guid: 4942ea57bd59a8b4b9c9cb75f2eefccf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -39457,7 +39536,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 763689780}
   sprite: {fileID: 1187386921}
   facingLeft: 0
@@ -39572,7 +39650,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 1914252183}
   sprite: {fileID: 384751689}
 --- !u!50 &1015620995
@@ -40252,7 +40329,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 972129504}
   sprite: {fileID: 1342329571}
 --- !u!50 &1126210260
@@ -41007,7 +41083,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 1697379849}
   sprite: {fileID: 1408864300}
 --- !u!50 &1282706960
@@ -41201,7 +41276,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 2017304280}
   sprite: {fileID: 923899485}
 --- !u!50 &1286374081
@@ -42119,7 +42193,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1463079151}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.62, y: -1.8699999, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -42169,7 +42243,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 451279797}
   sprite: {fileID: 1229745120}
   facingLeft: 0
@@ -42334,7 +42407,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 890316988}
   sprite: {fileID: 2642684570896573408}
   lookingLeft: 0
@@ -42392,7 +42464,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 466580625}
   sprite: {fileID: 1191798796}
 --- !u!50 &1501607895
@@ -42490,7 +42561,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 1135470900}
   sprite: {fileID: 296171770}
 --- !u!50 &1511370986
@@ -42662,7 +42732,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 1020766822}
   sprite: {fileID: 1807899829}
 --- !u!50 &1619609788
@@ -43235,7 +43304,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 919771043}
   sprite: {fileID: 1198028077}
 --- !u!50 &1726845789
@@ -43349,7 +43417,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 551339780}
   sprite: {fileID: 1290651739}
 --- !u!50 &1739073313
@@ -43447,7 +43514,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 1066220663}
   sprite: {fileID: 338427356}
 --- !u!50 &1752299310
@@ -43529,7 +43595,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 465544652}
   sprite: {fileID: 1812429475}
 --- !u!50 &1755663096
@@ -43961,7 +44026,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 1324066461}
   sprite: {fileID: 118720801}
   facingLeft: 0
@@ -44193,7 +44257,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -50
   m_Sprite: {fileID: 21300000, guid: 4942ea57bd59a8b4b9c9cb75f2eefccf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -44994,7 +45058,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -50
   m_Sprite: {fileID: 21300000, guid: 4942ea57bd59a8b4b9c9cb75f2eefccf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -45421,7 +45485,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 1026468431}
   sprite: {fileID: 284242016}
 --- !u!50 &1984732663
@@ -46025,7 +46088,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 662097557}
   sprite: {fileID: 1391977769}
 --- !u!50 &2036788325
@@ -46107,7 +46169,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 2146942818}
   sprite: {fileID: 1335707019}
   facingLeft: 0
@@ -46271,7 +46332,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -50
   m_Sprite: {fileID: 21300000, guid: 4942ea57bd59a8b4b9c9cb75f2eefccf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -46528,7 +46589,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
-  sprites: []
   fireSound: {fileID: 1132522309}
   sprite: {fileID: 905973016}
   facingLeft: 0

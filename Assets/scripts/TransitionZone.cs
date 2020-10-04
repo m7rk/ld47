@@ -12,7 +12,7 @@ public class TransitionZone : MonoBehaviour
         Invoke("trackTransition", 8f);
         FindObjectOfType<PhantomManager>().clearPhantoms();
         FindObjectOfType<Player>().fullHeal();
-        Progress.respawnPoint = this.transform.position;
+        Utility.respawnPoint = this.transform.position;
     }
 
     public void trackTransition()

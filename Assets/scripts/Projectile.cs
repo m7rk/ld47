@@ -25,6 +25,16 @@ public class Projectile : MonoBehaviour
         var v = transform.Find("shadow");
         v.position = this.transform.position - new Vector3(0, 0.4f,0);
         
+        int pos = Utility.transformToLayer(this.transform.position);
+        var sr = this.GetComponent<SpriteRenderer>();
+        if (sr)
+        {
+            sr.sortingOrder = pos;
+        }
+
+        GetComponent<ParticleSystemRenderer>().sortingOrder = pos;
+
+
     }
 
     public void setup(Vector2 dir, string layerName)

@@ -38,7 +38,7 @@ public class Player : AbstractPlayerCharacter
         Application.targetFrameRate = 60;
         currentHP = maxHealth();
         hm.setHearts(currentHP);
-        this.transform.position = Progress.respawnPoint;
+        this.transform.position = Utility.respawnPoint;
         am.setArrow(Vector2.right);
 
     }
@@ -211,5 +211,10 @@ public class Player : AbstractPlayerCharacter
     public override int maxHealth()
     {
         return 3;
+    }
+
+    void LateUpdate()
+    {
+        setRenderIndex();
     }
 }

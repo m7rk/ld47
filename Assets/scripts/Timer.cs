@@ -16,11 +16,14 @@ public class Timer : MonoBehaviour
     // Text countdown
     public Text timeRemainDisplay;
 
-    
+    private Player p;
+
+
     // Start is called before the first frame update
     void Start()
     {
         remainingTime = timeLimit;
+        p = FindObjectOfType<Player>();
     }
 
     public void resetLimit()
@@ -31,6 +34,11 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(p.currentHP <= 0)
+        {
+            return;
+        }
+
         remainingTime -= Time.deltaTime;
 
         if(remainingTime + Time.deltaTime > 5f && remainingTime <= 5f)
@@ -53,7 +61,7 @@ public class Timer : MonoBehaviour
 
     public void slowPenalty()
     {
-        FindObjectOfType<Player>().hurtIgnoreInvuln();
+        p.hurtIgnoreInvuln();
 
         FindObjectOfType<EnvSounds>().playTookClockDamageSound();
     }
