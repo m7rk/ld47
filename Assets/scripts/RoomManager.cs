@@ -49,6 +49,7 @@ public class RoomManager : MonoBehaviour
         
         if(roomX != currRoomX || roomY != currRoomY)
         {
+            FindObjectOfType<EnvSounds>().playRoomTransitionSound();
             resetTimer();
             Vector2 entry = new Vector2(roomX - currRoomX, roomY - currRoomY);
 

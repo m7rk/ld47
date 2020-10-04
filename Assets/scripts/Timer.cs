@@ -33,6 +33,11 @@ public class Timer : MonoBehaviour
     {
         remainingTime -= Time.deltaTime;
 
+        if(remainingTime + Time.deltaTime > 5f && remainingTime <= 5f)
+        {
+            FindObjectOfType<EnvSounds>().playClockWarnSound();
+        }
+
         if (remainingTime < 0f)
         {
             remainingTime = timeLimit;
@@ -42,11 +47,15 @@ public class Timer : MonoBehaviour
         timerClock.fillAmount = remainingTime / timeLimit; // produces the percent time remaining
 
         timeRemainDisplay.text = remainingTime.ToString("000"); // shows time to nearest whole number
+
+        timeRemainDisplay.color = remainingTime > 5 ? Color.white : Color.red;
     }
 
     public void slowPenalty()
     {
         FindObjectOfType<Player>().hurtIgnoreInvuln();
+
+        FindObjectOfType<EnvSounds>().playTookClockDamageSound();
     }
 
 }

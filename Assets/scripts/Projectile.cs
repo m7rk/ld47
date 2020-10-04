@@ -22,6 +22,7 @@ public class Projectile : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        transform.Find("shadow").position = this.transform.position - new Vector3(0, 0.4f,0);
     }
 
     public void setup(Vector2 dir, string layerName)
