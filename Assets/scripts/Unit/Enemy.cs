@@ -8,13 +8,13 @@ public abstract class Enemy : AbstractUnit
     // probably drop loot
     public AudioSource hurtSource;
     public AudioSource fireSound;
-    public AudioClip[] hurtSounds;
+    private static List<AudioClip> hurtSounds;
 
 
     // Share hurt sounds. play based on HP
     public void playHurtSound()
     {
-        fireSound.PlayOneShot(hurtSounds[currentHP]);
+        FindObjectOfType<EnemySoundSource>().Play(currentHP);
     }
 
     public void OnCollisionEnter2D(Collision2D c)

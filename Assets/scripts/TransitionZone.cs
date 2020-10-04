@@ -8,10 +8,15 @@ public class TransitionZone : MonoBehaviour
 
     public void OnTriggerEnter2D()
     {
-        FindObjectOfType<AudioController>().changeTrack(songToPlay);
+        FindObjectOfType<AudioController>().changeTrack("sfx_level complete1");
+        Invoke("trackTransition", 8f);
         FindObjectOfType<PhantomManager>().clearPhantoms();
         FindObjectOfType<Player>().fullHeal();
         Progress.respawnPoint = this.transform.position;
+    }
 
+    public void trackTransition()
+    {
+        FindObjectOfType<AudioController>().changeTrack(songToPlay);
     }
 }

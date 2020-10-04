@@ -6,7 +6,7 @@ public class MeleeEnemy : Enemy
 {
 
 
-    private float scootTimeMax = 1f;
+    private float scootTimeMax = 3f;
 
     private float scootTime = 0;
 
@@ -16,21 +16,31 @@ public class MeleeEnemy : Enemy
 
     Vector2 moveDir;
 
-    const float speed = 2;
+    public bool facingLeft;
+
+    const float speed = 3;
+
+    public const float LUNGE_DIST = 3;
 
     public void Awake()
     {
         rtl = FindObjectOfType<RoomManager>();
+        currentHP = maxHealth();
     }
 
     public override void hurt()
     {
-        Destroy(this.gameObject);
+        playHurtSound();
+        currentHP--;
+        if (currentHP == 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     public override int maxHealth()
     {
-        return 1;
+        return 3;
     }
 
     public Vector2 canSeePlayer()
@@ -66,32 +76,55 @@ public class MeleeEnemy : Enemy
         scootTime -= Time.deltaTime;
 
         var dir = canSeePlayer();
+        
+        // Direct line of sight to player. Full speed ahead.
         if(dir != Vector2.zero)
         {
             scootTime = scootTimeMax;
             moveDir = dir;
+
+            if (moveDir.x < 0)
+            {
+                facingLeft = true;
+            }
+            if (moveDir.x > 0)
+            {
+                facingLeft = false;
+            }
+
+            if((this.transform.position - FindObjectOfType<Player>().transform.position).magnitude < LUNGE_DIST)
+            {
+                sprite.SetBool("walking", false);
+                sprite.SetTrigger(facingLeft ? "lunge_left" : "lunge_right");
+
+                GetComponent<Rigidbody2D>().velocity = 3f * moveDir;
+            } else
+            {
+                sprite.SetBool("walking", true);
+                GetComponent<Rigidbody2D>().velocity = 2.5f * moveDir;
+            }
+
+        }
+        else
+        {
+            // No line of sight to player. Cool off.
+            if (scootTime > 0)
+            {
+                GetComponent<Rigidbody2D>().velocity = 1.5f *  moveDir;
+                sprite.SetBool("walking", true);
+            } else
+            {
+                //stop looking
+                sprite.SetBool("walking", false);
+            }
         }
 
-        if(scootTime > 0)
+        if (facingLeft)
         {
-            GetComponent<Rigidbody2D>().velocity = speed * moveDir;
-
+            this.transform.localScale = new Vector3(-1, 1, 1);
         } else
         {
-            sprite.SetBool("walking", true);
-            return;
-        }
-
-        if (moveDir.x < 0)
-        {
-
-            sprite.SetTrigger("lunge_left");
             this.transform.localScale = new Vector3(1, 1, 1);
-        }
-        if (moveDir.x > 0)
-        {
-            sprite.SetTrigger("lunge_right");
-            this.transform.localScale = new Vector3(-1, 1, 1);
         }
     }
 }

@@ -125,7 +125,6 @@ public class Player : AbstractPlayerCharacter
     public void fullHeal()
     {
         currentHP = maxHealth();
-        misc.PlayOneShot(healSound);
         hm.setHearts(currentHP);
     }
 

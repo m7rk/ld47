@@ -29,6 +29,7 @@ public class RangedEnemy : Enemy
 
     public override void hurt()
     {
+        playHurtSound();
         Destroy(this.gameObject);
     }
 
@@ -125,6 +126,7 @@ public class RangedEnemy : Enemy
 
             if (stateTime < projTile && stateTime + Time.deltaTime > projTile)
             {
+                fireSound.Play();
                 makeProjectile(v, "EnemyProjectile");
             }
 
