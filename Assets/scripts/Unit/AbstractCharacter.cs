@@ -12,9 +12,9 @@ public abstract class AbstractPlayerCharacter : AbstractUnit
     protected Vector2 projectileLaunchDirection = Vector2.right;
 
     // Shooting timers for animations. could be called from animator.
-    private const float shootTimerMax = 0.75f;
+    protected const float shootTimerMax = 0.75f;
     protected float shootTimer = 0f;
-    private float shootTimerFrame = 0.5f;
+    protected const float shootTimerFrame = 0.5f;
 
 
     // when to transition from walk to idle.

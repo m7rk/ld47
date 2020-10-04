@@ -350,11 +350,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d19417220ac21c14da5dbecf63239dd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHP: 0
+  sprites: []
   fireSound: {fileID: 7263071433949123235}
-  hurtSound: {fileID: 7023880578259570288}
   sprite: {fileID: 7629682050270273578}
   lookingLeft: 0
-  hp: 3
+  normal: {r: 0, g: 0.78431374, b: 1, a: 0.5019608}
+  fire: {r: 1, g: 0.2509804, b: 0, a: 0.5019608}
+  renderers: []
 --- !u!82 &5650106291419279290
 AudioSource:
   m_ObjectHideFlags: 0
@@ -365,7 +368,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f601fd38eb90cd745ac0839179438e79, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f5607b3b5ed29044dabd14e2cec24eed, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1

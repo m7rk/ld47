@@ -5,11 +5,40 @@ using UnityEngine;
 public class Phantom : AbstractPlayerCharacter
 {
     RoomManager rtl;
+    public Color normal;
+    public Color fire;
+    public SpriteRenderer[] renderers;
 
     // Start is called before the first frame update
     void Start()
     {
+        renderers = GetComponentsInChildren<SpriteRenderer>();
     }
+    Color colorLerp(Color a, Color b, float f)
+    {
+        return new Color(
+             Mathf.Lerp(a.r, b.r, f),
+             Mathf.Lerp(a.g, b.g, f),
+             Mathf.Lerp(a.b, b.b, f),
+             Mathf.Lerp(a.a, b.a, f)
+            );
+    }
+
+    void setColor()
+    {
+        Color newCol = normal;
+
+        if (shootTimer > shootTimerFrame)
+        {
+            newCol = colorLerp(fire, normal, (shootTimer - shootTimerFrame) / (shootTimerMax - shootTimerFrame));
+        }
+        foreach (var r in renderers)
+        {
+            r.color = newCol;
+        }
+    }
+
+    
 
     public void Input(AbstractPlayerCharacter.CharacterMove move)
     {
@@ -48,8 +77,8 @@ public class Phantom : AbstractPlayerCharacter
     // Update is called once per frame
     void Update()
     {
-
         checkForShoot("PhantomProjectile");
+        setColor();
     }
 
     public override void hurt()
