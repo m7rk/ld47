@@ -19,7 +19,7 @@ public class RoomManager : MonoBehaviour
     const float ROOM_OFFSET_Y = 5f;
 
     public GameObject barrier;
-
+    
     
     void Start()
     {
@@ -91,4 +91,6 @@ public class RoomManager : MonoBehaviour
 
         return new Vector2(centerX, centerY);
     }
+
+
 }

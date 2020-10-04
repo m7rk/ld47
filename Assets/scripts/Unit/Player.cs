@@ -122,6 +122,13 @@ public class Player : AbstractPlayerCharacter
         lastVelocity = rb.velocity;
     }
 
+    public void fullHeal()
+    {
+        currentHP = maxHealth();
+        misc.PlayOneShot(healSound);
+        hm.setHearts(currentHP);
+    }
+
     public bool heal()
     {
         if (currentHP < maxHealth())

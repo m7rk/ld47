@@ -17,11 +17,9 @@ public class PhantomMoveCache
 
     private List<PhantomMoveData> phantomMoves = new List<PhantomMoveData>();
 
-    private int maxPhantoms = 0;
-
-    public PhantomMoveCache()
+    public void clear()
     {
-        maxPhantoms = 8;
+        phantomMoves = new List<PhantomMoveData>();
     }
 
     // When the player dies or changes room, playerActions calls this (sending the allPlayerMoves list)
@@ -30,12 +28,6 @@ public class PhantomMoveCache
         phantomMoves.Insert(0,new PhantomMoveData(moves));
     }
 
-    // total count of phantoms allowed, delete old phantoms if this is exceeded
-    public void setMaxPhantoms(int max)
-    {
-        maxPhantoms = max;
-        // delete phantom moves from end?
-    }
 
     public int getMaxMovesForPhantom(int phantomIndex)
     {

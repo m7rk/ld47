@@ -50,4 +50,9 @@ public class PhantomManager : MonoBehaviour
             phantoms.Add(p.GetComponent<Phantom>());
         }
     }
+
+    public void clearPhantoms()
+    {
+        pmc.clear();
+    }
 }
