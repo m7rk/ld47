@@ -10,6 +10,7 @@ public class DungeonPits : MonoBehaviour
         {
             FindObjectOfType<Player>().hurtIgnoreInvuln();
             FindObjectOfType<Player>().transform.position = FindObjectOfType<RoomManager>().playerRoomStartLoc;
+            FindObjectOfType<Player>().GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         }
     }
 }
