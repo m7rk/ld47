@@ -4,25 +4,49 @@ using UnityEngine;
 
 public class LevelGeneratorScript : MonoBehaviour
 {
-    public int randNumbX;
-    public int randNumbY;
+    #region variables responsible for square selection for boss, key, player
 
-    public int bossX;
-    public int bossY;
+    int randNumbX;
+    int randNumbY;
 
-    public int keyX;
-    public int keyY;
+    int bossX;
+    int bossY;
 
-    public int playerX;
-    public int playerY;
+    int keyX;
+    int keyY;
 
-    public bool bossroom = false;
-    public bool keyroom = false;
-    public bool playerroom = false;
+    int playerX;
+    int playerY;
+
+    bool bossroom = false;
+    bool keyroom = false;
+    bool playerroom = false;
+
+    #endregion
+
+    Vector3 positCheck;
+    Vector3 mapScale = new Vector3(3, 3, 0);
+
+    //This is needed to get the player and camera to start in the correct location
+    public GameObject playerCharacter;
+
+    public GameObject bossRoomPrefab;
+    public GameObject keyRoomPrefab;
+    public GameObject playerRoomPrefab;
+    public GameObject genericRoomPrefab;
+
+    public Vector3 bossPosition;
+    public Vector3 keyPosition;
+    public Vector3 playerPosition;
+
+    public Quaternion prefabRotation = Quaternion.identity;
+
 
     // Start is called before the first frame update
     void Start()
     {
+             
+        // Start by determing location for three key elements on each map
         #region square selection for boss, key, player
         while (bossroom == false)
         {
@@ -33,6 +57,7 @@ public class LevelGeneratorScript : MonoBehaviour
             {
                 bossX = randNumbX;
                 bossY = randNumbY;
+                bossPosition = new Vector3(bossX, bossY, 0f);
                 bossroom = true;
             }
         }
@@ -46,6 +71,7 @@ public class LevelGeneratorScript : MonoBehaviour
             {
                 keyX = randNumbX;
                 keyY = randNumbY;
+                keyPosition = new Vector3(keyX, keyY, 0f);
                 keyroom = true;
             }
         }
@@ -61,9 +87,215 @@ public class LevelGeneratorScript : MonoBehaviour
                 {
                     playerX = randNumbX;
                     playerY = randNumbY;
+                    playerPosition = new Vector3(playerX, playerY, 0f);
                     playerroom = true;
                 }
             }
+        }
+        #endregion
+        
+        //Instantiate(bossDoor, bossPosition, prefabRotation);
+        //Instantiate(leverRoom, keyPosition, prefabRotation);
+        //Instantiate(playerStart, playerPosition, prefabRotation);
+
+        //Set gameobject in each position
+        #region square 0,0
+
+        positCheck = new Vector3(0, 0, 0);
+        
+        if (bossPosition == positCheck)
+        {
+            placeBossRoom();
+            
+        }
+        else if (keyPosition == positCheck)
+        {
+            placeKeyRoom();
+        }
+        else if (playerPosition == positCheck)
+        {
+            placePlayerRoom();
+        }
+        else
+        {
+            placeGenericRoom();
+        }
+
+        #endregion
+
+        #region square 0,1
+        positCheck = new Vector3(0, 1, 0);
+
+        if (bossPosition == positCheck)
+        {
+            placeBossRoom();
+
+        }
+        else if (keyPosition == positCheck)
+        {
+            placeKeyRoom();
+        }
+        else if (playerPosition == positCheck)
+        {
+            placePlayerRoom();
+        }
+        else
+        {
+            placeGenericRoom();
+        }
+        #endregion
+
+        #region square 0,2
+        positCheck = new Vector3(0, 2, 0);
+
+        if (bossPosition == positCheck)
+        {
+            placeBossRoom();
+
+        }
+        else if (keyPosition == positCheck)
+        {
+            placeKeyRoom();
+        }
+        else if (playerPosition == positCheck)
+        {
+            placePlayerRoom();
+        }
+        else
+        {
+            placeGenericRoom();
+        }
+        #endregion
+
+        #region square 1,0
+        positCheck = new Vector3(1, 0, 0);
+
+        if (bossPosition == positCheck)
+        {
+            placeBossRoom();
+
+        }
+        else if (keyPosition == positCheck)
+        {
+            placeKeyRoom();
+        }
+        else if (playerPosition == positCheck)
+        {
+            placePlayerRoom();
+        }
+        else
+        {
+            placeGenericRoom();
+        }
+        #endregion
+
+        #region square 1,1
+        positCheck = new Vector3(1, 1, 0);
+
+        if (bossPosition == positCheck)
+        {
+            placeBossRoom();
+
+        }
+        else if (keyPosition == positCheck)
+        {
+            placeKeyRoom();
+        }
+        else if (playerPosition == positCheck)
+        {
+            placePlayerRoom();
+        }
+        else
+        {
+            placeGenericRoom();
+        }
+        #endregion
+
+        #region square 1,2
+        positCheck = new Vector3(1, 2, 0);
+
+        if (bossPosition == positCheck)
+        {
+            placeBossRoom();
+
+        }
+        else if (keyPosition == positCheck)
+        {
+            placeKeyRoom();
+        }
+        else if (playerPosition == positCheck)
+        {
+            placePlayerRoom();
+        }
+        else
+        {
+            placeGenericRoom();
+        }
+        #endregion
+
+        #region square 2,0
+        positCheck = new Vector3(2, 0, 0);
+
+        if (bossPosition == positCheck)
+        {
+            placeBossRoom();
+
+        }
+        else if (keyPosition == positCheck)
+        {
+            placeKeyRoom();
+        }
+        else if (playerPosition == positCheck)
+        {
+            placePlayerRoom();
+        }
+        else
+        {
+            placeGenericRoom();
+        }
+        #endregion
+
+        #region square 2,1
+        positCheck = new Vector3(2, 1, 0);
+
+        if (bossPosition == positCheck)
+        {
+            placeBossRoom();
+
+        }
+        else if (keyPosition == positCheck)
+        {
+            placeKeyRoom();
+        }
+        else if (playerPosition == positCheck)
+        {
+            placePlayerRoom();
+        }
+        else
+        {
+            placeGenericRoom();
+        }
+        #endregion
+
+        #region square 2,2
+        positCheck = new Vector3(2, 2, 0);
+
+        if (bossPosition == positCheck)
+        {
+            placeBossRoom();
+
+        }
+        else if (keyPosition == positCheck)
+        {
+            placeKeyRoom();
+        }
+        else if (playerPosition == positCheck)
+        {
+            placePlayerRoom();
+        }
+        else
+        {
+            placeGenericRoom();
         }
         #endregion
 
@@ -74,4 +306,48 @@ public class LevelGeneratorScript : MonoBehaviour
     {
 
     }
+
+    public void placeBossRoom()
+    {
+        // place room with door to boss
+        Instantiate(bossRoomPrefab, Vector3.Scale(positCheck, mapScale), Quaternion.identity);
+
+        //place room with acutal boss
+        if (positCheck[1] == 0)
+        {
+            // place boss room below
+            Instantiate(bossRoomPrefab, Vector3.Scale(positCheck, mapScale) + (mapScale[1] * new Vector3(0, -1, 0)), Quaternion.identity);
+        }
+        else
+        {
+            // place boss room above
+            Instantiate(bossRoomPrefab, Vector3.Scale(positCheck, mapScale) + (mapScale[1] * new Vector3(0, 1, 0)), Quaternion.identity);
+        }
+    }
+    
+    public void placeKeyRoom()
+    {
+        //place key room
+        Instantiate(keyRoomPrefab, Vector3.Scale(positCheck, mapScale), Quaternion.identity);
+    }
+
+    public void placePlayerRoom()
+    {
+        //place player room
+        Instantiate(playerRoomPrefab, Vector3.Scale(positCheck, mapScale), Quaternion.identity);
+
+        //place camera in this room
+
+        //place player in this room
+        playerCharacter.transform.position = Vector3.Scale(positCheck, mapScale) + (.5f * mapScale);
+
+        //teleport here if not first level?
+    }
+
+    public void placeGenericRoom()
+    {
+        //place generic room
+        Instantiate(genericRoomPrefab, Vector3.Scale(positCheck, mapScale), Quaternion.identity);
+    }
+
 }
