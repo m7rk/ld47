@@ -7,9 +7,9 @@ public class PhantomMoveCache
     // contains move data for one phantom
     private class PhantomMoveData
     {
-        public List<AbstractCharacter.CharacterMove> moves;
+        public List<AbstractPlayerCharacter.CharacterMove> moves;
 
-        public PhantomMoveData(List<AbstractCharacter.CharacterMove> moves)
+        public PhantomMoveData(List<AbstractPlayerCharacter.CharacterMove> moves)
         {
             this.moves = moves;
         }
@@ -25,7 +25,7 @@ public class PhantomMoveCache
     }
 
     // When the player dies or changes room, playerActions calls this (sending the allPlayerMoves list)
-    public void addNewPhantom(List<AbstractCharacter.CharacterMove> moves)
+    public void addNewPhantom(List<AbstractPlayerCharacter.CharacterMove> moves)
     {
         phantomMoves.Insert(0,new PhantomMoveData(moves));
     }
@@ -49,7 +49,7 @@ public class PhantomMoveCache
 
     // get a move from an older player run
     // need to fix how this part is named/where it goes
-    public AbstractCharacter.CharacterMove getPhantomMove(int phantomIndex, int moveIndex)
+    public AbstractPlayerCharacter.CharacterMove getPhantomMove(int phantomIndex, int moveIndex)
     {
         return phantomMoves[phantomIndex].moves[moveIndex];
     }

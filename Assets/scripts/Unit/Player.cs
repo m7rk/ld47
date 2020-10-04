@@ -2,29 +2,50 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : AbstractCharacter
+public class Player : AbstractPlayerCharacter
 {
-    const float INVULN_TIME_MAX = 2f;
+    const float INVULN_TIME_MAX = 1f;
     public Rigidbody2D rb;
     const float ACCEL_MULT = 100f;
-    const float MAX_VEL = 3f;
+    const float MAX_VEL = 4f;
+
+
 
     public Vector2 lastVelocity;
     float invulnTime = 0;
 
     public HeartManager hm;
-    public RoomTransitionListener rtl;
+    public RoomManager rtl;
+    public Crossfade cf;
+
+    public AudioSource hurtSound;
+
+    public AudioSource misc;
+    public AudioClip[] footStepList;
+    public AudioClip healSound;
 
     private List<CharacterMove> allPlayerMoves = new List<CharacterMove>();
+
+    public const float footStepMax = 0.1f;
+    public float footStepTime = 0f;
+
 
     // Start is called before the first frame update
     void Start()
     {
         Application.targetFrameRate = 60;
-        hm.setHearts(hp);
+        currentHP = maxHealth();
+        hm.setHearts(currentHP);
     }
 
-
+    void footStep()
+    {
+        if (footStepTime < 0)
+        { 
+            misc.PlayOneShot(footStepList[Random.Range(0, footStepList.Length)], 0.6f);
+            footStepTime = footStepMax;
+        }
+    }
 
     protected void applyForcesToRigidBody(Vector2 moveVector, float delta)
     {
@@ -77,11 +98,11 @@ public class Player : AbstractCharacter
         CurrentMove.location = rtl.removeOffsetFromRoom(this.transform.position);
         CurrentMove.didFire = false;
 
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKey(KeyCode.J) && shootTimer <= 0)
         {
-            tryFire(projectileLaunchDirection,"PlayerProjectile");
-            sprite.SetTrigger("shoot");
+            startFire();
             CurrentMove.didFire = true;
+            cf.fadeToBlack();
         }
 
         allPlayerMoves.Add(CurrentMove);
@@ -90,32 +111,45 @@ public class Player : AbstractCharacter
         if (moveVector != Vector2.zero)
         {
             projectileLaunchDirection = moveVector;
+            footStep();
         }
+
+        
 
         applyForcesToRigidBody(moveVector, delta);
 
         lastVelocity = rb.velocity;
     }
 
-    public void heal()
+    public bool heal()
     {
-        hp++;
-        hm.setHearts(hp);
+        if (currentHP < maxHealth())
+        {
+            misc.PlayOneShot(healSound);
+            currentHP++;
+            hm.setHearts(currentHP);
+            return true;
+        }
+        return false;
     }
 
     public override void hurt()
     {
+        if(invulnTime >= 0)
+        {
+            return;
+        }
         hurtSound.Play();
-        hp--;
-        if (hp <= 0)
+        currentHP--;
+        if (currentHP <= 0)
         {
             this.transform.localPosition = new Vector3(0, 0, 0);
-            hp = 3;
-            hm.setHearts(hp);
+            currentHP = maxHealth();
+            hm.setHearts(currentHP);
         }
         else
         {
-            hm.setHearts(hp);
+            hm.setHearts(currentHP);
             this.invulnTime = INVULN_TIME_MAX;
         }
     }
@@ -133,5 +167,15 @@ public class Player : AbstractCharacter
         playerInput(Time.deltaTime);
         animateLizard(rb.velocity.magnitude < ANIM_VEL_STOP_THRESH);
         invulnTime -= Time.deltaTime;
+        footStepTime -= Time.deltaTime;
+        checkForShoot("PlayerProjectile");
+
+        sprite.GetComponentsInChildren<SpriteRenderer>()[0].color = (invulnTime > 0) ? Color.red : Color.white;
+        sprite.GetComponentsInChildren<SpriteRenderer>()[1].color = (invulnTime > 0) ? Color.red : Color.white;
+    }
+
+    public override int maxHealth()
+    {
+        return 3;
     }
 }
