@@ -34,7 +34,8 @@ public class MeleeEnemy : Enemy
         currentHP--;
         if (currentHP == 0)
         {
-            Destroy(this.gameObject);
+            sprite.SetTrigger("die");
+            GetComponent<BoxCollider2D>().enabled = false;
         }
     }
 
@@ -68,7 +69,7 @@ public class MeleeEnemy : Enemy
 
     public void Update()
     {
-        if (!rtl.inRoom(this.transform.position))
+        if (!rtl.inRoom(this.transform.position) || currentHP <= 0)
         {
             return;
         }

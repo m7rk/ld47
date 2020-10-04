@@ -19,7 +19,7 @@ public class HeartManager : MonoBehaviour
         {
             var v = Instantiate(heartPrefab);
             v.transform.SetParent(this.transform);
-            v.transform.localPosition = new Vector2(32 + 64 * j, 48);
+            v.transform.localPosition = new Vector2(64 + 64 * j, 48);
             v.SetActive(true);
             oldHearts.Add(v);
         }

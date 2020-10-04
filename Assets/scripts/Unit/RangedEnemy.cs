@@ -25,12 +25,15 @@ public class RangedEnemy : Enemy
     public void Awake()
     {
         rtl = FindObjectOfType<RoomManager>();
+        currentHP = maxHealth();
     }
 
     public override void hurt()
     {
+        currentHP = 0;
         playHurtSound();
-        Destroy(this.gameObject);
+        sprite.SetTrigger("die");
+        GetComponent<BoxCollider2D>().enabled = false;
     }
 
     public override int maxHealth()
@@ -89,7 +92,7 @@ public class RangedEnemy : Enemy
 
     public void Update()
     {
-        if (!rtl.inRoom(this.transform.position))
+        if (!rtl.inRoom(this.transform.position) || currentHP <= 0)
         {
             return;
         }
