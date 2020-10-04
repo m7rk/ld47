@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     // Variable to set time limit and keep track of remaining time
-    public float timeLimit = 10f;
+    private const float timeLimit = 15f;
     public float remainingTime;
 
     // Variable to take image in the UI
@@ -19,6 +19,11 @@ public class Timer : MonoBehaviour
     
     // Start is called before the first frame update
     void Start()
+    {
+        remainingTime = timeLimit;
+    }
+
+    public void resetLimit()
     {
         remainingTime = timeLimit;
     }

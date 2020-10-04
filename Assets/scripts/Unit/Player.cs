@@ -11,7 +11,6 @@ public class Player : AbstractPlayerCharacter
     const float MAX_VEL = 4f;
 
 
-
     public Vector2 lastVelocity;
     float invulnTime = 0;
 
@@ -38,6 +37,7 @@ public class Player : AbstractPlayerCharacter
         Application.targetFrameRate = 60;
         currentHP = maxHealth();
         hm.setHearts(currentHP);
+        this.transform.position = Progress.respawnPoint;
     }
 
     void footStep()

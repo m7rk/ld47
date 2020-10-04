@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class DungeonPits : MonoBehaviour
 {
-    public void OnTriggerEnter2D(Collider2D c)
+    public void OnCollisionEnter2D(Collision2D c)
     {
-        Debug.Log(c.name);
         if (c.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             FindObjectOfType<Player>().hurtIgnoreInvuln();

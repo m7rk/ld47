@@ -51,7 +51,7 @@ public class RangedEnemy : Enemy
 
         foreach (var d in dirs)
         {
-            RaycastHit2D info = Physics2D.Raycast(transform.position, d, 100, LayerMask.GetMask("World","Enemy"));
+            RaycastHit2D info = Physics2D.Raycast(transform.position, d, 100, LayerMask.GetMask("World","Enemy","Pits"));
             if (info.distance > bestDist)
             {
                 bestDist = info.distance;
@@ -83,6 +83,11 @@ public class RangedEnemy : Enemy
 
     public void Update()
     {
+        if(!rtl.inRoom(this.transform.position))
+        {
+            return;
+        }
+
         stateTime -= Time.deltaTime;
         
         // I call it "scoot n shoot"

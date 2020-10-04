@@ -8,10 +8,10 @@ public class TransitionZone : MonoBehaviour
 
     public void OnTriggerEnter2D()
     {
-        Debug.Log("a");
         FindObjectOfType<AudioController>().changeTrack(songToPlay);
         FindObjectOfType<PhantomManager>().clearPhantoms();
         FindObjectOfType<Player>().fullHeal();
-        
+        Progress.respawnPoint = this.transform.position;
+
     }
 }

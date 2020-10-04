@@ -28,7 +28,7 @@ public class RoomManager : MonoBehaviour
 
     void resetTimer()
     {
-        timer.remainingTime = timer.timeLimit;
+        timer.resetLimit();
     }
 
     void setDoor(Vector2 entry)

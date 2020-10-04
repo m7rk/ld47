@@ -16,5 +16,12 @@ public abstract class Enemy : AbstractUnit
     {
         fireSound.PlayOneShot(hurtSounds[currentHP]);
     }
-    
+
+    public void OnCollisionEnter2D(Collision2D c)
+    {
+        if (c.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            c.gameObject.GetComponent<Player>().hurt();
+        }
+    }
 }
