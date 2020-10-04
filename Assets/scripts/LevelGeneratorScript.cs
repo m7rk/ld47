@@ -35,6 +35,11 @@ public class LevelGeneratorScript : MonoBehaviour
     public GameObject playerRoomPrefab;
     public GameObject genericRoomPrefab;
 
+    GameObject fancyDoor;
+    GameObject roomInScene;
+
+    string[] doorNames;
+
     public Vector3 bossPosition;
     public Vector3 keyPosition;
     public Vector3 playerPosition;
@@ -53,7 +58,7 @@ public class LevelGeneratorScript : MonoBehaviour
             randNumbX = Random.Range(0, 3);
             randNumbY = Random.Range(0, 3);
 
-            if (randNumbY != 1) // checking that coordinates for boss room are not in the middle row
+            if (randNumbY == 2) // checking that coordinates for boss room are in the top row, could eliminate bits of code but not worth it at this stage of game jam
             {
                 bossX = randNumbX;
                 bossY = randNumbY;
@@ -102,201 +107,59 @@ public class LevelGeneratorScript : MonoBehaviour
         #region square 0,0
 
         positCheck = new Vector3(0, 0, 0);
-        
-        if (bossPosition == positCheck)
-        {
-            placeBossRoom();
-            
-        }
-        else if (keyPosition == positCheck)
-        {
-            placeKeyRoom();
-        }
-        else if (playerPosition == positCheck)
-        {
-            placePlayerRoom();
-        }
-        else
-        {
-            placeGenericRoom();
-        }
+        doorNames  = new string[] { "doorU", "doorR"};
+        roomSearch();
 
         #endregion
 
         #region square 0,1
         positCheck = new Vector3(0, 1, 0);
+        doorNames = new string[] { "doorU", "doorR", "doorD" };
 
-        if (bossPosition == positCheck)
-        {
-            placeBossRoom();
 
-        }
-        else if (keyPosition == positCheck)
-        {
-            placeKeyRoom();
-        }
-        else if (playerPosition == positCheck)
-        {
-            placePlayerRoom();
-        }
-        else
-        {
-            placeGenericRoom();
-        }
+        roomSearch();
         #endregion
 
         #region square 0,2
         positCheck = new Vector3(0, 2, 0);
-
-        if (bossPosition == positCheck)
-        {
-            placeBossRoom();
-
-        }
-        else if (keyPosition == positCheck)
-        {
-            placeKeyRoom();
-        }
-        else if (playerPosition == positCheck)
-        {
-            placePlayerRoom();
-        }
-        else
-        {
-            placeGenericRoom();
-        }
+        doorNames = new string[] { "doorR", "doorD" };
+        roomSearch();
         #endregion
 
         #region square 1,0
         positCheck = new Vector3(1, 0, 0);
-
-        if (bossPosition == positCheck)
-        {
-            placeBossRoom();
-
-        }
-        else if (keyPosition == positCheck)
-        {
-            placeKeyRoom();
-        }
-        else if (playerPosition == positCheck)
-        {
-            placePlayerRoom();
-        }
-        else
-        {
-            placeGenericRoom();
-        }
+        doorNames = new string[] { "doorU", "doorR", "doorL" };
+        roomSearch();
         #endregion
 
         #region square 1,1
         positCheck = new Vector3(1, 1, 0);
-
-        if (bossPosition == positCheck)
-        {
-            placeBossRoom();
-
-        }
-        else if (keyPosition == positCheck)
-        {
-            placeKeyRoom();
-        }
-        else if (playerPosition == positCheck)
-        {
-            placePlayerRoom();
-        }
-        else
-        {
-            placeGenericRoom();
-        }
+        doorNames = new string[] { "doorU", "doorR", "doorD", "doorL" };
+        roomSearch();
         #endregion
 
         #region square 1,2
         positCheck = new Vector3(1, 2, 0);
-
-        if (bossPosition == positCheck)
-        {
-            placeBossRoom();
-
-        }
-        else if (keyPosition == positCheck)
-        {
-            placeKeyRoom();
-        }
-        else if (playerPosition == positCheck)
-        {
-            placePlayerRoom();
-        }
-        else
-        {
-            placeGenericRoom();
-        }
+        doorNames = new string[] { "doorR", "doorD", "doorL" };
+        roomSearch();
         #endregion
 
         #region square 2,0
         positCheck = new Vector3(2, 0, 0);
-
-        if (bossPosition == positCheck)
-        {
-            placeBossRoom();
-
-        }
-        else if (keyPosition == positCheck)
-        {
-            placeKeyRoom();
-        }
-        else if (playerPosition == positCheck)
-        {
-            placePlayerRoom();
-        }
-        else
-        {
-            placeGenericRoom();
-        }
+        doorNames = new string[] { "doorU", "doorL" };
+        roomSearch();
         #endregion
 
         #region square 2,1
         positCheck = new Vector3(2, 1, 0);
-
-        if (bossPosition == positCheck)
-        {
-            placeBossRoom();
-
-        }
-        else if (keyPosition == positCheck)
-        {
-            placeKeyRoom();
-        }
-        else if (playerPosition == positCheck)
-        {
-            placePlayerRoom();
-        }
-        else
-        {
-            placeGenericRoom();
-        }
+        doorNames = new string[] { "doorU", "doorD", "doorL" };
+        roomSearch();
         #endregion
 
         #region square 2,2
         positCheck = new Vector3(2, 2, 0);
-
-        if (bossPosition == positCheck)
-        {
-            placeBossRoom();
-
-        }
-        else if (keyPosition == positCheck)
-        {
-            placeKeyRoom();
-        }
-        else if (playerPosition == positCheck)
-        {
-            placePlayerRoom();
-        }
-        else
-        {
-            placeGenericRoom();
-        }
+        doorNames = new string[] { "doorD", "doorL" };
+        roomSearch();
         #endregion
 
     }
@@ -309,45 +172,106 @@ public class LevelGeneratorScript : MonoBehaviour
 
     public void placeBossRoom()
     {
-        // place room with door to boss
-        Instantiate(bossRoomPrefab, Vector3.Scale(positCheck, mapScale), Quaternion.identity);
+        roomInScene = bossRoomPrefab;
+        openDoors(roomInScene);
+        Instantiate(roomInScene, Vector3.Scale(positCheck, mapScale), Quaternion.identity);
+        closeDoors(roomInScene);
 
-        //place room with acutal boss
+        // place room with acutal boss
         if (positCheck[1] == 0)
         {
+            //bossRoomInScene.transform.Find("door2").gameObject.SetActive(true);
+
             // place boss room below
-            Instantiate(bossRoomPrefab, Vector3.Scale(positCheck, mapScale) + (mapScale[1] * new Vector3(0, -1, 0)), Quaternion.identity);
+            Instantiate(roomInScene, Vector3.Scale(positCheck, mapScale) + (mapScale[1] * new Vector3(0, -1, 0)), Quaternion.identity);
+
+            //bossRoomInScene.transform.Find("door2").gameObject.SetActive(false);
         }
         else
         {
+            //bossRoomInScene.transform.Find("door1").gameObject.SetActive(true);
+
             // place boss room above
-            Instantiate(bossRoomPrefab, Vector3.Scale(positCheck, mapScale) + (mapScale[1] * new Vector3(0, 1, 0)), Quaternion.identity);
+            Instantiate(roomInScene, Vector3.Scale(positCheck, mapScale) + (mapScale[1] * new Vector3(0, 1, 0)), Quaternion.identity);
+
+            //bossRoomInScene.transform.Find("door1").gameObject.SetActive(false);
         }
     }
     
     public void placeKeyRoom()
     {
         //place key room
-        Instantiate(keyRoomPrefab, Vector3.Scale(positCheck, mapScale), Quaternion.identity);
+        roomInScene = keyRoomPrefab;
+        openDoors(roomInScene);
+        Instantiate(roomInScene, Vector3.Scale(positCheck, mapScale), Quaternion.identity);
+        closeDoors(roomInScene);
     }
 
     public void placePlayerRoom()
     {
+        roomInScene = playerRoomPrefab;
+        openDoors(roomInScene);
+
         //place player room
-        Instantiate(playerRoomPrefab, Vector3.Scale(positCheck, mapScale), Quaternion.identity);
+        Instantiate(roomInScene, Vector3.Scale(positCheck, mapScale), Quaternion.identity);
 
         //place camera in this room
 
         //place player in this room
         playerCharacter.transform.position = Vector3.Scale(positCheck, mapScale) + (.5f * mapScale);
 
+        closeDoors(roomInScene);
+
         //teleport here if not first level?
     }
 
     public void placeGenericRoom()
     {
+        roomInScene = genericRoomPrefab; 
+        openDoors(roomInScene);
+
+
         //place generic room
-        Instantiate(genericRoomPrefab, Vector3.Scale(positCheck, mapScale), Quaternion.identity);
+        Instantiate(roomInScene, Vector3.Scale(positCheck, mapScale), Quaternion.identity);
+
+
+        closeDoors(roomInScene);
     }
 
+    public void roomSearch()
+    {
+        if (bossPosition == positCheck)
+        {
+            placeBossRoom();
+
+        }
+        else if (keyPosition == positCheck)
+        {
+            placeKeyRoom();
+        }
+        else if (playerPosition == positCheck)
+        {
+            placePlayerRoom();
+        }
+        else
+        {
+            placeGenericRoom();
+        }
+    }
+
+    public void openDoors(GameObject roomPrefab)
+    {
+        for (int i = 0; i < doorNames.Length; i++)
+        {
+            roomPrefab.transform.Find(doorNames[i]).gameObject.SetActive(true);
+        }
+    }
+
+    public void closeDoors(GameObject roomPrefab)
+    {
+        for (int i = 0; i < doorNames.Length; i++)
+        {
+            roomPrefab.transform.Find(doorNames[i]).gameObject.SetActive(false);
+        }
+    }
 }
