@@ -102,7 +102,6 @@ public class Player : AbstractPlayerCharacter
         {
             startFire();
             CurrentMove.didFire = true;
-            cf.fadeToBlack();
         }
 
         allPlayerMoves.Add(CurrentMove);
@@ -146,6 +145,7 @@ public class Player : AbstractPlayerCharacter
             this.transform.localPosition = new Vector3(0, 0, 0);
             currentHP = maxHealth();
             hm.setHearts(currentHP);
+            cf.fadeToBlack();
         }
         else
         {
