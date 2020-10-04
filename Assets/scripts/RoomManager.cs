@@ -57,7 +57,7 @@ public class RoomManager : MonoBehaviour
 
             pm.Reset(p.flushMoves(), playerRoomStartLoc, new Vector2(roomX * ROOM_SIZE_X, roomY * ROOM_SIZE_Y));
 
-            playerRoomStartLoc = removeOffsetFromRoom(p.transform.position);
+            playerRoomStartLoc = p.transform.position;
             // For the start loc, subtract a room size.
         }
     }
