@@ -27,6 +27,8 @@ public class Player : AbstractPlayerCharacter
 
     public const float footStepMax = 0.1f;
     public float footStepTime = 0f;
+
+    public ArrowManager am;
     
 
 
@@ -95,6 +97,7 @@ public class Player : AbstractPlayerCharacter
     void playerInput(float delta)
     {
         var moveVector = getMoveVector();
+        
 
         CharacterMove CurrentMove;
         CurrentMove.location = rtl.removeOffsetFromRoom(this.transform.position);
@@ -112,10 +115,11 @@ public class Player : AbstractPlayerCharacter
         if (moveVector != Vector2.zero)
         {
             projectileLaunchDirection = moveVector;
+            am.setArrow(projectileLaunchDirection);
             footStep();
         }
 
-        
+      
 
         applyForcesToRigidBody(moveVector, delta);
 

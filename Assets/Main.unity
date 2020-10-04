@@ -220,6 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 1078820775}
   sprite: {fileID: 1685285423}
 --- !u!50 &10782860
@@ -403,6 +404,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 817231537}
   sprite: {fileID: 12721319}
 --- !u!50 &32292577
@@ -540,7 +542,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -10
+  m_SortingOrder: -10000
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -31958,6 +31960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 153708459}
   sprite: {fileID: 88582767}
 --- !u!50 &108806249
@@ -32055,6 +32058,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 150957124}
   sprite: {fileID: 688064256}
   facingLeft: 0
@@ -32809,6 +32813,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 1950053626}
   sprite: {fileID: 211062790}
 --- !u!50 &166297965
@@ -33524,6 +33529,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 750759448}
   sprite: {fileID: 129004253}
   facingLeft: 0
@@ -33735,7 +33741,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -9
+  m_SortingOrder: -9999
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -36135,6 +36141,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 275838528}
   sprite: {fileID: 1765912416}
   facingLeft: 0
@@ -37235,6 +37242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 1871331776}
   sprite: {fileID: 753363269}
 --- !u!50 &684533674
@@ -37413,6 +37421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 867360709}
   sprite: {fileID: 1899079120}
 --- !u!50 &692187633
@@ -37707,6 +37716,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 391411563}
   sprite: {fileID: 795528029}
   facingLeft: 0
@@ -38301,6 +38311,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 1641094383}
   sprite: {fileID: 1389096133}
 --- !u!50 &859814335
@@ -39364,6 +39375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 763689780}
   sprite: {fileID: 1187386921}
   facingLeft: 0
@@ -39478,6 +39490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 1914252183}
   sprite: {fileID: 384751689}
 --- !u!50 &1015620995
@@ -40157,6 +40170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 972129504}
   sprite: {fileID: 1342329571}
 --- !u!50 &1126210260
@@ -40851,6 +40865,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 1697379849}
   sprite: {fileID: 1408864300}
 --- !u!50 &1282706960
@@ -41044,6 +41059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 2017304280}
   sprite: {fileID: 923899485}
 --- !u!50 &1286374081
@@ -41847,6 +41863,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 451279797}
   sprite: {fileID: 1229745120}
   facingLeft: 0
@@ -42010,6 +42027,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 890316988}
   sprite: {fileID: 2642684570896573408}
   lookingLeft: 0
@@ -42066,6 +42084,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 466580625}
   sprite: {fileID: 1191798796}
 --- !u!50 &1501607895
@@ -42163,6 +42182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 1135470900}
   sprite: {fileID: 296171770}
 --- !u!50 &1511370986
@@ -42334,6 +42354,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 1020766822}
   sprite: {fileID: 1807899829}
 --- !u!50 &1619609788
@@ -42824,6 +42845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 919771043}
   sprite: {fileID: 1198028077}
 --- !u!50 &1726845789
@@ -42937,6 +42959,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 551339780}
   sprite: {fileID: 1290651739}
 --- !u!50 &1739073313
@@ -43034,6 +43057,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 1066220663}
   sprite: {fileID: 338427356}
 --- !u!50 &1752299310
@@ -43115,6 +43139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 465544652}
   sprite: {fileID: 1812429475}
 --- !u!50 &1755663096
@@ -43465,6 +43490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 1324066461}
   sprite: {fileID: 118720801}
   facingLeft: 0
@@ -44760,6 +44786,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 1026468431}
   sprite: {fileID: 284242016}
 --- !u!50 &1984732663
@@ -45363,6 +45390,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 662097557}
   sprite: {fileID: 1391977769}
 --- !u!50 &2036788325
@@ -45444,6 +45472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 2146942818}
   sprite: {fileID: 1335707019}
   facingLeft: 0
@@ -45782,6 +45811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
+  sprites: []
   fireSound: {fileID: 1132522309}
   sprite: {fileID: 905973016}
   facingLeft: 0

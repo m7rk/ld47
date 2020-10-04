@@ -8,6 +8,8 @@ public abstract class AbstractUnit : MonoBehaviour
     public abstract void hurt();
     public abstract int maxHealth();
 
+    public SpriteRenderer[] sprites = null;
+
     public void makeProjectile(Vector2 dir, string layer)
     {
         var v = Instantiate(Resources.Load<GameObject>("Prefab/" + layer));
@@ -16,4 +18,5 @@ public abstract class AbstractUnit : MonoBehaviour
         v.layer = LayerMask.NameToLayer(layer);
         v.transform.position = this.transform.position;
     }
+
 }
