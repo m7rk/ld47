@@ -10,7 +10,6 @@ public class Player : AbstractPlayerCharacter
     const float ACCEL_MULT = 100f;
     const float MAX_VEL = 4f;
 
-
     public Vector2 lastVelocity;
     float invulnTime = 0;
 
@@ -32,12 +31,13 @@ public class Player : AbstractPlayerCharacter
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Application.targetFrameRate = 60;
         currentHP = maxHealth();
         hm.setHearts(currentHP);
         this.transform.position = Progress.respawnPoint;
+
     }
 
     void footStep()
@@ -189,6 +189,7 @@ public class Player : AbstractPlayerCharacter
     // Update is called once per frame
     void Update()
     {
+
         if(currentHP <= 0)
         {
             return;

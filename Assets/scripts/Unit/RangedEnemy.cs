@@ -51,7 +51,7 @@ public class RangedEnemy : Enemy
 
         foreach (var d in dirs)
         {
-            RaycastHit2D info = Physics2D.Raycast(transform.position, d, 100, LayerMask.GetMask("World","Enemy","Pits"));
+            RaycastHit2D info = Physics2D.Raycast(transform.position, d, 100, LayerMask.GetMask("World", "Enemy", "Pits"));
             if (info.distance > bestDist)
             {
                 bestDist = info.distance;
@@ -67,10 +67,11 @@ public class RangedEnemy : Enemy
         var p = FindObjectOfType<Player>();
         var delta = p.transform.position - this.transform.position;
 
-        if(Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
+        if (Mathf.Abs(delta.x) > Mathf.Abs(delta.y))
         {
             return new Vector2(Mathf.Sign(delta.x), 0);
-        } else
+        }
+        else
         {
             return new Vector2(0, Mathf.Sign(delta.y));
         }
@@ -83,26 +84,27 @@ public class RangedEnemy : Enemy
 
     public void Update()
     {
-        if(!rtl.inRoom(this.transform.position))
+        if (!rtl.inRoom(this.transform.position))
         {
             return;
         }
 
         stateTime -= Time.deltaTime;
-        
+
         // I call it "scoot n shoot"
-        if(isScooting)
+        if (isScooting)
         {
             GetComponent<Rigidbody2D>().velocity = speed * moveDir;
             sprite.SetBool("is_walking", true);
-            if(stateTime <= 0)
+            if (stateTime <= 0)
             {
                 isScooting = false;
                 // trigger shoot anin
 
-                stateTime = shootTimeMax; 
+                stateTime = shootTimeMax;
             }
-        } else
+        }
+        else
         {
             sprite.SetBool("is_walking", false);
 
@@ -132,7 +134,7 @@ public class RangedEnemy : Enemy
                 isScooting = true;
                 // trigger scoot
                 moveDir = determineMoveDir();
-                if(moveDir.x < 0)
+                if (moveDir.x < 0)
                 {
                     this.transform.localScale = new Vector3(1, 1, 1);
                 }

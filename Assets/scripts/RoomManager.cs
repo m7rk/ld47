@@ -24,6 +24,9 @@ public class RoomManager : MonoBehaviour
     void Start()
     {
         playerRoomStartLoc = p.transform.position;
+        currRoomX = (int)((Progress.respawnPoint.x + ROOM_OFFSET_X) / ROOM_SIZE_X);
+        currRoomY = (int)((Progress.respawnPoint.y + ROOM_OFFSET_Y) / ROOM_SIZE_Y);
+        Camera.main.GetComponent<CameraFollow>().target = new Vector3((currRoomX * ROOM_SIZE_X), (currRoomY * ROOM_SIZE_Y), -8.5f);
     }
 
     void resetTimer()
@@ -35,6 +38,7 @@ public class RoomManager : MonoBehaviour
     {
         barrier.transform.position = roomCenter() + (entry * -new Vector2(ROOM_OFFSET_X+1.5f, ROOM_OFFSET_Y+1.5f));
     }
+
 
 
     // Update is called once per frame
