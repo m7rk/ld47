@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class RangedEnemy : Enemy
 {
-    public bool isScooting;
+    private bool isScooting;
 
-    public float scootTimeMax = 2f;
-    public float shootTimeMax = 1f;
+    private float scootTimeMax = 2f;
 
-    public float stateTime = 0;
+    private float shootTimeMax = 1.5f;
+    private float shootTimeTrigger = 1f;
+    private float projTile = 0.7f;
 
-    public RoomManager rtl; 
+    private float stateTime = 0;
+
+    private RoomManager rtl;
+
+    public Animator sprite;
+
+    Vector2 moveDir;
+
+    const float speed = 1;
 
     public void Awake()
     {
@@ -30,14 +39,27 @@ public class RangedEnemy : Enemy
 
     public Vector2 determineMoveDir()
     {
-        // So, we need a pattern
-        if(this.rtl.roomCenter().y > this.transform.position.y)
+        // four raycasts.
+        List<Vector2> dirs = new List<Vector2>();
+        dirs.Add(Vector2.left);
+        dirs.Add(Vector2.up);
+        dirs.Add(Vector2.down);
+        dirs.Add(Vector2.right);
+
+        Vector2 bestDir = Vector2.zero;
+        float bestDist = 0;
+
+        foreach (var d in dirs)
         {
-            return Vector2.up;
-        } else
-        {
-            return Vector2.down;
+            RaycastHit2D info = Physics2D.Raycast(transform.position, d, 100, LayerMask.GetMask("World"));
+            if (info.distance > bestDist)
+            {
+                bestDist = info.distance;
+                bestDir = d;
+            }
         }
+
+        return bestDir;
     }
 
     public void createProjectile()
@@ -52,20 +74,43 @@ public class RangedEnemy : Enemy
         // I call it "scoot n shoot"
         if(isScooting)
         {
+            GetComponent<Rigidbody2D>().velocity = speed * moveDir;
+            sprite.SetBool("is_walking", true);
             if(stateTime <= 0)
             {
                 isScooting = false;
                 // trigger shoot anin
-                makeProjectile(Vector2.left, "EnemyProjectile");
+
                 stateTime = shootTimeMax; 
             }
         } else
         {
+            sprite.SetBool("is_walking", false);
+
+            if(stateTime < shootTimeTrigger && stateTime + Time.deltaTime > shootTimeTrigger)
+            {
+                sprite.SetTrigger("shoot");
+            }
+
+            if (stateTime < projTile && stateTime + Time.deltaTime > projTile)
+            {
+                makeProjectile(moveDir, "EnemyProjectile");
+            }
+
             if (stateTime <= 0)
             {
+                sprite.ResetTrigger("shoot");
                 isScooting = true;
                 // trigger scoot
-                GetComponent<Rigidbody2D>().AddForce(determineMoveDir(), ForceMode2D.Impulse);
+                moveDir = determineMoveDir();
+                if(moveDir.x < 0)
+                {
+                    this.transform.localScale = new Vector3(1, 1, 1);
+                }
+                if (moveDir.x > 0)
+                {
+                    this.transform.localScale = new Vector3(-1, 1, 1);
+                }
                 stateTime = scootTimeMax;
             }
         }
