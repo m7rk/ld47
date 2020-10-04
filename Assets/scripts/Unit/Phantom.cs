@@ -12,7 +12,10 @@ public class Phantom : AbstractPlayerCharacter
     // Start is called before the first frame update
     void Start()
     {
-        renderers = GetComponentsInChildren<SpriteRenderer>();
+        renderers = new SpriteRenderer[2];
+        // leave shadow alone
+        renderers[0]= GetComponentsInChildren<SpriteRenderer>()[0];
+        renderers[1] = GetComponentsInChildren<SpriteRenderer>()[1];
     }
     Color colorLerp(Color a, Color b, float f)
     {
