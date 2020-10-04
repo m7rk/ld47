@@ -39,6 +39,7 @@ public class Player : AbstractPlayerCharacter
         currentHP = maxHealth();
         hm.setHearts(currentHP);
         this.transform.position = Progress.respawnPoint;
+        am.setArrow(Vector2.right);
 
     }
 
