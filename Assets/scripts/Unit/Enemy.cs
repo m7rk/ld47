@@ -6,7 +6,6 @@ public abstract class Enemy : AbstractUnit
 {
 
     // probably drop loot
-    public AudioSource hurtSource;
     public AudioSource fireSound;
     private static List<AudioClip> hurtSounds;
 
