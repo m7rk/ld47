@@ -823,6 +823,7 @@ GameObject:
   - component: {fileID: 1010738288}
   - component: {fileID: 1010738292}
   - component: {fileID: 1010738293}
+  - component: {fileID: 1010738294}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -941,6 +942,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crossfadeAnimator: {fileID: 254746345}
+--- !u!114 &1010738294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010738287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 432e7c80dd7fde145b07a92e53c04d9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randNumbX: 0
+  randNumbY: 0
+  bossX: 0
+  bossY: 0
+  keyX: 0
+  keyY: 0
+  playerX: 0
+  playerY: 0
+  bossroom: 0
+  keyroom: 0
+  playerroom: 0
 --- !u!1 &1038587958
 GameObject:
   m_ObjectHideFlags: 0
