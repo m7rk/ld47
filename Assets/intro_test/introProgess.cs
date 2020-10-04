@@ -25,12 +25,15 @@ public class introProgess : MonoBehaviour
 			{
 				if(counter==3)
 					this.GetComponent<SpriteRenderer>().sprite = menu;
-				for(int i=0; i < intro.Length; i++)
+				else
 				{
-					if(i==counter)
-						this.GetComponent<SpriteRenderer>().sprite = intro[i];
+					for(int i=0; i < intro.Length; i++)
+					{
+						if(i==counter)
+							this.GetComponent<SpriteRenderer>().sprite = intro[i];
+					}
+					counter++;
 				}
-				counter++;
 			}
 			else
 			{
