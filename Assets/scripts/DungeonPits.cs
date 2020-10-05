@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class DungeonPits : MonoBehaviour
 {
+    private Vector2 spawnPos;
     public void OnCollisionEnter2D(Collision2D c)
     {
 
@@ -39,10 +40,20 @@ public class DungeonPits : MonoBehaviour
 
             if (tileType.Contains("PIT"))
             {
-                
-                player.FallIntoPit(this.transform.position + new Vector3(tileCenter.x + 0.5f,tileCenter.y + 0.5f,0));
+
+                spawnPos = this.transform.position + new Vector3(tileCenter.x + 0.5f, tileCenter.y + 0.5f, 0);
+                player.FallIntoPit(spawnPos);
+                FindObjectOfType<EnvSounds>().playFallDown();
+                makePitPrefab();
             }
         }
+    }
 
+    public void makePitPrefab()
+    {
+        var v = Instantiate(Resources.Load<GameObject>("Prefab/PitPrefab"));
+        v.GetComponent<Animator>().SetInteger("PITID", Utility.level);
+        v.transform.position = spawnPos;
+        Destroy(v, 1.2f);
     }
 }

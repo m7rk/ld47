@@ -34,7 +34,8 @@ public class Player : AbstractPlayerCharacter
     private Vector3 pitTarget;
 
     public GameObject pitCollider;
-
+    
+    
 
     // Start is called before the first frame update
     void Awake()

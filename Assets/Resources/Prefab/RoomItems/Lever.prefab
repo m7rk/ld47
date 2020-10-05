@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 974190925315169812}
   - component: {fileID: 974190925315169815}
   - component: {fileID: 974190925315169814}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Lever
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,6 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8dd6b0fd33da04aab77e2b454fb49a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wasTriggered: 0
 --- !u!61 &974190925315169814
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ public class EnvSounds : MonoBehaviour
 {
     public AudioClip clockWarning;
     public AudioClip tookClockDamage;
-    public AudioClip openBossDoor;
+    public AudioClip fallDown;
     public AudioClip roomTransition;
 
     public void playClockWarnSound()
@@ -20,9 +20,9 @@ public class EnvSounds : MonoBehaviour
 
     }
 
-    public void playOpenBossDoorSound()
+    public void playFallDown()
     {
-        GetComponent<AudioSource>().PlayOneShot(openBossDoor);
+        GetComponent<AudioSource>().PlayOneShot(fallDown, 0.8f);
 
     }
 
