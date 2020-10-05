@@ -17,5 +17,10 @@ public class introstop : MonoBehaviour
 	{
 		cover.SetActive(false);
 		fadein.SetActive(true);
+		Invoke("hideFade", 0.5f);
+	}
+	void hideFade()
+	{
+		fadein.SetActive(false);
 	}
 }
