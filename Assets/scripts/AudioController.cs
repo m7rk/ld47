@@ -5,14 +5,20 @@ using UnityEngine.Audio;
 
 public class AudioController : MonoBehaviour
 {
-    public float fadeTime = 5f;
+    private float fadeTime = 0.5f;
     public AudioSource playing;
-    public AudioSource next;
     public AudioClip[] clips;
+
+    string targTrack;
+    bool loop;
 
     public void Start()
     {
-        changeTrack("snd_floor1");
+
+        playing.clip = getClip(playMainTrack());
+        playing.loop = true;
+        playing.volume = 1f;
+        playing.Play();
     }
     
     public AudioClip getClip(string name)
@@ -27,15 +33,32 @@ public class AudioController : MonoBehaviour
         return null;
     }
 
-    public void changeTrack(string trackName)
+    public string playMainTrack()
     {
+        switch(Utility.level)
+        {
+            case 1: return "snd_floor1";
+            case 2: return "snd_floor2";
+            case 3: return "snd_floor3";
+        }
+        return "";
+    }
+
+    public void playTargTrack()
+    {
+        //turn on new audio
+        playing.volume = 0f;
+        playing.clip = getClip(targTrack);
+        playing.Play();
+        playing.loop = loop;
+        StartCoroutine(FadeAudioSource.StartFade(playing, fadeTime, 1f));
+    }
+    public void changeTrack(string trackName, bool doloop)
+    {
+        targTrack = trackName;
+        loop = doloop;
         //turn off current audio
         StartCoroutine(FadeAudioSource.StartFade(playing, fadeTime, 0f));
-
-        //turn on new audio
-        next.volume = 0f;
-        next.clip = getClip(trackName);
-        next.Play();
-        StartCoroutine(FadeAudioSource.StartFade(next, fadeTime, 1f));
+        Invoke("playTargTrack", fadeTime);
     }
 }

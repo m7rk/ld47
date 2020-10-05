@@ -27,6 +27,7 @@ public class RoomManager : MonoBehaviour
         currRoomX = (int)((playerRoomStartLoc.x + ROOM_OFFSET_X) / ROOM_SIZE_X);
         currRoomY = (int)((playerRoomStartLoc.y + ROOM_OFFSET_Y) / ROOM_SIZE_Y);
         Camera.main.GetComponent<CameraFollow>().target = new Vector3((currRoomX * ROOM_SIZE_X), (currRoomY * ROOM_SIZE_Y), -8.5f);
+        Camera.main.transform.position = new Vector3((currRoomX * ROOM_SIZE_X), (currRoomY * ROOM_SIZE_Y), -8.5f);
     }
 
     void resetTimer()
@@ -39,9 +40,14 @@ public class RoomManager : MonoBehaviour
         barrier.transform.position = roomCenter() + (entry * -new Vector2(ROOM_OFFSET_X+1.5f, ROOM_OFFSET_Y+1.5f));
     }
 
-    public void disableTimer()
+    public void startBossFight()
     {
         timer.gameObject.SetActive(false);
+        switch(Utility.level)
+        {
+            // Trigger boss music.
+            //case 1: FindObjectOfType<AudioController>().changeTrack("");
+        }
     }
 
 
@@ -60,9 +66,9 @@ public class RoomManager : MonoBehaviour
             resetTimer();
             Vector2 entry = new Vector2(roomX - currRoomX, roomY - currRoomY);
 
-            if(currRoomY == 3)
+            if(roomY == 3)
             {
-                disableTimer();
+                startBossFight();
             }
 
 

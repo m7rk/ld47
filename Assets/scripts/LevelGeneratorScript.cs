@@ -208,7 +208,6 @@ public class LevelGeneratorScript : MonoBehaviour
 
         // This is where i will spawn the player. I just expose it and let the game manager handle it.
         player.transform.position = this.transform.position + Vector3.Scale(positCheck, mapScale) + (.5f * mapScale) + (new Vector3(-5.5f,0,0));
-        Camera.main.transform.position = player.transform.position;
     }
 
     public void placeGenericRoom()

@@ -8,6 +8,6 @@ public class EnemySoundSource : MonoBehaviour
 
     public void Play(int hp)
     {
-        GetComponent<AudioSource>().PlayOneShot(hurtSounds[hp]);
+        GetComponent<AudioSource>().PlayOneShot(hurtSounds[Mathf.Clamp(hp,0,hurtSounds.Length-1)]);
     }
 }

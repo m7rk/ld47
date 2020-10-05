@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public abstract class Enemy : AbstractUnit
 {
@@ -22,5 +23,24 @@ public abstract class Enemy : AbstractUnit
         {
             c.gameObject.GetComponent<Player>().hurt();
         }
+    }
+
+
+    //Call from a boss enemy. It is terrible style. But that is okay.
+    public void nextLevel()
+    {
+        Utility.level++;
+
+        FindObjectOfType<AudioController>().changeTrack("sfx_level complete1", false);
+        Invoke("ResetGame", 7f);
+        FindObjectOfType<Crossfade>().fadeToBlack();
+
+        //this is also terrible but freezes input so okay whatever
+        GetComponent<Player>().currentHP = 0;
+    }
+
+    public void resetGame()
+    {
+        SceneManager.LoadScene("Main");
     }
 }

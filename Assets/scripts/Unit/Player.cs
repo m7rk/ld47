@@ -40,8 +40,8 @@ public class Player : AbstractPlayerCharacter
     void Awake()
     {
         Application.targetFrameRate = 60;
-        currentHP = maxHealth();
-        hm.setHearts(currentHP);
+        currentHP = 3;
+        hm.setHearts(3);
         am.setArrow(Vector2.right);
 
     }
@@ -169,7 +169,7 @@ public class Player : AbstractPlayerCharacter
             Invoke("ResetGame", 4.5f);
             cf.fadeToBlack();
             hm.setHearts(0);
-            FindObjectOfType<AudioController>().changeTrack("ld47 gameover");
+            FindObjectOfType<AudioController>().changeTrack("ld47 gameover", false);
         }
         else if (currentHP > 0)
         {
@@ -251,7 +251,7 @@ public class Player : AbstractPlayerCharacter
 
     public override int maxHealth()
     {
-        return 3;
+        return 5;
     }
 
     void LateUpdate()

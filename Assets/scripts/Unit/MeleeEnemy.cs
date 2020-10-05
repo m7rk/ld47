@@ -20,7 +20,7 @@ public class MeleeEnemy : Enemy
 
     const float speed = 3;
 
-    public const float LUNGE_DIST = 3;
+    public const float LUNGE_DIST = 4;
 
     public void Awake()
     {
@@ -106,11 +106,11 @@ public class MeleeEnemy : Enemy
                 sprite.SetBool("walking", false);
                 sprite.SetTrigger(facingLeft ? "lunge_left" : "lunge_right");
 
-                GetComponent<Rigidbody2D>().velocity = 3f * moveDir;
+                GetComponent<Rigidbody2D>().velocity = 2f * moveDir;
             } else
             {
                 sprite.SetBool("walking", true);
-                GetComponent<Rigidbody2D>().velocity = 2.5f * moveDir;
+                GetComponent<Rigidbody2D>().velocity = 1.5f * moveDir;
             }
 
         }
@@ -119,7 +119,7 @@ public class MeleeEnemy : Enemy
             // No line of sight to player. Cool off.
             if (scootTime > 0)
             {
-                GetComponent<Rigidbody2D>().velocity = 1.5f *  moveDir;
+                GetComponent<Rigidbody2D>().velocity = 1f *  moveDir;
                 sprite.SetBool("walking", true);
             } else
             {
