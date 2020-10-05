@@ -19,6 +19,8 @@ public class RoomManager : MonoBehaviour
     const float ROOM_OFFSET_Y = 5f;
 
     public GameObject barrier;
+
+    public float forceResetTimer = 15f;
     
     
     void Start()
@@ -56,11 +58,20 @@ public class RoomManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        forceResetTimer -= Time.deltaTime;
+
+        if(forceResetTimer <= 0f)
+        {
+            forceReset();
+            forceResetTimer = 15f;
+        }
+
         int roomX = (int)((p.transform.position.x + ROOM_OFFSET_X) / ROOM_SIZE_X);
         int roomY = (int)((p.transform.position.y + ROOM_OFFSET_Y) / ROOM_SIZE_Y);
         
         if(roomX != currRoomX || roomY != currRoomY)
         {
+            forceResetTimer = 15f;
             FindObjectOfType<EnvSounds>().playRoomTransitionSound();
             FindObjectOfType<DungeonManager>().tryOpenBossDoor(roomX,roomY);
 
@@ -79,11 +90,16 @@ public class RoomManager : MonoBehaviour
 
             setDoor(entry);
 
-            pm.Reset(p.flushMoves(), playerRoomStartLoc, new Vector2(roomX * ROOM_SIZE_X, roomY * ROOM_SIZE_Y));
+            pm.Reset(p.flushMoves(), new Vector2(roomX * ROOM_SIZE_X, roomY * ROOM_SIZE_Y));
 
             playerRoomStartLoc = p.transform.position;
             // For the start loc, subtract a room size.
         }
+    }
+
+    public void forceReset()
+    {
+        pm.Reset(p.flushMoves(), new Vector2(currRoomX * ROOM_SIZE_X, currRoomY * ROOM_SIZE_Y));
     }
 
     public Vector2 removeOffsetFromRoom(Vector2 v)

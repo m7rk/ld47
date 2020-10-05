@@ -8,6 +8,7 @@ public class PhantomManager : MonoBehaviour
     List<Phantom> phantoms;
     int timeStep = 0;
     
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,11 +29,12 @@ public class PhantomManager : MonoBehaviour
                 phantoms[i].gameObject.SetActive(false);
             }
         }
-
         timeStep++;
     }
 
-    public void Reset(List<AbstractPlayerCharacter.CharacterMove> moves, Vector2 startLoc, Vector2 spawnOffset)
+
+
+    public void Reset(List<AbstractPlayerCharacter.CharacterMove> moves, Vector2 spawnOffset)
     {
         timeStep = 0;
         pmc.addNewPhantom(moves);
