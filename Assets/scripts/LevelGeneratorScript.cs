@@ -52,8 +52,8 @@ public class LevelGeneratorScript : MonoBehaviour
         bossDoorPrefab = Resources.LoadAll<GameObject>("Rooms/" + Utility.level + "/Boss Door");
         bossRoomPrefab = Resources.LoadAll<GameObject>("Rooms/" + Utility.level + "/Boss Room");
         keyRoomPrefab = Resources.LoadAll<GameObject>("Rooms/" + Utility.level + "/Key Room");
-        playerRoomPrefab = Resources.LoadAll<GameObject>("Rooms/" + Utility.level + "/Other Room");
-        genericRoomPrefab = Resources.LoadAll<GameObject>("Rooms/" + Utility.level + "/Player Room");
+        playerRoomPrefab = Resources.LoadAll<GameObject>("Rooms/" + Utility.level + "/Player Room");
+        genericRoomPrefab = Resources.LoadAll<GameObject>("Rooms/" + Utility.level + "/Other Room");
     }
     // Start is called before the first frame update
     void Start()

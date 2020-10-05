@@ -3849,6 +3849,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lever
       objectReference: {fileID: 0}
+    - target: {fileID: 974190925315169802, guid: 52c95914278054e41b31e8ccd7e76539,
+        type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52c95914278054e41b31e8ccd7e76539, type: 3}
 --- !u!4 &4018839289673710233 stripped
