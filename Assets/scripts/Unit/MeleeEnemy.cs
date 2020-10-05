@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeleeEnemy : Enemy
 {
-
+    public bool isBoss;
 
     private float scootTimeMax = 3f;
 
@@ -37,6 +37,11 @@ public class MeleeEnemy : Enemy
             sprite.SetTrigger("die");
             GetComponent<BoxCollider2D>().enabled = false;
             toCorpseLayer();
+
+            if(isBoss)
+            {
+                nextLevel();
+            }
         }
     }
 
