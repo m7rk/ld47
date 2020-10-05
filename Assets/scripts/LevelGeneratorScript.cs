@@ -25,17 +25,17 @@ public class LevelGeneratorScript : MonoBehaviour
     #endregion
 
     Vector3 positCheck;
-    Vector3 mapScale = new Vector3(3, 3, 0);
+    Vector3 mapScale = new Vector3(15, 10, 0);
 
     //This is needed to get the player and camera to start in the correct location
     public GameObject playerCharacter;
 
+    public GameObject bossDoorPrefab;
     public GameObject bossRoomPrefab;
     public GameObject keyRoomPrefab;
     public GameObject playerRoomPrefab;
     public GameObject genericRoomPrefab;
 
-    GameObject fancyDoor;
     GameObject roomInScene;
 
     string[] doorNames;
@@ -43,9 +43,6 @@ public class LevelGeneratorScript : MonoBehaviour
     public Vector3 bossPosition;
     public Vector3 keyPosition;
     public Vector3 playerPosition;
-
-    public Quaternion prefabRotation = Quaternion.identity;
-
 
     // Start is called before the first frame update
     void Start()
@@ -105,18 +102,14 @@ public class LevelGeneratorScript : MonoBehaviour
 
         //Set gameobject in each position
         #region square 0,0
-
         positCheck = new Vector3(0, 0, 0);
         doorNames  = new string[] { "doorU", "doorR"};
         roomSearch();
-
         #endregion
 
         #region square 0,1
         positCheck = new Vector3(0, 1, 0);
         doorNames = new string[] { "doorU", "doorR", "doorD" };
-
-
         roomSearch();
         #endregion
 
@@ -161,7 +154,6 @@ public class LevelGeneratorScript : MonoBehaviour
         doorNames = new string[] { "doorD", "doorL" };
         roomSearch();
         #endregion
-
     }
 
     // Update is called once per frame
@@ -172,30 +164,21 @@ public class LevelGeneratorScript : MonoBehaviour
 
     public void placeBossRoom()
     {
-        roomInScene = bossRoomPrefab;
+        // place room with boss door
+        roomInScene = bossDoorPrefab;
         openDoors(roomInScene);
+        roomInScene.transform.Find("doorU").gameObject.SetActive(false);
         Instantiate(roomInScene, Vector3.Scale(positCheck, mapScale), Quaternion.identity);
+        roomInScene.transform.Find("doorU").gameObject.SetActive(true);
         closeDoors(roomInScene);
 
         // place room with acutal boss
-        if (positCheck[1] == 0)
-        {
-            //bossRoomInScene.transform.Find("door2").gameObject.SetActive(true);
-
-            // place boss room below
-            Instantiate(roomInScene, Vector3.Scale(positCheck, mapScale) + (mapScale[1] * new Vector3(0, -1, 0)), Quaternion.identity);
-
-            //bossRoomInScene.transform.Find("door2").gameObject.SetActive(false);
-        }
-        else
-        {
-            //bossRoomInScene.transform.Find("door1").gameObject.SetActive(true);
-
-            // place boss room above
-            Instantiate(roomInScene, Vector3.Scale(positCheck, mapScale) + (mapScale[1] * new Vector3(0, 1, 0)), Quaternion.identity);
-
-            //bossRoomInScene.transform.Find("door1").gameObject.SetActive(false);
-        }
+        roomInScene = bossRoomPrefab;
+        //openDoors(roomInScene);
+        roomInScene.transform.Find("doorD").gameObject.SetActive(false);
+        Instantiate(roomInScene, Vector3.Scale(positCheck, mapScale) + (mapScale[1] * new Vector3(0, 1, 0)), Quaternion.identity);
+        roomInScene.transform.Find("doorD").gameObject.SetActive(true);
+        //closeDoors(roomInScene);
     }
     
     public void placeKeyRoom()
@@ -209,18 +192,16 @@ public class LevelGeneratorScript : MonoBehaviour
 
     public void placePlayerRoom()
     {
+        //place player room
         roomInScene = playerRoomPrefab;
         openDoors(roomInScene);
-
-        //place player room
         Instantiate(roomInScene, Vector3.Scale(positCheck, mapScale), Quaternion.identity);
+        closeDoors(roomInScene);
 
         //place camera in this room
 
         //place player in this room
-        playerCharacter.transform.position = Vector3.Scale(positCheck, mapScale) + (.5f * mapScale);
-
-        closeDoors(roomInScene);
+        playerCharacter.transform.position = Vector3.Scale(positCheck, mapScale) + new Vector3(.5f, .5f, 0);
 
         //teleport here if not first level?
     }
@@ -263,7 +244,7 @@ public class LevelGeneratorScript : MonoBehaviour
     {
         for (int i = 0; i < doorNames.Length; i++)
         {
-            roomPrefab.transform.Find(doorNames[i]).gameObject.SetActive(true);
+            roomPrefab.transform.Find(doorNames[i]).gameObject.SetActive(false);
         }
     }
 
@@ -271,7 +252,7 @@ public class LevelGeneratorScript : MonoBehaviour
     {
         for (int i = 0; i < doorNames.Length; i++)
         {
-            roomPrefab.transform.Find(doorNames[i]).gameObject.SetActive(false);
+            roomPrefab.transform.Find(doorNames[i]).gameObject.SetActive(true);
         }
     }
 }
