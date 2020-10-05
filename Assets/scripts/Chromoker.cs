@@ -49,7 +49,7 @@ public class Chromoker : Enemy
                 {
                     continue;
                 }
-                makeProjectile(new Vector2(dx, dy), "PhantomProjectile", Vector3.zero);
+                makeProjectile(new Vector2(dx, dy), "EnemyProjectile", Vector3.zero);
                 animator.SetBool("shoot", true);
             }
         }

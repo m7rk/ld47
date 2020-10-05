@@ -7,8 +7,8 @@ public class TheForgotten : Enemy
     public Animator animator;
 
     public float cooldownTime; //timer to reactivate teleports
-    private const float minimumTeleport = 8f; //the fastest two teleports can be
-    private const float maximumTeleport = 14f; //the slowest two teleports can be
+    private const float minimumTeleport = 7f; //the fastest two teleports can be
+    private const float maximumTeleport = 10f; //the slowest two teleports can be
 
     public float spawnTime = 1.5f;
 
@@ -39,7 +39,7 @@ public class TheForgotten : Enemy
 
     public void fireOncePerSec()
     {
-        if ((int)((2*cooldownTime) % 2) != (int)(((2 * cooldownTime + Time.deltaTime)) % 2))
+        if ((int)((1.5*cooldownTime) % 2) != (int)(((1.5 * cooldownTime + Time.deltaTime)) % 2))
         {
             for (int dx = -1; dx != 2; ++dx)
             {
@@ -49,7 +49,7 @@ public class TheForgotten : Enemy
                     {
                         continue;
                     }
-                    makeProjectile(new Vector2(dx, dy), "PhantomProjectile", Vector3.zero);
+                    makeProjectile(new Vector2(dx, dy), "EnemyProjectile", Vector3.zero);
                     animator.SetBool("attack", true);
                 }
             }
@@ -84,8 +84,8 @@ public class TheForgotten : Enemy
 
         if (cooldownTime < 0)
         {
-            randX = Random.Range(-6, 6);
-            randY = Random.Range(-3, 3);
+            randX = Random.Range(-3, 3);
+            randY = Random.Range(-1, 1);
             this.transform.position = new Vector3((originalX + randX), (originalY + randY), originalZ);
 
             cooldownTime = Random.Range(minimumTeleport, maximumTeleport);
@@ -109,6 +109,6 @@ public class TheForgotten : Enemy
 
     public override int maxHealth()
     {
-        return 20;
+        return 10;
     }
 }
