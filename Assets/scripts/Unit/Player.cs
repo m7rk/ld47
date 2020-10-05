@@ -159,20 +159,22 @@ public class Player : AbstractPlayerCharacter
 
     private void doHurt()
     {
-        hurtSound.Play();
-        currentHP--;
 
-        if (currentHP == 0)
+        if (currentHP == 1)
         {
+            currentHP--;
+            hurtSound.Play();
             sprite.GetComponentsInChildren<SpriteRenderer>()[0].color = Color.red;
             sprite.GetComponentsInChildren<SpriteRenderer>()[1].color = Color.red;
-            Invoke("ResetGame", 4.5f);
+            Invoke("ResetGame", 6f);
             cf.fadeToBlack();
             hm.setHearts(0);
-            FindObjectOfType<AudioController>().changeTrack("ld47 gameover", false);
+            FindObjectOfType<AudioController>().changeTrack("ld47 gameover",false);
         }
-        else if (currentHP > 0)
+        else if (currentHP > 1)
         {
+            currentHP--;
+            hurtSound.Play();
             hm.setHearts(currentHP);
             this.invulnTime = INVULN_TIME_MAX;
         }
@@ -185,7 +187,7 @@ public class Player : AbstractPlayerCharacter
 
     public override void hurt()
     {
-        if(invulnTime >= 0)
+        if(invulnTime >= 0 )
         {
             return;
         }
@@ -203,12 +205,12 @@ public class Player : AbstractPlayerCharacter
         {
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
-            if (currentHP > 0)
+            if (currentHP > 1)
             {
                 FindObjectOfType<Player>().transform.position = FindObjectOfType<RoomManager>().playerRoomStartLoc;
+                this.transform.localScale = Vector2.one;
             }
 
-            this.transform.localScale = Vector2.one;
             hurtIgnoreInvuln();
             pitCollider.SetActive(true);
         }

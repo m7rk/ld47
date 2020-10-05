@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class AbstractUnit : MonoBehaviour
 {
-    public int currentHP;
+    [HideInInspector] public int currentHP;
     public abstract void hurt();
     public abstract int maxHealth();
 

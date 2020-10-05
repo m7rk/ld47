@@ -17,7 +17,7 @@ public abstract class Enemy : AbstractUnit
         FindObjectOfType<EnemySoundSource>().Play(currentHP);
     }
 
-    public void OnCollisionEnter2D(Collision2D c)
+    public void OnCollisionStay2D(Collision2D c)
     {
         if (c.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
@@ -32,14 +32,14 @@ public abstract class Enemy : AbstractUnit
         Utility.level++;
 
         FindObjectOfType<AudioController>().changeTrack("sfx_level complete1", false);
-        Invoke("ResetGame", 7f);
+        Invoke("resetGame", 7f);
         FindObjectOfType<Crossfade>().fadeToBlack();
 
         //this is also terrible but freezes input so okay whatever
-        GetComponent<Player>().currentHP = 0;
+        FindObjectOfType<Player>().currentHP = 0;
     }
 
-    public void resetGame()
+    private void resetGame()
     {
         SceneManager.LoadScene("Main");
     }

@@ -6,6 +6,12 @@ public class BossEnemy : Enemy
 {
     public Animator animator;
 
+
+    public void Awake()
+    {
+        currentHP = maxHealth();
+    }
+
     public override void hurt()
     {
         playHurtSound();
@@ -14,7 +20,7 @@ public class BossEnemy : Enemy
         {
             animator.SetTrigger("die");
             GetComponent<BoxCollider2D>().enabled = false;
-            toCorpseLayer();
+            nextLevel();
         }
     }
 

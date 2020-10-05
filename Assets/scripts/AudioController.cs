@@ -47,11 +47,10 @@ public class AudioController : MonoBehaviour
     public void playTargTrack()
     {
         //turn on new audio
-        playing.volume = 0f;
+        playing.volume = 1f;
         playing.clip = getClip(targTrack);
         playing.Play();
         playing.loop = loop;
-        StartCoroutine(FadeAudioSource.StartFade(playing, fadeTime, 1f));
     }
     public void changeTrack(string trackName, bool doloop)
     {
@@ -59,6 +58,7 @@ public class AudioController : MonoBehaviour
         loop = doloop;
         //turn off current audio
         StartCoroutine(FadeAudioSource.StartFade(playing, fadeTime, 0f));
-        Invoke("playTargTrack", fadeTime);
+        // no race condition today
+        Invoke("playTargTrack", fadeTime + 0.2f);
     }
 }
