@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelGeneratorScript : MonoBehaviour
+public class LevelGeneratorScript2 : MonoBehaviour
 {
     #region variables responsible for square selection for boss, key, player
 
@@ -26,9 +26,10 @@ public class LevelGeneratorScript : MonoBehaviour
 
     Vector3 positCheck;
     Vector3 mapScale = new Vector3(15, 10, 0);
+    Vector3 shiftLevel = new Vector3(60, 0, 0);
 
     //This is needed to get the player and camera to start in the correct location
-    public GameObject playerCharacter;
+    //public GameObject playerCharacter;
 
     public GameObject[] bossDoorPrefab;
     public GameObject[] bossRoomPrefab;
@@ -47,7 +48,7 @@ public class LevelGeneratorScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-             
+
         // Start by determing location for three key elements on each map
         #region square selection for boss, key, player
         while (bossroom == false)
@@ -95,7 +96,7 @@ public class LevelGeneratorScript : MonoBehaviour
             }
         }
         #endregion
-        
+
         //Instantiate(bossDoor, bossPosition, prefabRotation);
         //Instantiate(leverRoom, keyPosition, prefabRotation);
         //Instantiate(playerStart, playerPosition, prefabRotation);
@@ -103,7 +104,7 @@ public class LevelGeneratorScript : MonoBehaviour
         //Set gameobject in each position
         #region square 0,0
         positCheck = new Vector3(0, 0, 0);
-        doorNames  = new string[] { "doorU", "doorR"};
+        doorNames = new string[] { "doorU", "doorR" };
         roomSearch();
         #endregion
 
@@ -169,49 +170,53 @@ public class LevelGeneratorScript : MonoBehaviour
         roomInScene = bossDoorPrefab[randPrefab];
         openDoors(roomInScene);
         roomInScene.transform.Find("doorU").gameObject.SetActive(false);
-        Instantiate(roomInScene, Vector3.Scale(positCheck, mapScale), Quaternion.identity);
+        Instantiate(roomInScene, Vector3.Scale(positCheck, mapScale) + shiftLevel, Quaternion.identity);
         roomInScene.transform.Find("doorU").gameObject.SetActive(true);
         closeDoors(roomInScene);
 
         // place room with acutal boss
-        randPrefab = Random.Range(0, bossRoomPrefab.Length); 
+        randPrefab = Random.Range(0, bossRoomPrefab.Length);
         roomInScene = bossRoomPrefab[randPrefab];
+        //openDoors(roomInScene);
         roomInScene.transform.Find("doorD").gameObject.SetActive(false);
-        Instantiate(roomInScene, Vector3.Scale(positCheck, mapScale) + (mapScale[1] * new Vector3(0, 1, 0)), Quaternion.identity);
+        Instantiate(roomInScene, Vector3.Scale(positCheck, mapScale) + (mapScale[1] * new Vector3(0, 1, 0)) + shiftLevel, Quaternion.identity);
         roomInScene.transform.Find("doorD").gameObject.SetActive(true);
+        //closeDoors(roomInScene);
     }
-    
+
     public void placeKeyRoom()
     {
         //place key room
-        randPrefab = Random.Range(0, keyRoomPrefab.Length); 
+        randPrefab = Random.Range(0, keyRoomPrefab.Length);
         roomInScene = keyRoomPrefab[randPrefab];
         openDoors(roomInScene);
-        Instantiate(roomInScene, Vector3.Scale(positCheck, mapScale), Quaternion.identity);
+        Instantiate(roomInScene, Vector3.Scale(positCheck, mapScale) + shiftLevel, Quaternion.identity);
         closeDoors(roomInScene);
     }
 
     public void placePlayerRoom()
     {
         //place player room
-        randPrefab = Random.Range(0, playerRoomPrefab.Length); 
+        randPrefab = Random.Range(0, playerRoomPrefab.Length);
         roomInScene = playerRoomPrefab[randPrefab];
         openDoors(roomInScene);
-        Instantiate(roomInScene, Vector3.Scale(positCheck, mapScale), Quaternion.identity);
+        Instantiate(roomInScene, Vector3.Scale(positCheck, mapScale) + shiftLevel, Quaternion.identity);
         closeDoors(roomInScene);
 
         //place camera in this room
 
         //place player in this room
-        playerCharacter.transform.position = Vector3.Scale(positCheck, mapScale) + (.5f * mapScale);
+        //playerCharacter.transform.position = Vector3.Scale(positCheck, mapScale) + (.5f * mapScale);
+
+        //teleport here if not first level?
     }
 
     public void placeGenericRoom()
     {
-        randPrefab = Random.Range(0, genericRoomPrefab.Length); 
-        roomInScene = genericRoomPrefab[randPrefab]; 
+        randPrefab = Random.Range(0, genericRoomPrefab.Length); // need to make sure this does all and not all - 1
+        roomInScene = genericRoomPrefab[randPrefab];
         openDoors(roomInScene);
-        Instantiate(roomInScene, Vector3.Scale(positCheck, mapScale), Quaternion.identity);
+        Instantiate(roomInScene, Vector3.Scale(positCheck, mapScale) + shiftLevel, Quaternion.identity);
         closeDoors(roomInScene);
     }
 
