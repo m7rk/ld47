@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
 
     public void loadgame()
     {
+        Utility.level = 1;
         SceneManager.LoadScene("Main");
     }
 }
