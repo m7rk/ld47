@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Utility
 {
-    public static int level = 3;
+    public static int level = 1;
 
 
     public static int transformToLayer(Vector3 p)
