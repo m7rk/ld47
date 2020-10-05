@@ -5,6 +5,7 @@ using UnityEngine;
 public class TransitionZone : MonoBehaviour
 {
     public string songToPlay;
+    public int progress;
 
     public void OnTriggerEnter2D()
     {
@@ -12,7 +13,7 @@ public class TransitionZone : MonoBehaviour
         Invoke("trackTransition", 8f);
         FindObjectOfType<PhantomManager>().clearPhantoms();
         FindObjectOfType<Player>().fullHeal();
-        Utility.respawnPoint = this.transform.position;
+        Utility.level = progress;
     }
 
     public void trackTransition()

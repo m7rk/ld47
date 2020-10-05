@@ -42,7 +42,6 @@ public class Player : AbstractPlayerCharacter
         Application.targetFrameRate = 60;
         currentHP = maxHealth();
         hm.setHearts(currentHP);
-        this.transform.position = Utility.respawnPoint;
         am.setArrow(Vector2.right);
 
     }
@@ -199,6 +198,7 @@ public class Player : AbstractPlayerCharacter
         this.transform.localScale = fallIntoPitTime * Vector2.one;
         fallIntoPitTime -= Time.deltaTime;
         this.transform.localPosition = Vector3.Lerp(this.transform.localPosition, pitTarget, 1f - fallIntoPitTime);
+
         if (fallIntoPitTime <= 0)
         {
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
