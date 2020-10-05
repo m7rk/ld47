@@ -77,7 +77,7 @@ public class Phantom : AbstractPlayerCharacter
     // Update is called once per frame
     void Update()
     {
-        checkForShoot("PhantomProjectile");
+        checkForShoot("PhantomProjectile", SHOOT_OFFSET);
         setColor();
     }
 
