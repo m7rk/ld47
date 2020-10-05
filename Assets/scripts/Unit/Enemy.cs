@@ -42,10 +42,20 @@ public abstract class Enemy : AbstractUnit
     public void fadeOut()
     {
         FindObjectOfType<Crossfade>().fadeToBlack();
+        if(Utility.level == 4)
+        {
+            GameObject.Find("ENDGAMETXT").GetComponent<UnityEngine.UI.Text>().enabled = true;
+        }
     }
 
     private void resetGame()
     {
+        if (Utility.level == 4)
+        {
+            SceneManager.LoadScene("Menu/Title");
+
+        }
         SceneManager.LoadScene("Main");
+
     }
 }

@@ -42,7 +42,7 @@ public class Chromoker : Enemy
     // fuckkkkkkkkkkkkkkkk
     public void fireOncePerSec()
     {
-        if ((int)((3 * patternReset) % 2) != (int)(((3 * (patternReset + Time.deltaTime))) % 2))
+        if ((int)((patternReset) % 2) != (int)((((patternReset + Time.deltaTime))) % 2))
         {
             int dy = -1;
             for (int dx = -1; dx != 2; ++dx)
@@ -63,8 +63,7 @@ public class Chromoker : Enemy
         {
             return;
         }
-
-        fireOncePerSec();
+        
         patternReset -= Time.deltaTime;
 
         if(patternReset < 0)
