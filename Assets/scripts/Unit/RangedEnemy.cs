@@ -160,7 +160,7 @@ public class RangedEnemy : Enemy
 
     void LateUpdate()
     {
-        if (!rtl.inRoom(this.transform.position) || currentHP <= 0)
+        if (currentHP <= 0)
         {
             return;
         }
