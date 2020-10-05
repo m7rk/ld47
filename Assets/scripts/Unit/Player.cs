@@ -154,8 +154,10 @@ public class Player : AbstractPlayerCharacter
     {
         hurtSound.Play();
         currentHP--;
+
         if (currentHP == 0)
         {
+            this.invulnTime = INVULN_TIME_MAX;
             Invoke("ResetGame", 4.5f);
             cf.fadeToBlack();
             hm.setHearts(0);

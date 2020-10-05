@@ -8,9 +8,14 @@ public class DungeonPits : MonoBehaviour
     {
         if (c.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            FindObjectOfType<Player>().hurtIgnoreInvuln();
-            FindObjectOfType<Player>().transform.position = FindObjectOfType<RoomManager>().playerRoomStartLoc;
-            FindObjectOfType<Player>().GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            var player = c.gameObject.GetComponent<Player>();
+
+            player.hurtIgnoreInvuln();
+            player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            if (player.currentHP > 0)
+            {
+                FindObjectOfType<Player>().transform.position = FindObjectOfType<RoomManager>().playerRoomStartLoc;
+            }
         }
     }
 }
