@@ -40,7 +40,7 @@ public class LevelGeneratorScript : MonoBehaviour
     int randPrefab;
     string[] doorNames;
 
-    private Vector3 bossPosition;
+    public Vector3 bossPosition;
     private Vector3 keyPosition;
     private Vector3 playerPosition;
 
@@ -207,7 +207,7 @@ public class LevelGeneratorScript : MonoBehaviour
         closeDoors(roomInScene);
 
         // This is where i will spawn the player. I just expose it and let the game manager handle it.
-        player.transform.position = this.transform.position + Vector3.Scale(positCheck, mapScale) + (.5f * mapScale);
+        player.transform.position = this.transform.position + Vector3.Scale(positCheck, mapScale) + (.5f * mapScale) + (new Vector3(-5.5f,0,0));
         Camera.main.transform.position = player.transform.position;
     }
 

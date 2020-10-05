@@ -39,6 +39,11 @@ public class RoomManager : MonoBehaviour
         barrier.transform.position = roomCenter() + (entry * -new Vector2(ROOM_OFFSET_X+1.5f, ROOM_OFFSET_Y+1.5f));
     }
 
+    public void disableTimer()
+    {
+        timer.gameObject.SetActive(false);
+    }
+
 
 
     // Update is called once per frame
@@ -50,8 +55,15 @@ public class RoomManager : MonoBehaviour
         if(roomX != currRoomX || roomY != currRoomY)
         {
             FindObjectOfType<EnvSounds>().playRoomTransitionSound();
+            FindObjectOfType<DungeonManager>().tryOpenBossDoor(roomX,roomY);
+
             resetTimer();
             Vector2 entry = new Vector2(roomX - currRoomX, roomY - currRoomY);
+
+            if(currRoomY == 3)
+            {
+                disableTimer();
+            }
 
 
             Camera.main.GetComponent<CameraFollow>().target = new Vector3((roomX * ROOM_SIZE_X), (roomY * ROOM_SIZE_Y), -8.5f);

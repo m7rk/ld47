@@ -4,22 +4,16 @@ using UnityEngine;
 
 public class Lever : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public bool wasTriggered = false;
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        if(wasTriggered)
+        {
+            return;
+        }
+        wasTriggered = true;
         GetComponent<Animator>().SetBool("lever_on", true);
         GetComponent<AudioSource>().Play();
-        Destroy(this);
     }
 }

@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class BossDoor : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
+    private bool opened = false;
     // Update is called once per frame
-    void Update()
+    public void Open()
     {
-        GetComponent<Animator>().SetBool("boss_open", true);
+        if (!opened)
+        {
+            GetComponent<Animator>().SetBool("boss_open", true);
+            Destroy(transform.Find("DOORCLOSE").gameObject);
+            opened = true;
+        }
 
     }
 }
