@@ -35,6 +35,8 @@ public class Chromoker : Enemy
             GetComponent<BoxCollider2D>().enabled = false;
             nextLevel();
         }
+
+
     }
 
     // fuckkkkkkkkkkkkkkkk
@@ -57,10 +59,10 @@ public class Chromoker : Enemy
 
     public void Update()
     {
-        //if (!rtl.inRoom(this.transform.position) || currentHP <= 0)
-        //{
-        //    return;
-        //}
+        if (!rtl.inRoom(this.transform.position) || currentHP <= 0)
+        {
+            return;
+        }
 
         fireOncePerSec();
         patternReset -= Time.deltaTime;
@@ -70,6 +72,11 @@ public class Chromoker : Enemy
             t1delt = Random.Range(0.2f, 0.4f);
             t2delt = Random.Range(3f, 5f);
             patternReset = 15f;
+        }
+
+        if (patternReset < 7)
+        {
+            fireOncePerSec();
         }
 
         t1 += t1delt * Time.deltaTime;
@@ -83,6 +90,6 @@ public class Chromoker : Enemy
 
     public override int maxHealth()
     {
-        return 3;
+        return 12;
     }
 }
