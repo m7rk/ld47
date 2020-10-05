@@ -37,7 +37,7 @@ public class RoomManager : MonoBehaviour
 
     void setDoor(Vector2 entry)
     {
-        barrier.transform.position = roomCenter() + (entry * -new Vector2(ROOM_OFFSET_X+1.5f, ROOM_OFFSET_Y+1.5f));
+        barrier.transform.position = roomCenter() + (entry * -new Vector2(ROOM_OFFSET_X+1.4f, ROOM_OFFSET_Y+1.4f));
     }
 
     public void startBossFight()
