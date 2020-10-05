@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ground-tiles_8
+  m_Name: PIT2
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: -2356310378076824824, guid: 0af86d76f6a6e344ba481c80058ef2cc,
+  m_Sprite: {fileID: -6563499692352700548, guid: 5514955f2fcf6e14e876a2436efdddb8,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
@@ -34,4 +34,4 @@ MonoBehaviour:
     e33: 1
   m_InstancedGameObject: {fileID: 0}
   m_Flags: 1
-  m_ColliderType: 1
+  m_ColliderType: 2

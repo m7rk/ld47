@@ -52,9 +52,10 @@ public class Phantom : AbstractPlayerCharacter
 
         Vector2 delta = new Vector2(transform.position.x, transform.position.y) - rtl.addOffsetToRoom(move.location);
 
-        if (move.didFire)
+        if (move.didFire != Vector2.zero)
         {
             startFire();
+            projectileLaunchDirection = move.didFire;
         }
 
         this.transform.position = rtl.addOffsetToRoom(move.location);
@@ -69,10 +70,6 @@ public class Phantom : AbstractPlayerCharacter
             lookingLeft = true;
         }
 
-        if (delta != Vector2.zero)
-        {
-            projectileLaunchDirection = -delta;
-        }
 
         animateLizard(delta.magnitude < 0.01);
 

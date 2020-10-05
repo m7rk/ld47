@@ -1,21 +1,47 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class DungeonPits : MonoBehaviour
 {
     public void OnCollisionEnter2D(Collision2D c)
     {
-        if (c.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            var player = c.gameObject.GetComponent<Player>();
 
-            player.hurtIgnoreInvuln();
-            player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            if (player.currentHP > 0)
+        if (c.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            var tilemap = GetComponent<Tilemap>();
+            var player = c.transform.GetComponent<Player>();
+
+
+
+            string tileType = "";
+            Vector3Int tileCenter = Vector3Int.zero;
+
+            for (int i = 0; i != c.contactCount; ++i)
             {
-                FindObjectOfType<Player>().transform.position = FindObjectOfType<RoomManager>().playerRoomStartLoc;
+                var center = tilemap.layoutGrid.WorldToCell(c.GetContact(i).point + player.lastVelocity.normalized * 0.1f);
+                var tile = tilemap.GetTile(center);
+
+                if (tile != null)
+                {
+                    tileType = tile.name;
+                    tileCenter = center;
+                    break;
+                }
+            }
+
+            // ??? this happens sometiems
+            if (tileType == "")
+            {
+                return;
+            }
+
+            if (tileType.Contains("PIT"))
+            {
+                player.FallIntoPit(new Vector2(tileCenter.x,tileCenter.y - 0.5f));
             }
         }
+
     }
 }

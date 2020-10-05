@@ -29,7 +29,11 @@ public class Player : AbstractPlayerCharacter
     public float footStepTime = 0f;
 
     public ArrowManager am;
-    
+
+    private float fallIntoPitTime = 0f;
+    private Vector3 pitTarget;
+
+    public GameObject pitCollider;
 
 
     // Start is called before the first frame update
@@ -102,23 +106,26 @@ public class Player : AbstractPlayerCharacter
 
         CharacterMove CurrentMove;
         CurrentMove.location = rtl.removeOffsetFromRoom(this.transform.position);
-        CurrentMove.didFire = false;
+        CurrentMove.didFire = Vector2.zero;
 
         if (Input.GetKey(KeyCode.J) && shootTimer <= 0)
         {
             startFire();
-            CurrentMove.didFire = true;
+            CurrentMove.didFire = projectileLaunchDirection;
         }
 
         allPlayerMoves.Add(CurrentMove);
 
 
+
         if (moveVector != Vector2.zero)
         {
-            projectileLaunchDirection = moveVector;
-            am.setArrow(projectileLaunchDirection);
+            if (shootTimer < shootTimerFrame)
+            {
+                projectileLaunchDirection = moveVector;
+                am.setArrow(projectileLaunchDirection);
+            }
             footStep();
-
         }
 
       
@@ -187,6 +194,26 @@ public class Player : AbstractPlayerCharacter
 
     }
 
+    public void pitLogic()
+    {
+        this.transform.localScale = fallIntoPitTime * Vector2.one;
+        fallIntoPitTime -= Time.deltaTime;
+        this.transform.localPosition = Vector3.Lerp(this.transform.localPosition, pitTarget, 1f - fallIntoPitTime);
+        if (fallIntoPitTime <= 0)
+        {
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+            if (currentHP > 0)
+            {
+                FindObjectOfType<Player>().transform.position = FindObjectOfType<RoomManager>().playerRoomStartLoc;
+            }
+
+            this.transform.localScale = Vector2.one;
+            hurtIgnoreInvuln();
+            pitCollider.SetActive(true);
+        }
+    }
+
     public List<CharacterMove> flushMoves()
     {
         var ret = allPlayerMoves;
@@ -202,10 +229,20 @@ public class Player : AbstractPlayerCharacter
         {
             return;
         }
+
+        if(fallIntoPitTime > 0)
+        {
+
+            pitLogic();
+            return;
+        }
+
         playerInput(Time.deltaTime);
         animateLizard(rb.velocity.magnitude < ANIM_VEL_STOP_THRESH);
+
         invulnTime -= Time.deltaTime;
         footStepTime -= Time.deltaTime;
+
         checkForShoot("PlayerProjectile");
 
         sprite.GetComponentsInChildren<SpriteRenderer>()[0].color = (invulnTime > 0) ? Color.red : Color.white;
@@ -220,5 +257,12 @@ public class Player : AbstractPlayerCharacter
     void LateUpdate()
     {
         setRenderIndex();
+    }
+
+    public void FallIntoPit(Vector3 target)
+    {
+        pitCollider.SetActive(false);
+        fallIntoPitTime = 1f;
+        pitTarget = target;
     }
 }

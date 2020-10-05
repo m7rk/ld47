@@ -24,7 +24,7 @@ public abstract class AbstractPlayerCharacter : AbstractUnit
     public struct CharacterMove
     {
         public Vector2 location;
-        public bool didFire;
+        public Vector2 didFire;
     };
 
     // a lizard sprite.
