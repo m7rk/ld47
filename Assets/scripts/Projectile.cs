@@ -23,7 +23,7 @@ public class Projectile : MonoBehaviour
             Destroy(this.gameObject);
         }
         var v = transform.Find("shadow");
-        v.position = this.transform.position - new Vector3(0, 0.4f,0);
+        v.position = this.transform.position - new Vector3(0, 0.25f,0);
         
         int pos = Utility.transformToLayer(this.transform.position);
         var sr = this.GetComponent<SpriteRenderer>();

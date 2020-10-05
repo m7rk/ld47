@@ -36,6 +36,7 @@ public class MeleeEnemy : Enemy
         {
             sprite.SetTrigger("die");
             GetComponent<BoxCollider2D>().enabled = false;
+            toCorpseLayer();
         }
     }
 
@@ -139,6 +140,10 @@ public class MeleeEnemy : Enemy
 
     void LateUpdate()
     {
+        if (!rtl.inRoom(this.transform.position) || currentHP <= 0)
+        {
+            return;
+        }
         setRenderIndex();
     }
 }
