@@ -24,8 +24,8 @@ public class RoomManager : MonoBehaviour
     void Start()
     {
         playerRoomStartLoc = p.transform.position;
-        //currRoomX = (int)((Utility.respawnPoint.x + ROOM_OFFSET_X) / ROOM_SIZE_X);
-        //currRoomY = (int)((Utility.respawnPoint.y + ROOM_OFFSET_Y) / ROOM_SIZE_Y);
+        currRoomX = (int)((playerRoomStartLoc.x + ROOM_OFFSET_X) / ROOM_SIZE_X);
+        currRoomY = (int)((playerRoomStartLoc.y + ROOM_OFFSET_Y) / ROOM_SIZE_Y);
         Camera.main.GetComponent<CameraFollow>().target = new Vector3((currRoomX * ROOM_SIZE_X), (currRoomY * ROOM_SIZE_Y), -8.5f);
     }
 

@@ -44,8 +44,7 @@ public class LevelGeneratorScript : MonoBehaviour
     private Vector3 keyPosition;
     private Vector3 playerPosition;
 
-    //!!! THIS VARIABLE IS SET BY THE ALGORITHM for other scripts to use. after that consider it "read only"
-    public Vector3 algorithmPlayerPosition; 
+    public Player player;
 
     private void preloadPrefabsForProgress()
     {
@@ -56,7 +55,7 @@ public class LevelGeneratorScript : MonoBehaviour
         genericRoomPrefab = Resources.LoadAll<GameObject>("Rooms/" + Utility.level + "/Other Room");
     }
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         preloadPrefabsForProgress();
              
@@ -168,11 +167,6 @@ public class LevelGeneratorScript : MonoBehaviour
         #endregion
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void placeBossRoom()
     {
@@ -213,7 +207,8 @@ public class LevelGeneratorScript : MonoBehaviour
         closeDoors(roomInScene);
 
         // This is where i will spawn the player. I just expose it and let the game manager handle it.
-        algorithmPlayerPosition = Vector3.Scale(positCheck, mapScale) + (.5f * mapScale);
+        player.transform.position = this.transform.position + Vector3.Scale(positCheck, mapScale) + (.5f * mapScale);
+        Camera.main.transform.position = player.transform.position;
     }
 
     public void placeGenericRoom()
