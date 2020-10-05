@@ -32,7 +32,7 @@ public class Chromoker : Enemy
         if (currentHP == 0)
         {
             animator.SetTrigger("die");
-            GetComponent<BoxCollider2D>().enabled = false;
+            GetComponent<Collider2D>().enabled = false;
             nextLevel();
         }
 
@@ -89,6 +89,6 @@ public class Chromoker : Enemy
 
     public override int maxHealth()
     {
-        return 12;
+        return 10;
     }
 }
