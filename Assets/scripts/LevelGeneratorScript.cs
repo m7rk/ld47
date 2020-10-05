@@ -44,6 +44,7 @@ public class LevelGeneratorScript : MonoBehaviour
     private Vector3 keyPosition;
     private Vector3 playerPosition;
 
+    //!!! THIS VARIABLE IS SET BY THE ALGORITHM for other scripts to use. after that consider it "read only"
     public Vector3 algorithmPlayerPosition; 
 
     private void preloadPrefabsForProgress()

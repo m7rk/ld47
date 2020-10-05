@@ -39,7 +39,8 @@ public class DungeonPits : MonoBehaviour
 
             if (tileType.Contains("PIT"))
             {
-                player.FallIntoPit(new Vector2(tileCenter.x,tileCenter.y - 0.5f));
+                
+                player.FallIntoPit(this.transform.position + new Vector3(tileCenter.x + 0.5f,tileCenter.y + 0.5f,0));
             }
         }
 
