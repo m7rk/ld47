@@ -32,7 +32,7 @@ public abstract class Enemy : AbstractUnit
         Utility.level++;
 
         FindObjectOfType<AudioController>().changeTrack("sfx_level complete1", false);
-        Invoke("resetGame", 7f);
+        Invoke("resetGame", 9f);
         Invoke("fadeOut", 3f);
 
         //this is also terrible but freezes input so okay whatever
@@ -55,7 +55,10 @@ public abstract class Enemy : AbstractUnit
             SceneManager.LoadScene("Menu/Title");
 
         }
-        SceneManager.LoadScene("Main");
+        else
+        {
+            SceneManager.LoadScene("Main");
+        }
 
     }
 }
