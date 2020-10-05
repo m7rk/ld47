@@ -75,6 +75,10 @@ public class RoomManager : MonoBehaviour
             FindObjectOfType<EnvSounds>().playRoomTransitionSound();
             FindObjectOfType<DungeonManager>().tryOpenBossDoor(roomX,roomY);
 
+
+
+
+
             resetTimer();
             Vector2 entry = new Vector2(roomX - currRoomX, roomY - currRoomY);
 
@@ -87,6 +91,9 @@ public class RoomManager : MonoBehaviour
             Camera.main.GetComponent<CameraFollow>().target = new Vector3((roomX * ROOM_SIZE_X), (roomY * ROOM_SIZE_Y), -8.5f);
             currRoomX = roomX;
             currRoomY = roomY;
+
+            // player boost!
+            FindObjectOfType<Player>().transform.position = FindObjectOfType<Player>().transform.position + 0.05f * (new Vector3(roomCenter().x, roomCenter().y, 0) - FindObjectOfType<Player>().transform.position);
 
             setDoor(entry);
 
