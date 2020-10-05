@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 7113243450221390109}
   - component: {fileID: 1368784708485870813}
   m_Layer: 11
-  m_Name: Boss1
+  m_Name: Boss3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -240,7 +240,8 @@ AudioSource:
   m_GameObject: {fileID: 7113243450244129359}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 8631631ef051e3b45b98940763601836,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 79d1641b3190f714fa642c758ac8336b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1

@@ -217,9 +217,10 @@ AudioSource:
   m_GameObject: {fileID: 133529222}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 8631631ef051e3b45b98940763601836,
+    type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.8
   m_Pitch: 1
   Loop: 0
@@ -963,7 +964,8 @@ AudioSource:
   m_GameObject: {fileID: 890316986}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 8631631ef051e3b45b98940763601836,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 42c373f628a33414bacfaba26c86b0a8, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.8
@@ -1076,7 +1078,8 @@ AudioSource:
   m_GameObject: {fileID: 957492659}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 8631631ef051e3b45b98940763601836,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.6
@@ -2372,7 +2375,8 @@ AudioSource:
   m_GameObject: {fileID: 1902423393}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 8631631ef051e3b45b98940763601836,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: bf357291c20d2ad4d80d68e206dd8072, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.6
@@ -2699,9 +2703,10 @@ AudioSource:
   m_GameObject: {fileID: 1989778933}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 8631631ef051e3b45b98940763601836,
+    type: 2}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2814,7 +2819,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clockWarning: {fileID: 8300000, guid: f8f80520da816c34ead84e580fd8834e, type: 3}
   tookClockDamage: {fileID: 8300000, guid: dcb72783193ca414f98ed71e36d9c0bb, type: 3}
-  openBossDoor: {fileID: 0}
+  fallDown: {fileID: 8300000, guid: 2c55c4da88133d74b813cc2611baae70, type: 3}
   roomTransition: {fileID: 8300000, guid: 984cd0feca13b7e44818441e7b71b9d2, type: 3}
 --- !u!1 &1993774291
 GameObject:
@@ -2948,7 +2953,8 @@ AudioSource:
   m_GameObject: {fileID: 2007164679}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 8631631ef051e3b45b98940763601836,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 54c2fafa649a3d844bd7f5f35e1d5043, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
