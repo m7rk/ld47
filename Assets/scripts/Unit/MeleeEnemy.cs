@@ -53,14 +53,21 @@ public class MeleeEnemy : Enemy
         dirs.Add(Vector2.down);
         dirs.Add(Vector2.right);
 
+        List<Vector3> offsets = new List<Vector3>();
+        offsets.Add(new Vector3(0.3f, 0.3f));
+        offsets.Add(new Vector3(0f, 0f));
+        offsets.Add(new Vector3(-0.3f, -0.3f));
 
         foreach (var d in dirs)
         {
-            RaycastHit2D info = Physics2D.Raycast(transform.position, d, 100, LayerMask.GetMask("World", "Enemy", "Pits", "Player"));
-
-            if (info.collider != null && info.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+            foreach (var o in offsets)
             {
-                return d;
+                RaycastHit2D info = Physics2D.Raycast(transform.position + o, d, 100, LayerMask.GetMask("World", "Enemy", "Pits", "Player"));
+
+                if (info.collider != null && info.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
+                {
+                    return d;
+                }
             }
         }
 
@@ -127,5 +134,11 @@ public class MeleeEnemy : Enemy
         {
             this.transform.localScale = new Vector3(1, 1, 1);
         }
+    }
+
+
+    void LateUpdate()
+    {
+        setRenderIndex();
     }
 }

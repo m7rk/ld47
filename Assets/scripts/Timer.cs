@@ -18,6 +18,8 @@ public class Timer : MonoBehaviour
 
     private Player p;
 
+    public GameObject hurtOverlay;
+
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +46,9 @@ public class Timer : MonoBehaviour
         if(remainingTime + Time.deltaTime > 5f && remainingTime <= 5f)
         {
             FindObjectOfType<EnvSounds>().playClockWarnSound();
+
+            //disgusting but w/e, it does force the reset.
+            hurtOverlay.SetActive(false);
         }
 
         if (remainingTime < 0f)
@@ -64,6 +69,8 @@ public class Timer : MonoBehaviour
         p.hurtIgnoreInvuln();
 
         FindObjectOfType<EnvSounds>().playTookClockDamageSound();
+
+        hurtOverlay.SetActive(true);
     }
 
 }

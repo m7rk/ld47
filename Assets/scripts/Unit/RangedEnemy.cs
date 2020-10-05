@@ -155,4 +155,10 @@ public class RangedEnemy : Enemy
             }
         }
     }
+
+
+    void LateUpdate()
+    {
+        setRenderIndex();
+    }
 }
