@@ -34,7 +34,7 @@ public class Player : AbstractPlayerCharacter
     private Vector3 pitTarget;
 
     public GameObject pitCollider;
-    
+
     
 
     // Start is called before the first frame update
@@ -71,7 +71,7 @@ public class Player : AbstractPlayerCharacter
     {
         Vector2 vec = Vector2.zero;
 
-        if (Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             return vec;
         }
@@ -108,7 +108,7 @@ public class Player : AbstractPlayerCharacter
         CurrentMove.location = rtl.removeOffsetFromRoom(this.transform.position);
         CurrentMove.didFire = Vector2.zero;
 
-        if (Input.GetKey(KeyCode.J) && shootTimer <= 0)
+        if (Input.GetKey(KeyCode.Space) && shootTimer <= 0)
         {
             startFire();
             CurrentMove.didFire = projectileLaunchDirection;
@@ -246,7 +246,7 @@ public class Player : AbstractPlayerCharacter
         invulnTime -= Time.deltaTime;
         footStepTime -= Time.deltaTime;
 
-        checkForShoot("PlayerProjectile");
+        checkForShoot("PlayerProjectile", SHOOT_OFFSET);
 
         sprite.GetComponentsInChildren<SpriteRenderer>()[0].color = (invulnTime > 0) ? Color.red : Color.white;
         sprite.GetComponentsInChildren<SpriteRenderer>()[1].color = (invulnTime > 0) ? Color.red : Color.white;

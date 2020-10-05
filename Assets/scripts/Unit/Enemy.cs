@@ -33,10 +33,15 @@ public abstract class Enemy : AbstractUnit
 
         FindObjectOfType<AudioController>().changeTrack("sfx_level complete1", false);
         Invoke("resetGame", 7f);
-        FindObjectOfType<Crossfade>().fadeToBlack();
+        Invoke("fadeOut", 3f);
 
         //this is also terrible but freezes input so okay whatever
         FindObjectOfType<Player>().currentHP = 0;
+    }
+
+    public void fadeOut()
+    {
+        FindObjectOfType<Crossfade>().fadeToBlack();
     }
 
     private void resetGame()

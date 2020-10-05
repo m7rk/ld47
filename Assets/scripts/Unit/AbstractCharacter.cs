@@ -20,6 +20,8 @@ public abstract class AbstractPlayerCharacter : AbstractUnit
     // when to transition from walk to idle.
     public static float ANIM_VEL_STOP_THRESH = 0.1f;
 
+    protected static Vector3 SHOOT_OFFSET = new Vector3(0, -0.15f, 0);
+
     // Enum for action that could be taken in any given frame.
     public struct CharacterMove
     {
@@ -67,12 +69,12 @@ public abstract class AbstractPlayerCharacter : AbstractUnit
     }
 
 
-    public void checkForShoot(string projType)
+    public void checkForShoot(string projType, Vector3 offset)
     {
         shootTimer -= Time.deltaTime;
         if (shootTimer < shootTimerFrame && shootTimer + Time.deltaTime >= shootTimerFrame)
         {
-            makeProjectile(projectileLaunchDirection, projType);
+            makeProjectile(projectileLaunchDirection, projType, offset);
         }
     }
 

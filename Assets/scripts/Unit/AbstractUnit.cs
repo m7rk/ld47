@@ -10,14 +10,14 @@ public abstract class AbstractUnit : MonoBehaviour
 
     private SpriteRenderer[] sprites = null;
 
-    
-    public void makeProjectile(Vector2 dir, string layer)
+
+    public void makeProjectile(Vector2 dir, string layer, Vector3 offset)
     {
         var v = Instantiate(Resources.Load<GameObject>("Prefab/" + layer));
         v.GetComponent<Projectile>().setup(dir, layer);
         v.transform.eulerAngles = new Vector3(0, 0, Mathf.Rad2Deg * Mathf.Atan2(dir.y, dir.x));
         v.layer = LayerMask.NameToLayer(layer);
-        v.transform.position = this.transform.position;
+        v.transform.position = this.transform.position + offset;
     }
 
     public void setRenderIndex()
@@ -27,9 +27,10 @@ public abstract class AbstractUnit : MonoBehaviour
             sprites = GetComponentsInChildren<SpriteRenderer>();
         }
 
+        int idx = 0;
         foreach(var v in sprites)
         {
-            v.sortingOrder = Utility.transformToLayer(this.transform.position);
+            v.sortingOrder = Utility.transformToLayer(this.transform.position) - (--idx);
         }
     }
 

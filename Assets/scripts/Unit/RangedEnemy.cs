@@ -135,7 +135,7 @@ public class RangedEnemy : Enemy
             if (stateTime < projTile && stateTime + Time.deltaTime > projTile)
             {
                 fireSound.Play();
-                makeProjectile(v, "EnemyProjectile");
+                makeProjectile(v, "EnemyProjectile", Vector3.zero);
             }
 
             if (stateTime <= 0)

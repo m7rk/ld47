@@ -45,8 +45,9 @@ public class RoomManager : MonoBehaviour
         timer.gameObject.SetActive(false);
         switch(Utility.level)
         {
-            // Trigger boss music.
-            //case 1: FindObjectOfType<AudioController>().changeTrack("");
+            case 1: FindObjectOfType<AudioController>().changeTrack("snd_floor1_boss",true); return;
+            case 2: FindObjectOfType<AudioController>().changeTrack("snd_floor2_boss", true); return;
+            case 3: FindObjectOfType<AudioController>().changeTrack("snd_floor3_boss", true); return;
         }
     }
 
