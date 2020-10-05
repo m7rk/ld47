@@ -118,6 +118,7 @@ public class Player : AbstractPlayerCharacter
             projectileLaunchDirection = moveVector;
             am.setArrow(projectileLaunchDirection);
             footStep();
+
         }
 
       
@@ -157,7 +158,8 @@ public class Player : AbstractPlayerCharacter
 
         if (currentHP == 0)
         {
-            this.invulnTime = INVULN_TIME_MAX;
+            sprite.GetComponentsInChildren<SpriteRenderer>()[0].color = Color.red;
+            sprite.GetComponentsInChildren<SpriteRenderer>()[1].color = Color.red;
             Invoke("ResetGame", 4.5f);
             cf.fadeToBlack();
             hm.setHearts(0);

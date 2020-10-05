@@ -34,6 +34,7 @@ public class RangedEnemy : Enemy
         playHurtSound();
         sprite.SetTrigger("die");
         GetComponent<BoxCollider2D>().enabled = false;
+        toCorpseLayer();
     }
 
     public override int maxHealth()
@@ -159,6 +160,11 @@ public class RangedEnemy : Enemy
 
     void LateUpdate()
     {
+        if (!rtl.inRoom(this.transform.position) || currentHP <= 0)
+        {
+            return;
+        }
+
         setRenderIndex();
     }
 }

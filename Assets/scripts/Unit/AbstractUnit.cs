@@ -33,4 +33,11 @@ public abstract class AbstractUnit : MonoBehaviour
         }
     }
 
+    public void toCorpseLayer()
+    {
+        foreach (var v in sprites)
+        {
+            v.sortingOrder = -60;
+        }
+    }
 }
