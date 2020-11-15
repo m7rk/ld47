@@ -4303,6 +4303,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossDoor
       objectReference: {fileID: 0}
+    - target: {fileID: 7643579228849534246, guid: 3319bc4a3e7e63141b0970fc1d40bcc0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7643579228849534296, guid: 3319bc4a3e7e63141b0970fc1d40bcc0,
         type: 3}
       propertyPath: m_LocalPosition.x
