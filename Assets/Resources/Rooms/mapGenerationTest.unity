@@ -232,20 +232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 432e7c80dd7fde145b07a92e53c04d9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCharacter: {fileID: 7310349}
-  bossDoorPrefab:
-  - {fileID: 266210312483064387, guid: a6c5b858e6c9a924aba56f3bc765856c, type: 3}
-  bossRoomPrefab:
-  - {fileID: 266210312483064387, guid: 14c19c6d5a5c1324b9662f6cc97bb8fe, type: 3}
-  keyRoomPrefab:
-  - {fileID: 266210312483064387, guid: fc6f595acd3d8664ab80703d6c4e8fbb, type: 3}
-  playerRoomPrefab:
-  - {fileID: 266210312483064387, guid: 763f259fb55d9104a81994da5291ab4d, type: 3}
-  genericRoomPrefab:
-  - {fileID: 266210312483064387, guid: ed11791da1039f84094f8efd9b792e25, type: 3}
   bossPosition: {x: 0, y: 0, z: 0}
-  keyPosition: {x: 0, y: 0, z: 0}
-  playerPosition: {x: 0, y: 0, z: 0}
+  player: {fileID: 0}
 --- !u!4 &48087071
 Transform:
   m_ObjectHideFlags: 0

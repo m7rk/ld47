@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class introstop : MonoBehaviour
+public class IntroStop : MonoBehaviour
 {
 	public GameObject cover;
 	public GameObject fadein;
@@ -17,8 +17,9 @@ public class introstop : MonoBehaviour
 	{
 		cover.SetActive(false);
 		fadein.SetActive(true);
-		Invoke("hideFade", 0.5f);
+		Invoke("hideFade", 1f);
 	}
+
 	void hideFade()
 	{
 		fadein.SetActive(false);
