@@ -47,7 +47,7 @@ public class MeleeEnemy : Enemy
 
     public override int maxHealth()
     {
-        return isBoss ? 6 : 3;
+        return isBoss ? 12 : 3;
     }
 
     public Vector2 canSeePlayer()
@@ -111,11 +111,11 @@ public class MeleeEnemy : Enemy
                 sprite.SetBool("walking", false);
                 sprite.SetTrigger(facingLeft ? "lunge_left" : "lunge_right");
 
-                GetComponent<Rigidbody2D>().velocity = 2f * moveDir;
+                GetComponent<Rigidbody2D>().velocity = (isBoss ? 3f : 2f) * moveDir;
             } else
             {
                 sprite.SetBool("walking", true);
-                GetComponent<Rigidbody2D>().velocity = 1.5f * moveDir;
+                GetComponent<Rigidbody2D>().velocity = (isBoss ? 2.5f : 1.5f) * moveDir;
             }
 
         }

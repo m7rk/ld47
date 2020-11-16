@@ -109,6 +109,6 @@ public class TheForgotten : Enemy
 
     public override int maxHealth()
     {
-        return 10;
+        return 20;
     }
 }

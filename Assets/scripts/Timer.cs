@@ -15,6 +15,7 @@ public class Timer : MonoBehaviour
 
     // Text countdown
     public Text timeRemainDisplay;
+    public Text timeRemainDisplayShadow;
 
     private Player p;
 
@@ -59,9 +60,11 @@ public class Timer : MonoBehaviour
 
         timerClock.fillAmount = remainingTime / timeLimit; // produces the percent time remaining
 
-        timeRemainDisplay.text = remainingTime.ToString("000"); // shows time to nearest whole number
+        timeRemainDisplay.text = remainingTime.ToString("0"); // shows time to nearest whole number
+        timeRemainDisplayShadow.text = remainingTime.ToString("0");
 
-        timeRemainDisplay.color = remainingTime > 5 ? Color.white : Color.red;
+        timeRemainDisplay.color = remainingTime > 5 ? Color.clear : (((int)(remainingTime*3)) % 2 == 0 ? Color.white : Color.red);
+        timeRemainDisplayShadow.color = remainingTime > 5 ? Color.clear : Color.white;
     }
 
     public void slowPenalty()

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RoomManager : MonoBehaviour
 {
@@ -21,6 +22,9 @@ public class RoomManager : MonoBehaviour
     public GameObject barrier;
 
     public float forceResetTimer = 15f;
+
+    public AbstractUnit bossUnit;
+    public GameObject bossCanvas;
     
     
     void Start()
@@ -44,12 +48,14 @@ public class RoomManager : MonoBehaviour
 
     public void startBossFight()
     {
+        bossUnit = GameObject.FindGameObjectWithTag("Boss").GetComponent<AbstractUnit>();
+        bossCanvas.SetActive(true);
         timer.gameObject.SetActive(false);
         switch(Utility.level)
         {
-            case 1: FindObjectOfType<AudioController>().changeTrack("snd_floor1_boss",true); return;
-            case 2: FindObjectOfType<AudioController>().changeTrack("snd_floor2_boss", true); return;
-            case 3: FindObjectOfType<AudioController>().changeTrack("snd_floor3_boss", true); return;
+            case 1: FindObjectOfType<AudioController>().changeTrack("snd_floor1_boss",true); bossCanvas.GetComponentInChildren<Text>().text = "M U T A N T   C R A W K L E R"; return;
+            case 2: FindObjectOfType<AudioController>().changeTrack("snd_floor2_boss", true); bossCanvas.GetComponentInChildren<Text>().text = "T H E   F O R G O T T E N"; return;
+            case 3: FindObjectOfType<AudioController>().changeTrack("snd_floor3_boss", true); bossCanvas.GetComponentInChildren<Text>().text = "C H R O M O K E R"; return;
         }
     }
 
@@ -58,6 +64,11 @@ public class RoomManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(bossUnit != null)
+        {
+            bossCanvas.GetComponentInChildren<Slider>().value = (bossUnit.currentHP / (float)bossUnit.maxHealth());
+        }
+
         forceResetTimer -= Time.deltaTime;
 
         if(forceResetTimer <= 0f)

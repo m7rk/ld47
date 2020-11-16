@@ -167,7 +167,7 @@ public class Player : AbstractPlayerCharacter
             hurtSound.Play();
             sprite.GetComponentsInChildren<SpriteRenderer>()[0].color = Color.red;
             sprite.GetComponentsInChildren<SpriteRenderer>()[1].color = Color.red;
-            Invoke("ResetGame", 6f);
+            Invoke("ResetGame", 4f);
             cf.fadeToBlack();
             hm.setHearts(0);
             FindObjectOfType<AudioController>().changeTrack("ld47 gameover",false);

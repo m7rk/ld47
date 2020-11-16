@@ -3987,6 +3987,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChromokerEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 2638073120246862338, guid: c9fa813a895b57246a7f8eb16a5e5f36,
+        type: 3}
+      propertyPath: m_TagString
+      value: Boss
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9fa813a895b57246a7f8eb16a5e5f36, type: 3}
 --- !u!4 &3535803155989665155 stripped

@@ -91,6 +91,6 @@ public class Chromoker : Enemy
 
     public override int maxHealth()
     {
-        return 10;
+        return 28;
     }
 }
