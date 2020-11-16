@@ -3862,6 +3862,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 683660036040119449, guid: c02886d3029319948838d5625cbf2ea5,
+        type: 3}
+      propertyPath: teleportSound
+      value: 
+      objectReference: {fileID: 8300000, guid: b8adc5be03ebaa145b27b5f0261f2e2d, type: 3}
     - target: {fileID: 683660036040119450, guid: c02886d3029319948838d5625cbf2ea5,
         type: 3}
       propertyPath: m_Name

@@ -22,6 +22,8 @@ public class TheForgotten : Enemy
 
     public RoomManager rtl;
 
+    public AudioClip teleportSound;
+
     public void Awake()
     {
         currentHP = maxHealth();
@@ -58,6 +60,7 @@ public class TheForgotten : Enemy
                     animator.SetBool("attack", true);
                 }
             }
+            fireSound.Play();
         }
     }
 
@@ -101,6 +104,7 @@ public class TheForgotten : Enemy
 
             cooldownTime = Random.Range(minimumTeleport, maximumTeleport);
             animator.SetBool("teleporting", false);
+            GetComponentInChildren<AudioSource>().PlayOneShot(teleportSound);
             spawnTime = 1.5f;
 
         }
@@ -120,6 +124,6 @@ public class TheForgotten : Enemy
 
     public override int maxHealth()
     {
-        return 20;
+        return 12;
     }
 }

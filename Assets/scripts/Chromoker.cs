@@ -54,18 +54,18 @@ public class Chromoker : Enemy
                 makeProjectile(new Vector2(dx, dy), "EnemyProjectile", Vector3.zero);
                 animator.SetBool("shoot", true);
             }
+            fireSound.Play();
         }
     }
 
     public void Update()
     {
-        /**
-        if (!rtl.inRoom(this.transform.position) || currentHP <= 0)
+
+        if(currentHP <= 0)
         {
             return;
         }
-    */
-        
+
         patternReset -= Time.deltaTime;
 
         if(patternReset < 0)
@@ -77,7 +77,10 @@ public class Chromoker : Enemy
 
         if (patternReset < 7)
         {
-            fireOncePerSec();
+            if (rtl.inRoom(this.transform.position))
+            {
+                fireOncePerSec();
+            } 
         }
 
         t1 += t1delt * Time.deltaTime;
@@ -91,6 +94,6 @@ public class Chromoker : Enemy
 
     public override int maxHealth()
     {
-        return 28;
+        return 22;
     }
 }

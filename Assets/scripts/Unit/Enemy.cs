@@ -52,7 +52,7 @@ public abstract class Enemy : AbstractUnit
     {
         if (Utility.level == 4)
         {
-            SceneManager.LoadScene("Menu/Title");
+            SceneManager.LoadScene("Title");
 
         }
         else
