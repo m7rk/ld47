@@ -50,6 +50,11 @@ public class TheForgotten : Enemy
                         continue;
                     }
                     makeProjectile(new Vector2(dx, dy), "EnemyProjectile", Vector3.zero);
+                    // lol
+                    var ang = Mathf.Atan2(dy, dx) + (45 * Mathf.Deg2Rad);
+
+                    makeProjectile(new Vector2(dx + Mathf.Cos(ang), dy + Mathf.Sin(ang)), "EnemyProjectile", Vector3.zero);
+
                     animator.SetBool("attack", true);
                 }
             }
@@ -86,6 +91,12 @@ public class TheForgotten : Enemy
         {
             randX = Random.Range(-3, 3);
             randY = Random.Range(-1, 1);
+
+            if(currentHP < maxHealth())
+            {
+                currentHP++;
+            }
+
             this.transform.position = new Vector3((originalX + randX), (originalY + randY), originalZ);
 
             cooldownTime = Random.Range(minimumTeleport, maximumTeleport);

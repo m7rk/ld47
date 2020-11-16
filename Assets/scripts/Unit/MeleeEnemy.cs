@@ -47,7 +47,7 @@ public class MeleeEnemy : Enemy
 
     public override int maxHealth()
     {
-        return isBoss ? 12 : 3;
+        return isBoss ? 9 : 3;
     }
 
     public Vector2 canSeePlayer()
